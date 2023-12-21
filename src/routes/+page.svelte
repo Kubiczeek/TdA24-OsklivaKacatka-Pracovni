@@ -132,11 +132,9 @@
         <div class="userText">
           <div class="upperText">
             <span class="name">Mgr. Petra Swil Plachá MBA</span>
-            <div class="tags">
-              <Tag text="aktivní studentka" backgroundColor="00384D" />
-              <Tag text="projektová manažerka" backgroundColor="00384D" />
-              <Tag text="předsedkyně spolku" backgroundColor="00384D" />
-            </div>
+            <p class="subtext">
+              Aktivní studentka / Předsedkyně spolku / Projektová manažerka
+            </p>
           </div>
           <div class="downSection">
             <div class="kontakt">
@@ -186,7 +184,21 @@
           </div>
         </div>
       </div>
-      <div class="info"></div>
+      <div class="info">
+        <div class="aboutMe">
+          <p class="subheader">Autobiografie</p>
+          <p class="description">
+            Baví mě organizovat věci. Ať už to bylo vyvíjení mobilních aplikací
+            ve Futured, pořádání konferencí, spolupráce na soutěžích
+            Prezentiáda, pIšQworky, <b>Tour de App</b> a Středoškolák roku, nebo
+            třeba dobrovolnictví, vždycky jsem skončila u projektového managementu,
+            rozvíjení soft-skills a vzdělávání. U studentských projektů a akcí jsem
+            si vyzkoušela snad všechno od marketingu po logistiku a moc ráda to předám
+            dál. Momentálně studuji Pdf MUNI a FF MUNI v Brně.
+          </p>
+        </div>
+        <div class="tags"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -286,12 +298,13 @@
     cursor: copy;
   }
 
-  .tags {
-    display: flex;
-    flex-direction: row;
+  .subtext {
+    font-family: "Open sans", sans-serif;
+    font-weight: bold;
+    color: #00384d;
     flex-wrap: wrap;
+    font-size: 1.125rem;
     width: 100%;
-    gap: 2%;
     margin-top: -1.5%;
   }
 
@@ -308,11 +321,11 @@
   .place {
     flex-basis: auto;
     background-color: #f2f2f2;
-    flex-basis: 46.2%;
+    flex-basis: 43.8%;
     border-radius: 7px;
     display: flex;
     flex-direction: column;
-    padding: 3px 0 9px 12px;
+    padding: 3px 12px 9px 12px;
     margin-bottom: 2%;
   }
 
