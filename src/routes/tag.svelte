@@ -10,14 +10,13 @@
 
   p {
     margin: 0;
-    margin-bottom: 1%;
     padding: 0.12rem 0.5rem;
     text-align: center;
     border-radius: 0.45rem;
     color: white;
     font-family: "Open Sans", sans-serif;
-    font-weight: bold;
-    font-size: 1.125rem;
+    font-weight: 500;
+    font-size: 0.9275rem;
     text-align: center;
     width: fit-content;
   }

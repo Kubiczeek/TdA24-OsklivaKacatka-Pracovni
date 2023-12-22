@@ -1,5 +1,6 @@
 <script>
   import Tag from "./tag.svelte";
+  import logo from "$lib/assets/Profil.png";
 
   function copyToClipboard() {
     const copyText = document.getElementById("uuid");
@@ -113,7 +114,7 @@
 <div class="main">
   <div class="container">
     <div class="textContainer">
-      <p class="rotatedText">Profil</p>
+      <img class="rotated profil lol" src={logo} alt="" />
     </div>
     <div class="informationCard">
       <div class="user">
@@ -187,7 +188,7 @@
       <div class="info">
         <div class="aboutMe">
           <p class="subheader">Autobiografie</p>
-          <p class="description">
+          <p class="aboutMeDescription">
             Baví mě organizovat věci. Ať už to bylo vyvíjení mobilních aplikací
             ve Futured, pořádání konferencí, spolupráce na soutěžích
             Prezentiáda, pIšQworky, <b>Tour de App</b> a Středoškolák roku, nebo
@@ -197,7 +198,25 @@
             dál. Momentálně studuji Pdf MUNI a FF MUNI v Brně.
           </p>
         </div>
-        <div class="tags"></div>
+        <div class="tags">
+          <Tag text="#dobrovolnictví" backgroundColor="74C7D3" />
+          <Tag text="#studentské spolky" backgroundColor="74C7D3" />
+          <Tag text="#efektivní učení" backgroundColor="74C7D3" />
+          <Tag text="#prezentační dovednosti" backgroundColor="74C7D3" />
+          <Tag text="#mimoškolní aktivity" backgroundColor="74C7D3" />
+          <Tag
+            text="#marketing pro neziskové studentské projekty"
+            backgroundColor="74C7D3"
+          />
+          <Tag
+            text="#projektový management, event management"
+            backgroundColor="74C7D3"
+          />
+          <Tag
+            text="#fundraising pro neziskové studentské projekty"
+            backgroundColor="74C7D3"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -241,17 +260,18 @@
   }
 
   .textContainer {
+    padding-top: 1.2%;
     width: 10%;
     height: 18%;
     display: flex;
+    justify-content: center;
     align-self: flex-start;
   }
 
-  .rotatedText {
-    font-family: "Lalezar", sans-serif;
-    font-size: 2.8rem;
-    transform: rotate(-90deg);
-    margin: 0;
+  .textContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .informationCard {
@@ -259,6 +279,12 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
+  }
+
+  .userText {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 
   .user {
@@ -313,7 +339,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 3%;
+    gap: 2%;
   }
 
   .kontakt,
@@ -321,12 +347,12 @@
   .place {
     flex-basis: auto;
     background-color: #f2f2f2;
-    flex-basis: 43.8%;
     border-radius: 7px;
     display: flex;
     flex-direction: column;
     padding: 3px 12px 9px 12px;
     margin-bottom: 2%;
+    flex: 1;
   }
 
   .subheader {
@@ -387,5 +413,30 @@
     font-family: "Lalezar", sans-serif;
     font-weight: normal;
     font-size: 1.56rem;
+  }
+
+  .aboutMe {
+    background-color: #f2f2f2;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    padding: 3px 12px 9px 12px;
+  }
+
+  .aboutMeDescription {
+    font-size: 1rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 1%;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
   }
 </style>
