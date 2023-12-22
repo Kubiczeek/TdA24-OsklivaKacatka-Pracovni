@@ -114,7 +114,7 @@
 <div class="main">
   <div class="container">
     <div class="textContainer">
-      <img class="rotated profil lol" src={logo} alt="" />
+      <img class="rotated profil" src={logo} alt="" />
     </div>
     <div class="informationCard">
       <div class="user">
@@ -122,6 +122,7 @@
           <img
             src="https://tourdeapp.cz/storage/images/2023_02_25/412ff296a291f021bbb6de10e8d0b94863fa89308843b/big.png.webp"
             alt="Profile Icon"
+            id="picture"
             class="pp"
           />
           <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -132,8 +133,14 @@
         </div>
         <div class="userText">
           <div class="upperText">
-            <span class="name">Mgr. Petra Swil Plachá MBA</span>
-            <p class="subtext">
+            <span class="name"
+              ><span id="title_before">Mgr.</span>
+              <span id="first_name">Petra</span>
+              <span id="middle_name">Swil</span>
+              <span id="last_name">Plachá</span>
+              <span id="title_after">MBA</span></span
+            >
+            <p class="subtext" id="claim">
               Aktivní studentka / Předsedkyně spolku / Projektová manažerka
             </p>
           </div>
@@ -165,7 +172,9 @@
                   />
                 </svg>
                 <span class="smallerText">+420</span>
-                <span class="actualPhoneNumber">722 482 974</span>
+                <span class="actualPhoneNumber telephone_numbers"
+                  >722 482 974</span
+                >
               </p>
               <ul class="emails">
                 <li class="email">predseda@scg.cz</li>
@@ -175,12 +184,13 @@
             <div class="money">
               <p class="subheader">finanční ohodnocení</p>
               <p class="description">
-                1200 Kč<span class="smallerText">/hodina</span>
+                <span id="price_per_hour">1200 Kč</span>
+                <span class="smallerText">/hodina</span>
               </p>
             </div>
             <div class="place">
               <p class="subheader">lokalita</p>
-              <p class="description">Brno</p>
+              <p class="description" id="location">Brno</p>
             </div>
           </div>
         </div>
@@ -188,7 +198,7 @@
       <div class="info">
         <div class="aboutMe">
           <p class="subheader">Autobiografie</p>
-          <p class="aboutMeDescription">
+          <p class="aboutMeDescription" id="bio">
             Baví mě organizovat věci. Ať už to bylo vyvíjení mobilních aplikací
             ve Futured, pořádání konferencí, spolupráce na soutěžích
             Prezentiáda, pIšQworky, <b>Tour de App</b> a Středoškolák roku, nebo
@@ -198,7 +208,7 @@
             dál. Momentálně studuji Pdf MUNI a FF MUNI v Brně.
           </p>
         </div>
-        <div class="tags">
+        <div class="tags" id="tags">
           <Tag text="#dobrovolnictví" backgroundColor="74C7D3" />
           <Tag text="#studentské spolky" backgroundColor="74C7D3" />
           <Tag text="#efektivní učení" backgroundColor="74C7D3" />
@@ -233,7 +243,7 @@
   }
 
   .logo {
-    position: absolute;
+    position: fixed;
     bottom: 3%;
     right: 1%;
     height: 7%;
@@ -254,15 +264,16 @@
     padding: 0;
     display: flex;
     align-items: center;
+    flex-direction: row;
     width: 50%;
-    height: 70.25%;
+    height: auto;
     gap: 0px;
   }
 
   .textContainer {
     padding-top: 1.2%;
-    width: 10%;
-    height: 18%;
+    width: 4%;
+    margin-right: 1%;
     display: flex;
     justify-content: center;
     align-self: flex-start;
@@ -293,7 +304,7 @@
     gap: 3%;
   }
 
-  .name {
+  .name span {
     font-family: "Lalezar", sans-serif;
     font-size: 2.8rem;
   }
@@ -438,5 +449,76 @@
   .info {
     display: flex;
     flex-direction: column;
+  }
+
+  @media only screen and (max-width: 1350px) {
+    .main {
+      width: 100%;
+      height: 100vh;
+      padding: 0 15px 0 15px;
+    }
+    .container {
+      width: 60%;
+      flex-direction: column;
+      gap: 0px;
+    }
+    .textContainer {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1100px) {
+    .main {
+      width: 100%;
+      height: 100vh;
+      padding: 0 15px 0 15px;
+    }
+
+    .container {
+      width: 70%;
+      flex-direction: column;
+      gap: 0px;
+    }
+    .textContainer {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 940px) {
+    .main {
+      width: 100%;
+      height: 100vh;
+      padding: 0 15px 0 15px;
+    }
+
+    .container {
+      width: 80%;
+      flex-direction: column;
+      gap: 0px;
+    }
+    .textContainer {
+      display: none;
+    }
+  }
+
+  @media only screen and (orientation: portrait) {
+    .main {
+      width: 100%;
+      height: auto;
+      padding: 0 15px 0 15px;
+    }
+
+    .container {
+      width: 100%;
+      flex-direction: column;
+      gap: 0px;
+    }
+    .textContainer {
+      display: none;
+    }
+
+    .user {
+      flex-direction: column;
+    }
   }
 </style>

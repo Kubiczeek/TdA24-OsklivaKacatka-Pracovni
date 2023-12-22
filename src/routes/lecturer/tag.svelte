@@ -3,6 +3,7 @@
   export let backgroundColor;
 </script>
 
+<span id="uuid"></span>
 <p style="background-color: #{backgroundColor};">{text}</p>
 
 <style>
@@ -19,5 +20,9 @@
     font-size: 0.9275rem;
     text-align: center;
     width: fit-content;
+  }
+
+  span {
+    display: none;
   }
 </style>
