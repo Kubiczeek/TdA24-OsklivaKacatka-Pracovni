@@ -12,6 +12,7 @@ export const POST = async ({ request, url }) => {
   let obj = {};
   obj = body;
   obj.uuid = uuidv4();
+  saved.data.push(obj);
 
   Database.updateClusterByName(saved.clusterName, saved);
   console.log("yo mama so fat");
