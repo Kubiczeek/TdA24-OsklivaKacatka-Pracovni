@@ -254,9 +254,8 @@
     padding: 0;
     height: 90vh;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
   }
 
   .container {
