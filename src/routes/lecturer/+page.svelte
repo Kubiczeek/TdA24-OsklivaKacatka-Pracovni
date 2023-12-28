@@ -117,6 +117,18 @@
       <img class="rotated profil" src={logo} alt="" />
     </div>
     <div class="informationCard">
+      <div class="upperText mobileView">
+        <span class="name"
+          ><span id="title_before">Mgr.</span>
+          <span id="first_name">Petra</span>
+          <span id="middle_name">Swil</span>
+          <span id="last_name">Plachá</span>
+          <span id="title_after">MBA</span></span
+        >
+        <p class="subtext" id="claim">
+          Aktivní studentka / Předsedkyně spolku / Projektová manažerka
+        </p>
+      </div>
       <div class="user">
         <div class="ppAUUID">
           <img
@@ -127,12 +139,12 @@
           />
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <!-- svelte-ignore a11y-no-static-element-interactions -->
-          <span id="uuid" class="uuid" on:click={copyToClipboard}>
+          <span id="uuid" class="uuid desktopView" on:click={copyToClipboard}>
             67fda282-2bca-41ef-9caf-039cc5c8dd69
           </span>
         </div>
         <div class="userText">
-          <div class="upperText">
+          <div class="upperText desktopView">
             <span class="name"
               ><span id="title_before">Mgr.</span>
               <span id="first_name">Petra</span>
@@ -192,6 +204,9 @@
               <p class="subheader">lokalita</p>
               <p class="description" id="location">Brno</p>
             </div>
+            <span id="uuid" class="uuid mobileView" on:click={copyToClipboard}>
+              67fda282-2bca-41ef-9caf-039cc5c8dd69
+            </span>
           </div>
         </div>
       </div>
@@ -240,6 +255,14 @@
     margin: 0;
     padding: 0;
     color: #333;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .mobileView {
+    display: none;
   }
 
   .logo {
@@ -500,7 +523,81 @@
     }
   }
 
-  @media only screen and (orientation: portrait) {
+  @media only screen and (max-width: 840px), (orientation: portrait) {
+    .desktopView {
+      display: none;
+    }
+
+    .mobileView {
+      display: flex;
+      flex-direction: column;
+      gap: 1%;
+    }
+    .main {
+      width: 100%;
+      height: auto;
+      padding: 0 15px 0 15px;
+    }
+
+    .container {
+      width: 100%;
+      flex-direction: column;
+      gap: 0px;
+    }
+    .textContainer {
+      display: none;
+    }
+
+    .downSection {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 1%;
+    }
+
+    .kontakt,
+    .money,
+    .place {
+      height: auto;
+    }
+
+    .user {
+      margin-top: 3%;
+      margin-bottom: 2%;
+      gap: 2.5%;
+    }
+
+    .upperText {
+      margin-bottom: 4%;
+    }
+
+    .ppAUUID {
+      padding: 0;
+      max-width: 80%;
+      align-self: center;
+    }
+
+    .pp {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .uuid {
+      align-self: center;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .desktopView {
+      display: revert;
+    }
+
+    .mobileView {
+      display: none;
+    }
     .main {
       width: 100%;
       height: auto;
@@ -517,7 +614,15 @@
     }
 
     .user {
+      display: flex;
       flex-direction: column;
+    }
+
+    .uuid {
+      align-self: center;
+      text-align: center;
+      margin: 0;
+      padding: 0;
     }
   }
 </style>
