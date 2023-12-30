@@ -2,6 +2,12 @@
   import Tag from "./tag.svelte";
   import Profil from "$lib/assets/Profil.png";
   import Phone from "$lib/assets/Phone.svg";
+
+  function copyToClipboard() {
+    const copyText = document.getElementById("uuid");
+
+    navigator.clipboard.writeText(copyText.textContent);
+  }
 </script>
 
 <div class="main">
@@ -14,7 +20,7 @@
     </div>
     <div class="card">
       <div class="profile">
-        <div class="profilePicture">
+        <div class="profilePicture desktopView">
           <img
             src="https://tourdeapp.cz/storage/images/2023_02_25/412ff296a291f021bbb6de10e8d0b94863fa89308843b/big.png.webp"
             alt=""
@@ -28,7 +34,43 @@
           <p class="claim color-darkblue">
             Aktivní studentka / Předsedkyně spolku / Projektová manažerka
           </p>
-          <div class="grid-sections">
+          <div class="grid-sections desktopView">
+            <div class="bg-grey color-black section kontakt">
+              <p class="header">kontaktní údaje</p>
+              <div class="kontakt-section">
+                <div class="phone-icon">
+                  <img src={Phone} alt="" />
+                </div>
+                <div class="numbers">
+                  <span class="small-text">+420</span> 722 482 974
+                </div>
+                <div class="email-icon">
+                  <span class="color-darkblue header">@</span>
+                </div>
+                <div class="emails color-black">
+                  <span>predseda@scg.cz</span>
+                  <span>placha@scg.cz</span>
+                </div>
+              </div>
+            </div>
+            <div class="bg-grey color-black section finance">
+              <p class="header">finanční ohodnocení</p>
+              <p class="section-description">
+                1200 Kč<span class="small-text">/hodina</span>
+              </p>
+            </div>
+            <div class="bg-grey color-black section lokalita">
+              <p class="header">lokalita</p>
+              <p class="section-description">Brno</p>
+            </div>
+          </div>
+          <div class="grid-sections mobileView">
+            <div class="profilePicture mobileView">
+              <img
+                src="https://tourdeapp.cz/storage/images/2023_02_25/412ff296a291f021bbb6de10e8d0b94863fa89308843b/big.png.webp"
+                alt=""
+              />
+            </div>
             <div class="bg-grey color-black section kontakt">
               <p class="header">kontaktní údaje</p>
               <div class="kontakt-section">
@@ -289,6 +331,7 @@
     display: grid;
     width: 100%;
     height: 90vh;
+    margin-top: 1%;
     align-items: center;
     justify-items: center;
     font-family: "Open Sans", sans-serif;
@@ -298,12 +341,15 @@
     display: none;
   }
 
-  @media (max-width: 700px), (orientation: portrait) {
+  @media (max-width: 700px) {
+    .desktopView {
+      display: none;
+    }
     .main {
       height: 90vh;
     }
     .mobileView {
-      display: revert;
+      display: flex;
     }
 
     .page-name {
@@ -312,7 +358,6 @@
     .container {
       display: flex;
       flex-direction: column;
-      padding: 1rem 0;
     }
 
     .profile-rotated {
@@ -323,8 +368,56 @@
       flex-direction: column;
       gap: 1rem;
     }
-    .grid-sections {
-      grid-template-areas: "kontakt" "finance" "lokalita";
+    .grid-sections:has(.mobileView) {
+      display: grid;
+      grid-template-areas: "profile kontakt" "lokalita finance";
+      grid-auto-rows: auto;
+      grid-auto-columns: 1fr 1fr;
+      column-gap: 0.73333rem;
+      row-gap: 1rem;
+    }
+
+    .emails {
+      grid-auto-flow: row;
+      grid-template-rows: auto;
+    }
+
+    .profilePicture:has(.mobileView) {
+      grid-area: profile;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profilePicture > img {
+      width: 100%;
+      border-radius: 25px;
+    }
+
+    .info {
+      gap: 1rem;
+    }
+
+    .kontakt {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .kontakt-section {
+      gap: 0.8rem;
+    }
+
+    .numbers {
+      font-size: 1.06666rem;
+    }
+
+    .numbers span {
+      font-size: 0.8666rem;
+    }
+
+    .card {
+      gap: 1rem;
     }
   }
 </style>
