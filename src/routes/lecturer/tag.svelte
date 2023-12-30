@@ -11,12 +11,12 @@
 
   p {
     margin: 0;
-    padding: 0.12rem 0.5rem;
+    padding: 0.1rem 0.4rem;
     text-align: center;
     border-radius: 0.45rem;
     color: white;
     font-family: "Open Sans", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.9275rem;
     text-align: center;
     width: fit-content;
