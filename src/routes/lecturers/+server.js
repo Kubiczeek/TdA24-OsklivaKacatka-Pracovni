@@ -1,5 +1,9 @@
 import Database from "db-quickly-js";
-import { reinitializeDB, findTagsUuid } from "$lib/server/db/db.js";
+import {
+  reinitializeDB,
+  findTagsUuid,
+  findTagsName,
+} from "$lib/server/db/db.js";
 import { v4 as uuidv4 } from "uuid";
 import Joi from "joi";
 
@@ -51,6 +55,14 @@ export const POST = async ({ request, url }) => {
 export const GET = async ({ request }) => {
   reinitializeDB();
   let res = Database.getClusterByName("Lecturers");
+  for (let i = 0; i < res.data.length; i++) {
+    let obj = res.data[i];
+
+    for (let j = 0; j < obj.tags.length; j++) {
+      obj.tags[j] = findTagsName(obj.tags[j]);
+    }
+  }
+
   return new Response(JSON.stringify(res.data), { status: 200 });
 };
 export const DELETE = async ({ request }) => {

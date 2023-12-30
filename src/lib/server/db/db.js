@@ -43,12 +43,15 @@ export function findTagsUuid(name) {
 export function findTagsName(uuid) {
   let cl = Database.getClusterByName("Tags");
   let found = false;
-  console.log(cl.data);
+  console.log("uuid =" + uuid);
 
   for (let i = 0; i < cl.data.length; i++) {
     let body = cl.data[i];
     let cUuid = body.uuid;
-
+    console.log(cUuid == uuid);
+    console.log("uuid  ==" + uuid);
+    console.log("cl uid==" + cUuid);
+    console.log("wtf");
     if (cUuid == uuid) {
       return body.name;
     }
