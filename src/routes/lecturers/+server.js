@@ -59,7 +59,7 @@ export const GET = async ({ request }) => {
     let obj = res.data[i];
 
     for (let j = 0; j < obj.tags.length; j++) {
-      obj.tags[j] = findTagsName(obj.tags[j]);
+      obj.tags[j] = { name: findTagsName(obj.tags[j]), uuid: obj.tags[j] };
     }
   }
 

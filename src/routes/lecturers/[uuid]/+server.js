@@ -14,7 +14,7 @@ export const GET = async ({ params }) => {
     let obj = cluster.data[i];
 
     for (let j = 0; j < obj.tags.length; j++) {
-      obj.tags[j] = findTagsName(obj.tags[j]);
+      obj.tags[j] = { name: findTagsName(obj.tags[j]), uuid: uuid };
     }
     if (uuid == params.uuid) {
       return new Response(JSON.stringify(obj), { status: 200 });
