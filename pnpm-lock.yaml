@@ -11,6 +11,9 @@ dependencies:
   joi:
     specifier: ^17.11.0
     version: 17.11.0
+  sanitize.css:
+    specifier: ^13.0.0
+    version: 13.0.0
   uuid:
     specifier: ^9.0.1
     version: 9.0.1
@@ -812,6 +815,10 @@ packages:
     dependencies:
       mri: 1.2.0
     dev: true
+
+  /sanitize.css@13.0.0:
+    resolution: {integrity: sha512-ZRwKbh/eQ6w9vmTjkuG0Ioi3HBwPFce0O+v//ve+aOq1oeCy7jMV2qzzAlpsNuqpqCBjjriM1lbtZbF/Q8jVyA==}
+    dev: false
 
   /set-cookie-parser@2.6.0:
     resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
