@@ -3,71 +3,97 @@ import {
   reinitializeDB,
   findTagsUuid,
   findTagsName,
+  lecturerSchema,
 } from "$lib/server/db/db.js";
 import { v4 as uuidv4 } from "uuid";
-import Joi from "joi";
 
-// Define schema for the Contact_info object
-const contactInfoSchema = Joi.object({
-  telephone_numbers: Joi.array().items(Joi.string()).unique().min(1).required(),
-  emails: Joi.array().items(Joi.string().email()).unique().min(1).required(),
-});
+/**
+ * Retrieves data from the "Lecturers" cluster and modifies it by replacing each tag with an object containing the tag name and UUID.
+ * @returns {Response} - The modified data from the "Lecturers" cluster as a JSON response with a status code of 200.
+ */
+export const GET = async () => {
+  try {
+    // Initialize the database
+    reinitializeDB();
 
-// Define schema for the Lecturer object
-const lecturerSchema = Joi.object({
-  uuid: Joi.string().uuid().required(),
-  title_before: Joi.string(),
-  first_name: Joi.string().required(),
-  middle_name: Joi.string(),
-  last_name: Joi.string().required(),
-  title_after: Joi.string(),
-  picture_url: Joi.string().uri(),
-  location: Joi.string(),
-  claim: Joi.string(),
-  bio: Joi.string(),
-  tags: Joi.array().items(Joi.string().uuid()).unique(),
-  price_per_hour: Joi.number().integer().min(0),
-  contact: contactInfoSchema.required(),
-});
+    // Get the "Lecturers" cluster from the database
+    const cluster = Database.getClusterByName("Lecturers");
 
-export const POST = async ({ request, url }) => {
-  reinitializeDB();
-  const obj = await request.json();
-  url.searchParams.get("uuid");
-  for (let i = 0; i < obj.tags.length; i++) {
-    obj.tags[i] = findTagsUuid(obj.tags[i].name);
-  }
-  let saved = Database.getClusterByName("Lecturers");
-  obj.uuid = uuidv4();
-  const { error, value } = lecturerSchema.validate(obj);
+    // Modify the data by replacing each tag with an object containing the tag name and UUID
+    const modifiedData = cluster.data.map((obj) => {
+      const modifiedTags = obj.tags.map((tag) => {
+        return { name: findTagsName(tag), uuid: tag };
+      });
+      return { ...obj, tags: modifiedTags };
+    });
 
-  if (error) {
-    console.error("Validation error:", error.details);
-    return new Response({ status: 400 });
-  } else {
-    saved.data.push(obj);
-
-    Database.updateClusterByName(saved.clusterName, saved);
-    return new Response(JSON.stringify(obj), { status: 200 });
+    // Return the modified data as a JSON response with a status code of 200
+    return new Response(JSON.stringify(modifiedData), { status: 200 });
+  } catch (error) {
+    console.error("An error occurred:", error);
+    // Return a JSON response with a status code of 500 in case of an error
+    return new Response({ status: 500 });
   }
 };
 
-export const GET = async ({ request }) => {
+/**
+ * Handles HTTP POST requests by modifying and validating a JSON object
+ * before saving it to the "Lecturers" cluster in the database.
+ * @param {Object} options - The options object.
+ * @param {Request} options.request - The HTTP request object containing the JSON payload.
+ * @returns {Response} - The response object with the modified JSON object and status code.
+ */
+export const POST = async ({ request }) => {
+  // Initialize the database
   reinitializeDB();
-  let res = Database.getClusterByName("Lecturers");
-  for (let i = 0; i < res.data.length; i++) {
-    let obj = res.data[i];
 
-    for (let j = 0; j < obj.tags.length; j++) {
-      obj.tags[j] = { name: findTagsName(obj.tags[j]), uuid: obj.tags[j] };
+  try {
+    // Parse the JSON payload from the request body
+    const obj = await request.json();
+
+    // Replace tags with corresponding UUIDs
+    for (const tag of obj.tags) {
+      tag.uuid = findTagsUuid(tag.name);
     }
-  }
 
-  return new Response(JSON.stringify(res.data), { status: 200 });
-};
-export const DELETE = async ({ request }) => {
-  reinitializeDB();
-  let res = [];
-  Database.updateClusterByName("Lecturers", res);
-  return new Response(JSON.stringify(res), { status: 200 });
+    // Retrieve the "Lecturers" cluster from the database
+    let saved = Database.getClusterByName("Lecturers");
+
+    // Generate a UUID for the object
+    obj.uuid = uuidv4();
+    const tagsCopy = obj.tags;
+
+    // Replace the tags array with an array of UUIDs
+    obj.tags = obj.tags.map((tag) => tag.uuid);
+
+    // Validate the object against the lecturerSchema
+    const { error } = lecturerSchema.validate(obj);
+
+    if (error) {
+      // Log the validation error details
+      console.error("Validation error:", error.details);
+      return new Response(
+        JSON.stringify({ code: 400, message: "Bad Request" }),
+        { status: 400 }
+      );
+    } else {
+      // Push the object to the "Lecturers" cluster
+      saved.data.push(obj);
+
+      // Update the "Lecturers" cluster in the database
+      Database.updateClusterByName(saved.clusterName, saved);
+
+      obj.tags = tagsCopy;
+
+      // Return the modified object as a JSON string with status code 200
+      return new Response(JSON.stringify(obj), { status: 200 });
+    }
+  } catch (error) {
+    // Handle any unexpected errors
+    console.error("An error occurred:", error);
+    return new Response(
+      JSON.stringify({ code: 500, message: "Internal Server Error" }),
+      { status: 500 }
+    );
+  }
 };
