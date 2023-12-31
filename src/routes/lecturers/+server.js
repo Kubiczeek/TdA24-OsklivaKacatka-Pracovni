@@ -6,6 +6,7 @@ import {
   lecturerSchema,
 } from "$lib/server/db/db.js";
 import { v4 as uuidv4 } from "uuid";
+import sanitizeHtml from "sanitize-html";
 
 /**
  * Retrieves data from the "Lecturers" cluster and modifies it by replacing each tag with an object containing the tag name and UUID.
@@ -68,7 +69,80 @@ export const POST = async ({ request }) => {
 
     // Validate the object against the lecturerSchema
     const { error } = lecturerSchema.validate(obj);
-
+    obj.bio = sanitizeHtml(obj.bio, {
+      allowedTags: [
+        "address",
+        "article",
+        "aside",
+        "footer",
+        "header",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "hgroup",
+        "main",
+        "nav",
+        "section",
+        "blockquote",
+        "dd",
+        "div",
+        "dl",
+        "dt",
+        "figcaption",
+        "figure",
+        "hr",
+        "li",
+        "main",
+        "ol",
+        "p",
+        "pre",
+        "ul",
+        "a",
+        "abbr",
+        "b",
+        "bdi",
+        "bdo",
+        "br",
+        "cite",
+        "code",
+        "data",
+        "dfn",
+        "em",
+        "i",
+        "kbd",
+        "mark",
+        "q",
+        "rb",
+        "rp",
+        "rt",
+        "rtc",
+        "ruby",
+        "s",
+        "samp",
+        "small",
+        "span",
+        "strong",
+        "sub",
+        "sup",
+        "time",
+        "u",
+        "var",
+        "wbr",
+        "caption",
+        "col",
+        "colgroup",
+        "table",
+        "tbody",
+        "td",
+        "tfoot",
+        "th",
+        "thead",
+        "tr",
+      ],
+    });
     if (error) {
       // Log the validation error details
       console.error("Validation error:", error.details);
