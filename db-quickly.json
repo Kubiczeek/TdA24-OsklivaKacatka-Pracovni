@@ -1,0 +1,19 @@
+{
+  "name": "Great Database",
+  "description": "This database is used to store the greatest data",
+  "defaultDbPath": "db-quickly.json",
+  "clusters": [
+    {
+      "_id": "lqtcyc7y274xtah2p",
+      "clusterName": "Lecturers",
+      "clusterDescription": "List of lecturers",
+      "data": []
+    },
+    {
+      "_id": "lqtcyc7z3999j8zcz",
+      "clusterName": "Tags",
+      "clusterDescription": "List of tags",
+      "data": []
+    }
+  ]
+}
