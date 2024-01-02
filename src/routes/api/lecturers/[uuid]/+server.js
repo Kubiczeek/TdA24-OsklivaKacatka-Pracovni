@@ -23,10 +23,10 @@ export const GET = async ({ params }) => {
   // Iterate through each object in the cluster data
   for (const obj of cluster.data) {
     const { uuid } = obj;
-    let { tags } = obj;
 
-    // Replace each tag with an object containing the tag name and the UUID using the `findTagsName` function
-    tags = tags.map((tag) => ({ name: findTagsName(tag), uuid }));
+    obj.tags = obj.tags.map((tag) => {
+      return { name: findTagsName(tag), uuid: tag };
+    });
 
     // Check if the `uuid` of the current object matches the provided UUID
     if (uuid === params.uuid) {
@@ -167,6 +167,13 @@ export const PUT = async ({ params, request }) => {
 
     // Search for the user with the matching UUID in the cluster
     const user = cluster.data.find((item) => item.uuid === params.uuid);
+
+    // If obj is missing some properties, add the missing properties from the user object
+    for (const key in user) {
+      if (!obj[key]) {
+        obj[key] = user[key];
+      }
+    }
 
     if (user) {
       // Update the user's data with the new object

@@ -153,6 +153,22 @@ export const POST = async ({ request }) => {
         "tr",
       ],
     });
+
+    if (!obj.first_name || !obj.last_name) {
+      return new Response(
+        JSON.stringify({
+          code: 400,
+          message: "Missing first name or last name.",
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          status: 400,
+        }
+      );
+    }
+
     // Push the object to the "Lecturers" cluster
     saved.data.push(obj);
 
