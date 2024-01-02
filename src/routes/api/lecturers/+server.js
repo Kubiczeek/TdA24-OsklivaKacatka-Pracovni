@@ -153,34 +153,20 @@ export const POST = async ({ request }) => {
         "tr",
       ],
     });
-    if (error) {
-      // Log the validation error details
-      console.error("Validation error:", error.details);
-      return new Response(
-        JSON.stringify({ code: 400, message: "Bad Request" }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          status: 400,
-        }
-      );
-    } else {
-      // Push the object to the "Lecturers" cluster
-      saved.data.push(obj);
+    // Push the object to the "Lecturers" cluster
+    saved.data.push(obj);
 
-      // Update the "Lecturers" cluster in the database
-      Database.updateClusterByName(saved.clusterName, saved);
+    // Update the "Lecturers" cluster in the database
+    Database.updateClusterByName(saved.clusterName, saved);
 
-      obj.tags = tagsCopy;
-      // Return the modified object as a JSON string with status code 200
-      return new Response(JSON.stringify(obj), {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        status: 200,
-      });
-    }
+    obj.tags = tagsCopy;
+    // Return the modified object as a JSON string with status code 200
+    return new Response(JSON.stringify(obj), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      status: 200,
+    });
   } catch (error) {
     // Handle any unexpected errors
     console.error("An error occurred:", error);

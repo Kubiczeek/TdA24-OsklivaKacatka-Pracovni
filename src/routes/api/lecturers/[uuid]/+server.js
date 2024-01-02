@@ -161,18 +161,6 @@ export const PUT = async ({ params, request }) => {
         "tr",
       ],
     });
-    if (error) {
-      console.log(error);
-      return new Response(
-        JSON.stringify({ code: 400, message: "Validation error" }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          status: 400,
-        }
-      );
-    }
 
     // Retrieve the cluster named "Lecturers" from the database
     const cluster = Database.getClusterByName("Lecturers");
