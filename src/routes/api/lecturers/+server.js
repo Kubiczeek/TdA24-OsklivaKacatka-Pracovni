@@ -29,11 +29,21 @@ export const GET = async () => {
     });
 
     // Return the modified data as a JSON response with a status code of 200
-    return new Response(JSON.stringify(modifiedData), { status: 200 });
+    return new Response(JSON.stringify(modifiedData), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      status: 200,
+    });
   } catch (error) {
     console.error("An error occurred:", error);
     // Return a JSON response with a status code of 500 in case of an error
-    return new Response({ status: 500 });
+    return new Response({
+      headers: {
+        "Content-Type": "application/json",
+      },
+      status: 500,
+    });
   }
 };
 
@@ -148,7 +158,12 @@ export const POST = async ({ request }) => {
       console.error("Validation error:", error.details);
       return new Response(
         JSON.stringify({ code: 400, message: "Bad Request" }),
-        { status: 400 }
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          status: 400,
+        }
       );
     } else {
       // Push the object to the "Lecturers" cluster
@@ -158,16 +173,25 @@ export const POST = async ({ request }) => {
       Database.updateClusterByName(saved.clusterName, saved);
 
       obj.tags = tagsCopy;
-
       // Return the modified object as a JSON string with status code 200
-      return new Response(JSON.stringify(obj), { status: 200 });
+      return new Response(JSON.stringify(obj), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        status: 200,
+      });
     }
   } catch (error) {
     // Handle any unexpected errors
     console.error("An error occurred:", error);
     return new Response(
       JSON.stringify({ code: 500, message: "Internal Server Error" }),
-      { status: 500 }
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        status: 500,
+      }
     );
   }
 };

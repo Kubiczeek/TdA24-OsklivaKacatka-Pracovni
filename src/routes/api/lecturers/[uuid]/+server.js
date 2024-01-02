@@ -31,14 +31,24 @@ export const GET = async ({ params }) => {
     // Check if the `uuid` of the current object matches the provided UUID
     if (uuid === params.uuid) {
       // If a match is found, return a JSON response with the retrieved object and a 200 status code
-      return new Response(JSON.stringify(obj), { status: 200 });
+      return new Response(JSON.stringify(obj), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        status: 200,
+      });
     }
   }
 
   // If no match is found, return a JSON response with a 404 status code and an error message
   return new Response(
     JSON.stringify({ code: 404, message: "User not found" }),
-    { status: 404 }
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      status: 404,
+    }
   );
 };
 
@@ -155,7 +165,12 @@ export const PUT = async ({ params, request }) => {
       console.log(error);
       return new Response(
         JSON.stringify({ code: 400, message: "Validation error" }),
-        { status: 400 }
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          status: 400,
+        }
       );
     }
 
@@ -175,19 +190,34 @@ export const PUT = async ({ params, request }) => {
       user.tags = copyTags;
 
       // Return a 200 response with the updated object
-      return new Response(JSON.stringify(user), { status: 200 });
+      return new Response(JSON.stringify(user), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        status: 200,
+      });
     } else {
       // Return a 404 response with an error message if the user is not found
       return new Response(
         JSON.stringify({ code: 404, message: "User not found" }),
-        { status: 404 }
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          status: 404,
+        }
       );
     }
   } catch (error) {
     // Return a 400 response if there is an error parsing the request body
     return new Response(
       JSON.stringify({ code: 400, message: "Invalid request body" }),
-      { status: 400 }
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        status: 400,
+      }
     );
   }
 };
@@ -206,12 +236,22 @@ export const DELETE = async ({ params }) => {
   if (userIndex !== -1) {
     cluster.data.splice(userIndex, 1);
     Database.updateClusterByName(cluster.clusterName, cluster);
-    return new Response(null, { status: 204 });
+    return new Response(null, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      status: 204,
+    });
   }
 
   Database.updateClusterByName(cluster.clusterName, cluster);
   return new Response(
     JSON.stringify({ code: 404, message: "User not found" }),
-    { status: 404 }
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      status: 404,
+    }
   );
 };
