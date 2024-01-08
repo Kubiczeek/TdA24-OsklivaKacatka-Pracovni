@@ -178,6 +178,13 @@
             backgroundColor="74C7D3"
           />
         </div>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <span
+          class="mobileView header small-text color-lightblue"
+          bind:this={uuid}
+          on:click={copyToClipboard}>67fda282-2bca-41ef-9caf-039cc5c8dd69</span
+        >
       </div>
     </div>
   </div>
@@ -240,7 +247,7 @@
   }
 
   .bg-lightblue {
-    background-color: rgba(116, 199, 211, 0.07);
+    background-color: rgba(116, 199, 211, 0.1);
   }
 
   .bg-darkblue {
@@ -249,6 +256,10 @@
 
   .color-darkblue {
     color: #00384d;
+  }
+
+  .color-lightblue {
+    color: rgb(116, 199, 211);
   }
 
   .small-text {
@@ -446,6 +457,10 @@
       display: none;
     }
 
+    .texts {
+      padding-top: 1rem;
+    }
+
     .texts > .header {
       font-size: 1.8rem;
     }
@@ -562,6 +577,11 @@
 
     .card {
       gap: 1rem;
+    }
+
+    .bio > span {
+      padding-top: 0.75rem;
+      display: flex;
     }
   }
 </style>
