@@ -1,8 +1,7 @@
 <script>
   import Navigation from "$lib/components/navigation.svelte";
-  import Raise from "$lib/assets/raise-icon.svg";
   import Tag from "$lib/components/tag.svelte";
-  import Phone from "$lib/assets/Phone.svg";
+  import { raise, phone } from "$lib/assets/images.js";
 
   let uuid;
 
@@ -11,7 +10,7 @@
   }
 </script>
 
-<Navigation icon={Raise} color="#00384d" ref="lightblue" pageName="Profil" />
+<Navigation icon={raise} color="#00384d" ref="lightblue" pageName="Profil" />
 <div class="main">
   <div class="container">
     <div class="card">
@@ -42,7 +41,7 @@
               <p class="header">kontaktní údaje</p>
               <div class="kontakt-section">
                 <div class="phone-icon">
-                  <img src={Phone} alt="" />
+                  <img src={phone} alt="" />
                 </div>
                 <div class="numbers">
                   <span class="small-text">+420</span> 722 482 974
@@ -72,7 +71,7 @@
               <p class="header">kontaktní údaje</p>
               <div class="kontakt-section">
                 <div class="phone-icon">
-                  <img src={Phone} alt="" />
+                  <img src={phone} alt="" />
                 </div>
                 <div class="numbers">
                   <span class="small-text">+420</span> 722 482 974
@@ -108,7 +107,7 @@
               <p class="header">kontaktní údaje</p>
               <div class="kontakt-section">
                 <div class="phone-icon">
-                  <img src={Phone} alt="" />
+                  <img src={phone} alt="" />
                 </div>
                 <div class="numbers">
                   <span class="small-text">+420</span> 722 482 974
@@ -149,22 +148,22 @@
           </p>
         </div>
         <div class="tags">
-          <Tag text="#dobrovolnictví" backgroundColor="74C7D3" />
-          <Tag text="#studentské spolky" backgroundColor="74C7D3" />
-          <Tag text="#efektivní učení" backgroundColor="74C7D3" />
-          <Tag text="#prezentační dovednosti" backgroundColor="74C7D3" />
-          <Tag text="#mimoškolní aktivity" backgroundColor="74C7D3" />
+          <Tag text="#dobrovolnictví" backgroundColor="#74C7D3" />
+          <Tag text="#studentské spolky" backgroundColor="#74C7D3" />
+          <Tag text="#efektivní učení" backgroundColor="#74C7D3" />
+          <Tag text="#prezentační dovednosti" backgroundColor="#74C7D3" />
+          <Tag text="#mimoškolní aktivity" backgroundColor="#74C7D3" />
           <Tag
             text="#marketing pro neziskové studentské projekty"
-            backgroundColor="74C7D3"
+            backgroundColor="#74C7D3"
           />
           <Tag
             text="#projektový management, event management"
-            backgroundColor="74C7D3"
+            backgroundColor="#74C7D3"
           />
           <Tag
             text="#fundraising pro neziskové studentské projekty"
-            backgroundColor="74C7D3"
+            backgroundColor="#74C7D3"
           />
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -185,11 +184,6 @@
 
   :global(html) {
     font-size: 15px;
-  }
-
-  :global([ref="lightblue"]) {
-    filter: invert(77%) sepia(12%) saturate(1243%) hue-rotate(139deg)
-      brightness(95%) contrast(86%);
   }
 
   p,
@@ -430,7 +424,7 @@
   .main {
     display: grid;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     align-items: center;
     justify-items: center;
     font-family: "Open Sans", sans-serif;

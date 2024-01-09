@@ -1,8 +1,9 @@
 <script>
-  import Logo from "$lib/assets/TDA-logo.svg";
+  import { logo } from "$lib/assets/images.js";
   export let icon;
   export let pageName = "Profil";
   export let color, ref;
+  export let czechSymbols = false;
 </script>
 
 <nav>
@@ -10,10 +11,18 @@
     <div class="page-img" style="background-color: {color}">
       <img {ref} src={icon} alt="" />
     </div>
-    <span class="page-name color-black">{pageName}</span>
+    {#if czechSymbols}
+      <span class="page-name color-black" style="line-height: 1;"
+        >{pageName}</span
+      >
+    {:else}
+      <span class="page-name color-black" style="line-height: 1.2;"
+        >{pageName}</span
+      >
+    {/if}
   </div>
   <a href="/" class="nav-right">
-    <img src={Logo} alt="" />
+    <img src={logo} alt="" />
   </a>
 </nav>
 
@@ -26,10 +35,11 @@
     width: 100%;
     max-height: 3.8rem;
     box-shadow: 0px 4px 100px 0px rgba(116, 199, 211, 0.1);
-  }
-
-  span {
-    line-height: 1.3;
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    z-index: 100;
   }
 
   .nav-left {
@@ -54,6 +64,13 @@
     font-family: "Lalezar", sans-serif;
     font-size: 2.666rem;
     align-self: flex-end;
+  }
+
+  @media (max-width: 352px) {
+    .page-name {
+      font-size: 2rem;
+      padding-bottom: 0.5rem;
+    }
   }
 
   .nav-right > img {

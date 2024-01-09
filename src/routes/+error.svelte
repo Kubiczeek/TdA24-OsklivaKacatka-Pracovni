@@ -30,11 +30,6 @@
 <p class="page-name-rotated">Error</p>
 
 <style>
-  :global([ref="black"]) {
-    filter: invert(17%) sepia(2%) saturate(0%) hue-rotate(235deg)
-      brightness(89%) contrast(86%);
-  }
-
   h1,
   h2,
   h4,
@@ -84,7 +79,7 @@
   .main {
     display: grid;
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     align-items: center;
     justify-items: center;
     font-family: "Open Sans", sans-serif;
