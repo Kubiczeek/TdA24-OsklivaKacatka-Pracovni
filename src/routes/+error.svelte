@@ -1,20 +1,10 @@
 <script>
-  import Logo from "$lib/assets/TDA-logo.svg";
   import Gear from "$lib/assets/gear-icon.svg";
   import { page } from "$app/stores";
+  import Navigation from "$lib/components/navigation.svelte";
 </script>
 
-<nav>
-  <div class="nav-left">
-    <div class="page-img bg-yellow">
-      <img src={Gear} alt="" />
-    </div>
-    <span class="page-name color-black">Profil</span>
-  </div>
-  <a href="/" class="nav-right">
-    <img src={Logo} alt="" />
-  </a>
-</nav>
+<Navigation icon={Gear} pageName="Error" color="#fecb2e" ref="black" />
 <div class="main">
   <div class="content">
     <h1 class="error-code color-black">!404</h1>
@@ -40,6 +30,11 @@
 <p class="page-name-rotated">Error</p>
 
 <style>
+  :global([ref="black"]) {
+    filter: invert(17%) sepia(2%) saturate(0%) hue-rotate(235deg)
+      brightness(89%) contrast(86%);
+  }
+
   h1,
   h2,
   h4,
@@ -56,16 +51,6 @@
     padding: 0;
   }
 
-  nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-height: 3.8rem;
-    box-shadow: 0px 4px 100px 0px rgba(116, 199, 211, 0.1);
-  }
-
   .page-name-rotated {
     font-family: "Lalezar", sans-serif;
     font-size: 13.333rem;
@@ -78,54 +63,18 @@
     transition: opacity 0.25s ease-in-out;
   }
 
-  span {
-    line-height: 1.3;
-  }
-
   @media (max-width: 1200px) {
     .page-name-rotated {
       opacity: 0;
     }
   }
 
-  .nav-left {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .page-img {
-    height: 100%;
-  }
-
-  .page-img > img {
-    width: auto;
-    max-height: 100%;
-    transform: scale(0.75);
-    filter: invert(17%) sepia(2%) saturate(0%) hue-rotate(235deg)
-      brightness(89%) contrast(86%);
-  }
-
-  .page-name {
-    font-family: "Lalezar", sans-serif;
-    font-size: 2.666rem;
-    align-self: flex-end;
-  }
-
-  .nav-right > img {
-    width: auto;
-    max-height: 100%;
-    transform: scale(0.8);
+  .color-lightblack {
+    color: rgba(51, 51, 51, 0.5);
   }
 
   .color-black {
     color: #333333;
-  }
-
-  .color-lightblack {
-    color: rgba(51, 51, 51, 0.5);
   }
 
   .bg-yellow {

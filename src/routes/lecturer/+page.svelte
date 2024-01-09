@@ -1,8 +1,8 @@
 <script>
+  import Navigation from "$lib/components/navigation.svelte";
   import Raise from "$lib/assets/raise-icon.svg";
   import Tag from "$lib/components/tag.svelte";
   import Phone from "$lib/assets/Phone.svg";
-  import Logo from "$lib/assets/TDA-logo.svg";
 
   let uuid;
 
@@ -11,17 +11,7 @@
   }
 </script>
 
-<nav>
-  <div class="nav-left">
-    <div class="page-img bg-darkblue">
-      <img src={Raise} alt="" />
-    </div>
-    <span class="page-name color-black">Profil</span>
-  </div>
-  <a href="/" class="nav-right">
-    <img src={Logo} alt="" />
-  </a>
-</nav>
+<Navigation icon={Raise} color="#00384d" ref="lightblue" pageName="Profil" />
 <div class="main">
   <div class="container">
     <div class="card">
@@ -195,6 +185,11 @@
 
   :global(html) {
     font-size: 15px;
+  }
+
+  :global([ref="lightblue"]) {
+    filter: invert(77%) sepia(12%) saturate(1243%) hue-rotate(139deg)
+      brightness(95%) contrast(86%);
   }
 
   p,
