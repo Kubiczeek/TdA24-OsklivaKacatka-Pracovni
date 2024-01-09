@@ -1,7 +1,6 @@
 <script>
   import Raise from "$lib/assets/raise-icon.svg";
-  import Tag from "./tag.svelte";
-  import Profil from "$lib/assets/Profil.png";
+  import Tag from "$lib/components/tag.svelte";
   import Phone from "$lib/assets/Phone.svg";
   import Logo from "$lib/assets/TDA-logo.svg";
 
