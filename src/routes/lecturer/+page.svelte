@@ -1,23 +1,18 @@
 <script>
-  import Tag from "./tag.svelte";
-  import Profil from "$lib/assets/Profil.png";
-  import Phone from "$lib/assets/Phone.svg";
+  import Navigation from "$lib/components/navigation.svelte";
+  import Tag from "$lib/components/tag.svelte";
+  import { raise, phone } from "$lib/assets/images.js";
+
+  let uuid;
 
   function copyToClipboard() {
-    const copyText = document.getElementById("uuid");
-
-    navigator.clipboard.writeText(copyText.textContent);
+    navigator.clipboard.writeText(uuid.textContent);
   }
 </script>
 
+<Navigation icon={raise} color="#00384d" ref="lightblue" pageName="Profil" />
 <div class="main">
   <div class="container">
-    <div class="profile-rotated desktopView">
-      <img src={Profil} alt="" />
-    </div>
-    <div class="mobileView">
-      <span class="header page-name color-black">Profil</span>
-    </div>
     <div class="card">
       <div class="profile">
         <div class="profilePicture desktopView">
@@ -25,21 +20,28 @@
             src="https://tourdeapp.cz/storage/images/2023_02_25/412ff296a291f021bbb6de10e8d0b94863fa89308843b/big.png.webp"
             alt=""
           />
-          <span class="header small-text color-black"
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
+          <!-- svelte-ignore a11y-no-static-element-interactions -->
+          <span
+            class="header small-text color-black"
+            bind:this={uuid}
+            on:click={copyToClipboard}
             >67fda282-2bca-41ef-9caf-039cc5c8dd69</span
           >
         </div>
         <div class="info">
-          <p class="name header color-black">Mgr. Petra Swil Plachá MBA</p>
-          <p class="claim color-darkblue">
-            Aktivní studentka / Předsedkyně spolku / Projektová manažerka
-          </p>
+          <div class="texts">
+            <p class="name header color-black">Mgr. Petra Swil Plachá MBA</p>
+            <p class="claim color-darkblue">
+              Aktivní studentka / Předsedkyně spolku / Projektová manažerka
+            </p>
+          </div>
           <div class="grid-sections desktopView">
-            <div class="bg-grey color-black section kontakt">
+            <div class="bg-lightblue color-black section kontakt">
               <p class="header">kontaktní údaje</p>
               <div class="kontakt-section">
                 <div class="phone-icon">
-                  <img src={Phone} alt="" />
+                  <img src={phone} alt="" />
                 </div>
                 <div class="numbers">
                   <span class="small-text">+420</span> 722 482 974
@@ -53,13 +55,43 @@
                 </div>
               </div>
             </div>
-            <div class="bg-grey color-black section finance">
+            <div class="bg-lightblue color-black section finance">
               <p class="header">finanční ohodnocení</p>
               <p class="section-description">
                 1200 Kč<span class="small-text">/hodina</span>
               </p>
             </div>
-            <div class="bg-grey color-black section lokalita">
+            <div class="bg-lightblue color-black section lokalita">
+              <p class="header">lokalita</p>
+              <p class="section-description">Brno</p>
+            </div>
+          </div>
+          <div class="grid-sections middleView">
+            <div class="bg-lightblue color-black section kontakt">
+              <p class="header">kontaktní údaje</p>
+              <div class="kontakt-section">
+                <div class="phone-icon">
+                  <img src={phone} alt="" />
+                </div>
+                <div class="numbers">
+                  <span class="small-text">+420</span> 722 482 974
+                </div>
+                <div class="email-icon">
+                  <span class="color-darkblue header">@</span>
+                </div>
+                <div class="emails color-black">
+                  <span>predseda@scg.cz</span>
+                  <span>placha@scg.cz</span>
+                </div>
+              </div>
+            </div>
+            <div class="bg-lightblue color-black section finance">
+              <p class="header">finanční ohodnocení</p>
+              <p class="section-description">
+                1200 Kč<span class="small-text">/hodina</span>
+              </p>
+            </div>
+            <div class="bg-lightblue color-black section lokalita">
               <p class="header">lokalita</p>
               <p class="section-description">Brno</p>
             </div>
@@ -71,11 +103,11 @@
                 alt=""
               />
             </div>
-            <div class="bg-grey color-black section kontakt">
+            <div class="bg-lightblue color-black section kontakt">
               <p class="header">kontaktní údaje</p>
               <div class="kontakt-section">
                 <div class="phone-icon">
-                  <img src={Phone} alt="" />
+                  <img src={phone} alt="" />
                 </div>
                 <div class="numbers">
                   <span class="small-text">+420</span> 722 482 974
@@ -89,13 +121,13 @@
                 </div>
               </div>
             </div>
-            <div class="bg-grey color-black section finance">
+            <div class="bg-lightblue color-black section finance">
               <p class="header">finanční ohodnocení</p>
               <p class="section-description">
                 1200 Kč<span class="small-text">/hodina</span>
               </p>
             </div>
-            <div class="bg-grey color-black section lokalita">
+            <div class="bg-lightblue color-black section lokalita">
               <p class="header">lokalita</p>
               <p class="section-description">Brno</p>
             </div>
@@ -103,7 +135,7 @@
         </div>
       </div>
       <div class="bio">
-        <div class="section bg-grey">
+        <div class="section bg-lightblue">
           <p class="header">Autobiografie</p>
           <p class="small-text biografie">
             Baví mě organizovat věci. Ať už to bylo vyvíjení mobilních aplikací
@@ -116,28 +148,36 @@
           </p>
         </div>
         <div class="tags">
-          <Tag text="#dobrovolnictví" backgroundColor="74C7D3" />
-          <Tag text="#studentské spolky" backgroundColor="74C7D3" />
-          <Tag text="#efektivní učení" backgroundColor="74C7D3" />
-          <Tag text="#prezentační dovednosti" backgroundColor="74C7D3" />
-          <Tag text="#mimoškolní aktivity" backgroundColor="74C7D3" />
+          <Tag text="#dobrovolnictví" backgroundColor="#74C7D3" />
+          <Tag text="#studentské spolky" backgroundColor="#74C7D3" />
+          <Tag text="#efektivní učení" backgroundColor="#74C7D3" />
+          <Tag text="#prezentační dovednosti" backgroundColor="#74C7D3" />
+          <Tag text="#mimoškolní aktivity" backgroundColor="#74C7D3" />
           <Tag
             text="#marketing pro neziskové studentské projekty"
-            backgroundColor="74C7D3"
+            backgroundColor="#74C7D3"
           />
           <Tag
             text="#projektový management, event management"
-            backgroundColor="74C7D3"
+            backgroundColor="#74C7D3"
           />
           <Tag
             text="#fundraising pro neziskové studentské projekty"
-            backgroundColor="74C7D3"
+            backgroundColor="#74C7D3"
           />
         </div>
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <span
+          class="mobileView header small-text color-lightblue"
+          bind:this={uuid}
+          on:click={copyToClipboard}>67fda282-2bca-41ef-9caf-039cc5c8dd69</span
+        >
       </div>
     </div>
   </div>
 </div>
+<p class="page-name-rotated desktopView">Profil</p>
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Lalezar&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
@@ -152,12 +192,62 @@
     line-height: 1.2;
   }
 
-  .bg-grey {
-    background-color: #f2f2f2;
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-height: 4rem;
+    box-shadow: 0px 4px 100px 0px rgba(116, 199, 211, 0.1);
+  }
+
+  .nav-left {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-img {
+    height: 100%;
+  }
+
+  .page-img > img {
+    width: auto;
+    max-height: 100%;
+    transform: scale(0.75);
+    filter: invert(77%) sepia(12%) saturate(1243%) hue-rotate(139deg)
+      brightness(95%) contrast(86%);
+  }
+
+  .page-name {
+    font-family: "Lalezar", sans-serif;
+    font-size: 2.666rem;
+    align-self: flex-end;
+  }
+
+  .nav-right > img {
+    width: auto;
+    max-height: 100%;
+    transform: scale(0.8);
+  }
+
+  .bg-lightblue {
+    background-color: rgba(116, 199, 211, 0.1);
+  }
+
+  .bg-darkblue {
+    background-color: #00384d;
   }
 
   .color-darkblue {
     color: #00384d;
+  }
+
+  .color-lightblue {
+    color: rgb(116, 199, 211);
   }
 
   .small-text {
@@ -173,14 +263,17 @@
     font-family: "Lalezar", sans-serif;
   }
 
-  .profile-rotated {
-    width: max(14%, 150px);
-    margin-right: 1.5%;
-    margin-top: 0.75%;
-  }
-
-  .profile-rotated img {
-    width: 100%;
+  .page-name-rotated {
+    font-family: "Lalezar", sans-serif;
+    font-size: 13.333rem;
+    color: rgba(116, 199, 211, 0.1);
+    transform: rotate(-90deg);
+    position: fixed;
+    bottom: 0;
+    right: -60px;
+    transform-origin: top;
+    z-index: -1;
+    transition: opacity 0.25s ease-in-out;
   }
 
   .profile {
@@ -283,8 +376,9 @@
 
   .info {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-direction: column;
+    padding-bottom: 1rem;
   }
 
   .name {
@@ -316,7 +410,7 @@
   }
 
   .profilePicture > span:hover {
-    color: #333333;
+    color: #74c7d3;
     cursor: copy;
   }
 
@@ -330,26 +424,112 @@
   .main {
     display: grid;
     width: 100%;
-    height: 90vh;
-    margin-top: 1%;
+    height: 100vh;
     align-items: center;
     justify-items: center;
     font-family: "Open Sans", sans-serif;
   }
-
+  .middleView,
   .mobileView {
     display: none;
   }
 
+  @media (max-width: 1200px) {
+    .page-name-rotated {
+      opacity: 0;
+    }
+  }
+
   @media (max-width: 700px) {
+    .grid-sections {
+      display: none;
+    }
+
+    .texts {
+      padding-top: 1rem;
+    }
+
+    .texts > .header {
+      font-size: 1.8rem;
+    }
+
+    .texts > .claim {
+      font-size: 1rem;
+    }
+
+    .numbers {
+      font-size: 1.06666rem;
+    }
+
+    .numbers span {
+      font-size: 0.8666rem;
+    }
+
+    .middleView {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile {
+      display: grid;
+      grid-template-areas: "profilePicture texts";
+      grid-auto-rows: auto;
+      grid-auto-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .profilePicture {
+      grid-area: profilePicture;
+    }
+
+    .profilePicture img {
+      max-width: 100%;
+    }
+
+    .profilePicture > span {
+      text-align: center;
+    }
+
+    .info {
+      grid-area: texts;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .grid-sections {
+      display: grid;
+      grid-template-areas: "profile kontakt" "lokalita finance";
+      grid-auto-rows: auto;
+      grid-auto-columns: 1fr 1fr;
+      column-gap: 0.73333rem;
+      row-gap: 1rem;
+    }
+
+    .profilePicture {
+      grid-area: profile;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profilePicture > img {
+      width: 100%;
+      border-radius: 25px;
+    }
+
+    .middleView,
     .desktopView {
       display: none;
     }
+
+    .profile {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+
     .main {
       height: 90vh;
-    }
-    .mobileView {
-      display: flex;
     }
 
     .page-name {
@@ -360,38 +540,13 @@
       flex-direction: column;
     }
 
-    .profile-rotated {
-      display: none;
-    }
-
     .profile {
       flex-direction: column;
       gap: 1rem;
     }
-    .grid-sections:has(.mobileView) {
-      display: grid;
-      grid-template-areas: "profile kontakt" "lokalita finance";
-      grid-auto-rows: auto;
-      grid-auto-columns: 1fr 1fr;
-      column-gap: 0.73333rem;
-      row-gap: 1rem;
-    }
-
     .emails {
       grid-auto-flow: row;
       grid-template-rows: auto;
-    }
-
-    .profilePicture:has(.mobileView) {
-      grid-area: profile;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .profilePicture > img {
-      width: 100%;
-      border-radius: 25px;
     }
 
     .info {
@@ -408,16 +563,13 @@
       gap: 0.8rem;
     }
 
-    .numbers {
-      font-size: 1.06666rem;
-    }
-
-    .numbers span {
-      font-size: 0.8666rem;
-    }
-
     .card {
       gap: 1rem;
+    }
+
+    .bio > span {
+      padding-top: 0.75rem;
+      display: flex;
     }
   }
 </style>
