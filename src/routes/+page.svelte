@@ -1,22 +1,15 @@
 <script>
-  import { page } from "$app/stores";
-  import { pushState } from "$app/navigation";
+  import { showModal } from "$lib/stores.js";
   import Navigation from "$lib/components/navigation.svelte";
   import Card from "$lib/components/card.svelte";
   import Filter from "$lib/components/filter.svelte";
   import { talk } from "$lib/assets/images.js";
-
-  function showFilter() {
-    pushState("", {
-      showFilter: true,
-    });
-  }
 </script>
 
-{#if $page.state.showFilter}
+{#if $showModal}
   <Filter />
 {/if}
-<Filter />
+
 <Navigation
   icon={talk}
   pageName="Naši učitelé"
@@ -31,7 +24,7 @@
     <Card></Card>
   </div>
 </div>
-<button class="pos-fixed bg-lightblue btn-filter" on:click={showFilter}
+<button class="pos-fixed bg-lightblue btn-filter" on:click={showModal.show}
   >Filtr vyhledávání</button
 >
 <p class="page-name-rotated">Učitelé</p>
@@ -118,14 +111,6 @@
 
   .bg-lightblue {
     background-color: #74c7d3;
-  }
-
-  .color-lightblue {
-    color: rgb(116, 199, 211);
-  }
-
-  .color-black {
-    color: #333333;
   }
 
   .pos-fixed {

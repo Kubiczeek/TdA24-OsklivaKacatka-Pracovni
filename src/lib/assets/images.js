@@ -6,3 +6,5 @@ export { default as gear } from "./gear-icon.svg";
 export { default as book } from "./book-icon.svg";
 export { default as logo } from "./TDA-logo.svg";
 export { default as talk } from "./talk-icon.svg";
+export { default as close } from "./close-icon.svg";
+export { default as cog } from "./cog-icon.svg";

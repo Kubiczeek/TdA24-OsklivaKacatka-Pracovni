@@ -11,6 +11,10 @@
     min-width: 0;
   }
 
+  :global(html) {
+    font-family: "Open Sans", sans-serif;
+  }
+
   :global([ref="lightblue"]) {
     filter: invert(77%) sepia(12%) saturate(1243%) hue-rotate(139deg)
       brightness(95%) contrast(86%);
