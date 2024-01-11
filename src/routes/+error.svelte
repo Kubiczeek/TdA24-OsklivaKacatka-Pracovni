@@ -24,7 +24,10 @@
       pod tímto odkazem nenajdete žádný obsah.
     </p>
     <br />
-    <a href="/" class="return-back color-black bg-yellow">Vrátit se zpět</a>
+    <button
+      on:click={() => history.back()}
+      class="return-back color-black bg-yellow">Vrátit se zpět</button
+    >
   </div>
 </div>
 <p class="page-name-rotated">Error</p>
@@ -33,7 +36,8 @@
   h1,
   h2,
   h4,
-  a {
+  a,
+  button {
     font-family: "Lalezar", sans-serif;
     margin: 0;
     padding: 0;
