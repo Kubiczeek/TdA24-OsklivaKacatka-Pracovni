@@ -5,6 +5,8 @@
 
   let uuid;
 
+  export let data;
+
   function copyToClipboard() {
     navigator.clipboard.writeText(uuid.textContent);
   }
@@ -16,24 +18,26 @@
     <div class="card">
       <div class="profile">
         <div class="profilePicture desktopView">
-          <img
-            src="https://tourdeapp.cz/storage/images/2023_02_25/412ff296a291f021bbb6de10e8d0b94863fa89308843b/big.png.webp"
-            alt=""
-          />
+          <img src={data.picture_url} alt="" />
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <!-- svelte-ignore a11y-no-static-element-interactions -->
           <span
             class="header small-text color-black"
             bind:this={uuid}
-            on:click={copyToClipboard}
-            >67fda282-2bca-41ef-9caf-039cc5c8dd69</span
+            on:click={copyToClipboard}>{data.uuid}</span
           >
         </div>
         <div class="info">
           <div class="texts">
-            <p class="name header color-black">Mgr. Petra Swil Plachá MBA</p>
+            <p class="name header color-black">
+              {data.title_before}
+              {data.first_name}
+              {data.middle_name}
+              {data.last_name}
+              {data.title_after}
+            </p>
             <p class="claim color-darkblue">
-              Aktivní studentka / Předsedkyně spolku / Projektová manažerka
+              {data.claim}
             </p>
           </div>
           <div class="grid-sections desktopView">
@@ -44,26 +48,30 @@
                   <img src={phone} alt="" />
                 </div>
                 <div class="numbers">
-                  <span class="small-text">+420</span> 722 482 974
+                  {#each data.contact.telephone_numbers as number}
+                    <span class="small-text">{number.split(" ")[0]}</span>
+                    {number.split(" ").slice(1).join(" ")}
+                  {/each}
                 </div>
                 <div class="email-icon">
                   <span class="color-darkblue header">@</span>
                 </div>
                 <div class="emails color-black">
-                  <span>predseda@scg.cz</span>
-                  <span>placha@scg.cz</span>
+                  {#each data.contact.emails as email}
+                    <span>{email}</span>
+                  {/each}
                 </div>
               </div>
             </div>
             <div class="bg-lightblue color-black section finance">
               <p class="header">finanční ohodnocení</p>
               <p class="section-description">
-                1200 Kč<span class="small-text">/hodina</span>
+                {data.price_per_hour} Kč<span class="small-text">/hodina</span>
               </p>
             </div>
             <div class="bg-lightblue color-black section lokalita">
               <p class="header">lokalita</p>
-              <p class="section-description">Brno</p>
+              <p class="section-description">{data.location}</p>
             </div>
           </div>
           <div class="grid-sections middleView">
@@ -74,26 +82,30 @@
                   <img src={phone} alt="" />
                 </div>
                 <div class="numbers">
-                  <span class="small-text">+420</span> 722 482 974
+                  {#each data.contact.telephone_numbers as number}
+                    <span class="small-text">{number.split(" ")[0]}</span>
+                    {number.split(" ").slice(1).join(" ")}
+                  {/each}
                 </div>
                 <div class="email-icon">
                   <span class="color-darkblue header">@</span>
                 </div>
                 <div class="emails color-black">
-                  <span>predseda@scg.cz</span>
-                  <span>placha@scg.cz</span>
+                  {#each data.contact.emails as email}
+                    <span>{email}</span>
+                  {/each}
                 </div>
               </div>
             </div>
             <div class="bg-lightblue color-black section finance">
               <p class="header">finanční ohodnocení</p>
               <p class="section-description">
-                1200 Kč<span class="small-text">/hodina</span>
+                {data.price_per_hour} Kč<span class="small-text">/hodina</span>
               </p>
             </div>
             <div class="bg-lightblue color-black section lokalita">
               <p class="header">lokalita</p>
-              <p class="section-description">Brno</p>
+              <p class="section-description">{data.location}</p>
             </div>
           </div>
           <div class="grid-sections mobileView">
@@ -110,26 +122,30 @@
                   <img src={phone} alt="" />
                 </div>
                 <div class="numbers">
-                  <span class="small-text">+420</span> 722 482 974
+                  {#each data.contact.telephone_numbers as number}
+                    <span class="small-text">{number.split(" ")[0]}</span>
+                    {number.split(" ").slice(1).join(" ")}
+                  {/each}
                 </div>
                 <div class="email-icon">
                   <span class="color-darkblue header">@</span>
                 </div>
                 <div class="emails color-black">
-                  <span>predseda@scg.cz</span>
-                  <span>placha@scg.cz</span>
+                  {#each data.contact.emails as email}
+                    <span>{email}</span>
+                  {/each}
                 </div>
               </div>
             </div>
             <div class="bg-lightblue color-black section finance">
               <p class="header">finanční ohodnocení</p>
               <p class="section-description">
-                1200 Kč<span class="small-text">/hodina</span>
+                {data.price_per_hour} Kč<span class="small-text">/hodina</span>
               </p>
             </div>
             <div class="bg-lightblue color-black section lokalita">
               <p class="header">lokalita</p>
-              <p class="section-description">Brno</p>
+              <p class="section-description">{data.location}</p>
             </div>
           </div>
         </div>
@@ -138,40 +154,23 @@
         <div class="section bg-lightblue">
           <p class="header">Autobiografie</p>
           <p class="small-text biografie">
-            Baví mě organizovat věci. Ať už to bylo vyvíjení mobilních aplikací
-            ve Futured, pořádání konferencí, spolupráce na soutěžích
-            Prezentiáda, pIšQworky, <b>Tour de App</b> a Středoškolák roku, nebo
-            třeba dobrovolnictví, vždycky jsem skončila u projektového managementu,
-            rozvíjení soft-skills a vzdělávání. U studentských projektů a akcí jsem
-            si vyzkoušela snad všechno od marketingu po logistiku a moc ráda to předám
-            dál. Momentálně studuji Pdf MUNI a FF MUNI v Brně.
+            {@html data.bio}
           </p>
         </div>
         <div class="tags">
-          <Tag text="#dobrovolnictví" backgroundColor="#74C7D3" />
-          <Tag text="#studentské spolky" backgroundColor="#74C7D3" />
-          <Tag text="#efektivní učení" backgroundColor="#74C7D3" />
-          <Tag text="#prezentační dovednosti" backgroundColor="#74C7D3" />
-          <Tag text="#mimoškolní aktivity" backgroundColor="#74C7D3" />
-          <Tag
-            text="#marketing pro neziskové studentské projekty"
-            backgroundColor="#74C7D3"
-          />
-          <Tag
-            text="#projektový management, event management"
-            backgroundColor="#74C7D3"
-          />
-          <Tag
-            text="#fundraising pro neziskové studentské projekty"
-            backgroundColor="#74C7D3"
-          />
+          {#each data.tags as tag}
+            <Tag
+              text={"#" + tag.name.toLowerCase()}
+              backgroundColor="#74C7D3"
+            />
+          {/each}
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-static-element-interactions -->
         <span
           class="mobileView header small-text color-lightblue"
           bind:this={uuid}
-          on:click={copyToClipboard}>67fda282-2bca-41ef-9caf-039cc5c8dd69</span
+          on:click={copyToClipboard}>{data.uuid}</span
         >
       </div>
     </div>

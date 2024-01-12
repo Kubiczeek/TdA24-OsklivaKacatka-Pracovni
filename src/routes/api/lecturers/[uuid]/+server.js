@@ -87,80 +87,6 @@ export const PUT = async ({ params, request }) => {
 
     // Validate the object against the `lecturerSchema`
     const { error } = lecturerSchema.validate(obj);
-    obj.bio = sanitizeHtml(obj.bio, {
-      allowedTags: [
-        "address",
-        "article",
-        "aside",
-        "footer",
-        "header",
-        "h1",
-        "h2",
-        "h3",
-        "h4",
-        "h5",
-        "h6",
-        "hgroup",
-        "main",
-        "nav",
-        "section",
-        "blockquote",
-        "dd",
-        "div",
-        "dl",
-        "dt",
-        "figcaption",
-        "figure",
-        "hr",
-        "li",
-        "main",
-        "ol",
-        "p",
-        "pre",
-        "ul",
-        "a",
-        "abbr",
-        "b",
-        "bdi",
-        "bdo",
-        "br",
-        "cite",
-        "code",
-        "data",
-        "dfn",
-        "em",
-        "i",
-        "kbd",
-        "mark",
-        "q",
-        "rb",
-        "rp",
-        "rt",
-        "rtc",
-        "ruby",
-        "s",
-        "samp",
-        "small",
-        "span",
-        "strong",
-        "sub",
-        "sup",
-        "time",
-        "u",
-        "var",
-        "wbr",
-        "caption",
-        "col",
-        "colgroup",
-        "table",
-        "tbody",
-        "td",
-        "tfoot",
-        "th",
-        "thead",
-        "tr",
-      ],
-    });
 
     // Retrieve the cluster named "Lecturers" from the database
     const cluster = Database.getClusterByName("Lecturers");
@@ -174,6 +100,14 @@ export const PUT = async ({ params, request }) => {
         obj[key] = user[key];
       }
     }
+
+    obj.bio = sanitizeHtml(obj.bio, {
+      allowedTags: ["b", "i", "em", "strong", "a"],
+      allowedAttributes: {
+        a: ["href"],
+      },
+      allowedIframeHostnames: ["www.youtube.com"],
+    });
 
     if (user) {
       // Update the user's data with the new object

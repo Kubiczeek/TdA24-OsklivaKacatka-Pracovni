@@ -1,8 +1,14 @@
 <script>
+  import { showModal } from "$lib/stores.js";
   import Navigation from "$lib/components/navigation.svelte";
   import Card from "$lib/components/card.svelte";
+  import Filter from "$lib/components/filter.svelte";
   import { talk } from "$lib/assets/images.js";
 </script>
+
+{#if $showModal}
+  <Filter />
+{/if}
 
 <Navigation
   icon={talk}
@@ -18,9 +24,31 @@
     <Card></Card>
   </div>
 </div>
+<button class="pos-fixed bg-lightblue btn-filter" on:click={showModal.show}
+  >Filtr vyhledávání</button
+>
 <p class="page-name-rotated">Učitelé</p>
 
 <style>
+  .btn-filter {
+    width: 270px;
+    height: 48px;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: "Lalezar", sans-serif;
+    font-size: 2rem;
+    padding-top: 2px;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out;
+    box-shadow: 0px 0px 40px 0px rgba(0, 56, 77, 0.2);
+    z-index: 10;
+  }
+
   .page-name-rotated {
     font-family: "Lalezar", sans-serif;
     font-size: 13.333rem;
@@ -48,6 +76,8 @@
     align-items: center;
     justify-items: center;
     font-family: "Open Sans", sans-serif;
+    overflow-y: auto;
+    padding-bottom: 100px;
   }
 
   .container {
@@ -80,22 +110,10 @@
   }
 
   .bg-lightblue {
-    background-color: rgba(116, 199, 211, 0.1);
+    background-color: #74c7d3;
   }
 
-  .bg-darkblue {
-    background-color: #00384d;
-  }
-
-  .color-darkblue {
-    color: #00384d;
-  }
-
-  .color-lightblue {
-    color: rgb(116, 199, 211);
-  }
-
-  .color-black {
-    color: #333333;
+  .pos-fixed {
+    position: fixed;
   }
 </style>
