@@ -1,4 +1,5 @@
 <script>
+  import toast, { Toaster } from "svelte-french-toast";
   import Navigation from "$lib/components/navigation.svelte";
   import Tag from "$lib/components/tag.svelte";
   import { raise, phone } from "$lib/assets/images.js";
@@ -9,9 +10,13 @@
 
   function copyToClipboard() {
     navigator.clipboard.writeText(uuid.textContent);
+    toast.success("Zkopírováno do schránky", {
+      position: "bottom-right",
+    });
   }
 </script>
 
+<Toaster />
 <Navigation icon={raise} color="#00384d" ref="lightblue" pageName="Profil" />
 <div class="main">
   <div class="container">
@@ -22,7 +27,7 @@
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <!-- svelte-ignore a11y-no-static-element-interactions -->
           <span
-            class="header small-text color-black"
+            class="header small-text color-black not-selectable"
             bind:this={uuid}
             on:click={copyToClipboard}>{data.uuid}</span
           >
@@ -191,54 +196,8 @@
     line-height: 1.2;
   }
 
-  nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-height: 4rem;
-    box-shadow: 0px 4px 100px 0px rgba(116, 199, 211, 0.1);
-  }
-
-  .nav-left {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .page-img {
-    height: 100%;
-  }
-
-  .page-img > img {
-    width: auto;
-    max-height: 100%;
-    transform: scale(0.75);
-    filter: invert(77%) sepia(12%) saturate(1243%) hue-rotate(139deg)
-      brightness(95%) contrast(86%);
-  }
-
-  .page-name {
-    font-family: "Lalezar", sans-serif;
-    font-size: 2.666rem;
-    align-self: flex-end;
-  }
-
-  .nav-right > img {
-    width: auto;
-    max-height: 100%;
-    transform: scale(0.8);
-  }
-
   .bg-lightblue {
     background-color: rgba(116, 199, 211, 0.1);
-  }
-
-  .bg-darkblue {
-    background-color: #00384d;
   }
 
   .color-darkblue {

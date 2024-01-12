@@ -1,13 +1,87 @@
 <script>
+  import { page } from "$app/stores";
   import { showModal } from "$lib/stores.js";
   import Navigation from "$lib/components/navigation.svelte";
   import Card from "$lib/components/card.svelte";
   import Filter from "$lib/components/filter.svelte";
   import { talk } from "$lib/assets/images.js";
+
+  export let data;
+
+  let showedFilters = [];
+
+  data.data.forEach((item) => {
+    showedFilters = [...showedFilters, item];
+  });
+
+  function onFilter(p) {
+    console.log(p);
+    const min = $page.url.searchParams.get("min");
+    const max = $page.url.searchParams.get("max");
+    const place = $page.url.searchParams.get("place");
+    let tags = $page.url.searchParams.get("tags");
+    if (tags) {
+      tags = tags.split(",");
+    }
+
+    showedFilters = showedFilters.filter((item) => {
+      if (min && max) {
+        if (item.price_per_hour <= min || item.price_per_hour >= max) {
+          return false;
+        }
+      }
+
+      if (place) {
+        if (item.location !== place) {
+          return false;
+        }
+      }
+
+      if (tags) {
+        if (!item.tags.includes(tags)) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }
+
+  const minimum = Math.min(
+    ...data.data.map((item) => {
+      return item.price_per_hour;
+    })
+  );
+  const maximum = Math.max(
+    ...data.data.map((item) => {
+      return item.price_per_hour;
+    })
+  );
+  const allTagsUnique = data.data.map((item) => {
+    return item.tags.map((tag) => {
+      return tag.name;
+    });
+  });
+  //TODO: GET TAGS FROM API = CREATE API ENDPOINT
+
+  const allPlacesUnique = [
+    ...new Set(
+      data.data.map((item) => {
+        return item.location;
+      })
+    ),
+  ];
+
+  $: onFilter($page.url.searchParams);
 </script>
 
 {#if $showModal}
-  <Filter />
+  <Filter
+    MINIMUM={minimum}
+    MAXIMUM={maximum}
+    cities={allPlacesUnique}
+    complexItems={allTagsUnique}
+  />
 {/if}
 
 <Navigation
@@ -19,9 +93,23 @@
 />
 <div class="main">
   <div class="container">
-    <Card></Card>
-    <Card></Card>
-    <Card></Card>
+    {#each showedFilters as item}
+      <span>
+        <Card
+          title_before={item.title_before}
+          title_after={item.title_after}
+          first_name={item.first_name}
+          middle_name={item.middle_name}
+          last_name={item.last_name}
+          picture_url={item.picture_url}
+          money={item.price_per_hour}
+          place={item.location}
+          claim={item.claim}
+          tags={item.tags}
+          uuid={item.uuid}
+        />
+      </span>
+    {/each}
   </div>
 </div>
 <button class="pos-fixed bg-lightblue btn-filter" on:click={showModal.show}
@@ -69,7 +157,7 @@
   }
 
   .main {
-    margin-top: 5rem;
+    margin-top: 4rem;
     display: grid;
     width: 100%;
     height: calc(100vh - 5rem);

@@ -1,53 +1,53 @@
 <script>
   import Tag from "./tag.svelte";
+
+  export let title_before;
+  export let title_after;
+  export let first_name;
+  export let middle_name;
+  export let last_name;
+  export let picture_url;
+  export let money;
+  export let place;
+  export let claim;
+  export let tags;
+  export let uuid;
 </script>
 
 <div class="card">
-  <div class="img-container">
-    <img
-      src="https://tourdeapp.cz/storage/images/2023_02_25/412ff296a291f021bbb6de10e8d0b94863fa89308843b/big.png.webp"
-      alt=""
-    />
-    <div class="img-overlay"><span>Mgr. Petra Swil Plachá MBA</span></div>
-  </div>
+  <a href={"/lecturer/" + uuid} class="img-container">
+    <img src={picture_url} alt="" />
+    <div class="img-overlay">
+      <span
+        >{title_before}
+        {first_name}
+        {middle_name}
+        {last_name}
+        {title_after}</span
+      >
+    </div>
+  </a>
   <p class="claim color-darkblue">
-    Aktivní studentka / Předsedkyně spolku / Projektová manažerka
+    {claim}
   </p>
   <div class="sections">
     <div class="money">
       <p class="subheader color-black">ohodnocení</p>
-      <p class="description">1200 Kč/h</p>
+      <p class="description">{money} Kč/h</p>
     </div>
     <div class="place">
       <p class="subheader">lokalita</p>
-      <p class="description">Brno</p>
+      <p class="description">{place}</p>
     </div>
   </div>
   <div class="tags">
-    <Tag small={true} text="#dobrovolnictví" backgroundColor="#74C7D3" />
-    <Tag small={true} text="#studentské spolky" backgroundColor="#74C7D3" />
-    <Tag small={true} text="#efektivní učení" backgroundColor="#74C7D3" />
-    <Tag
-      small={true}
-      text="#prezentační dovednosti"
-      backgroundColor="#74C7D3"
-    />
-    <Tag small={true} text="#mimoškolní aktivity" backgroundColor="#74C7D3" />
-    <Tag
-      small={true}
-      text="#marketing pro neziskové studentské projekty"
-      backgroundColor="#74C7D3"
-    />
-    <Tag
-      small={true}
-      text="#projektový management, event management"
-      backgroundColor="#74C7D3"
-    />
-    <Tag
-      small={true}
-      text="#fundraising pro neziskové studentské projekty"
-      backgroundColor="#74C7D3"
-    />
+    {#each tags as tag}
+      <Tag
+        small={true}
+        text={"#" + tag.name.toLowerCase()}
+        backgroundColor="#74C7D3"
+      />
+    {/each}
   </div>
 </div>
 

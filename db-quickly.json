@@ -7,13 +7,169 @@
       "_id": "lqtcyc7y274xtah2p",
       "clusterName": "Lecturers",
       "clusterDescription": "List of lecturers",
-      "data": []
+      "data": [
+        {
+          "title_before": "",
+          "first_name": "Jakub",
+          "middle_name": "",
+          "last_name": "Jakůbek",
+          "title_after": "",
+          "picture_url": "https://picsum.photos/300",
+          "location": "Havlíčkův Brod",
+          "claim": "Místo stěžování je lepší přiložit ruku k dílu.",
+          "bio": "Jsem <b>sedmnáctiletý</b> dopravní nadšenec. Navštěvuji gymnázium v půvabném městě v srdci České republiky - <i>v Havlíčkově Brodě</i>. Mezi mé zájmy patří matematika, doprava a především <b>programování</b>.",
+          "tags": [
+            "58338675-bd6b-47c2-b209-ee0a0934610b",
+            "99f7fc48-7a36-419a-b838-0b1528690910",
+            "74e6e397-782a-42ff-8a58-41976779a31d",
+            "d37d79f6-81f9-439d-bd56-0159885e6503",
+            "ffafc553-7fa5-44f5-a92c-472cfe8f4741"
+          ],
+          "price_per_hour": 840,
+          "contact": {
+            "telephone_numbers": ["+420 730 815 832"],
+            "emails": [
+              "jakubakubek@gmail.com",
+              "kubacze55@gmail.com",
+              "jakubjakubek55@gmail.com"
+            ]
+          },
+          "uuid": "d5c28fc9-243e-4dbc-8a3f-32e679070184"
+        },
+        {
+          "title_before": "Mgr.",
+          "first_name": "Josef",
+          "middle_name": "",
+          "last_name": "Secký",
+          "title_after": "PhD.",
+          "picture_url": "https://picsum.photos/300",
+          "location": "Havlíčkův Brod",
+          "claim": "Kolega Sedlák si nerad poměřoval velikost doktorátů",
+          "bio": "Těší mě, jmenuji se Pepik a učím češtinu na bordským gymplu. Rád zpívám a vedu společně s kolegou Láskou školní pěvecký sbor. Rád si dělám z věcí legarci. Doufám, že budeme spolupracovat!",
+          "tags": [
+            "c54ad02e-8583-4468-a542-be0b0d4596b2",
+            "e24ec90e-73f9-4bf3-ba47-3257d8c28480",
+            "e5299de5-fa6d-49da-be16-e05118e342b0",
+            "dff71f0c-c23f-4ba0-a598-b2d371375b0c",
+            "84d4ff74-b560-4599-97aa-71f119ae408e",
+            "dc019d83-c724-41d2-a804-a97368788361",
+            "1f62d754-a058-4c2f-b4d6-c0a694cf36c3",
+            "7f39df09-b768-4b5c-ad30-e0a5f2d3a123"
+          ],
+          "price_per_hour": 7300,
+          "contact": {
+            "telephone_numbers": ["+420 569 669 334"],
+            "emails": ["secky@ghb.cz"]
+          },
+          "uuid": "9accbf0d-7143-4029-b412-c91d139140dd"
+        },
+        {
+          "title_before": "Mgr.",
+          "first_name": "Jiří",
+          "middle_name": "",
+          "last_name": "Karel",
+          "title_after": "",
+          "picture_url": "https://picsum.photos/300",
+          "location": "Havlíčkův Brod",
+          "claim": "Tak už můžete jít. Ale běda vám jestli někdo budete v bufíku přede mnou",
+          "bio": "Dobrý den... Posaďte se! Jsem rád, že vás mohu přivítat u mě na profilu. Pokud máte nějaké otázky na mou osobu, neváhejte mne kontaktovat. Snad ten počítač nebude unavený jako vy devátou vyučovací hodinu.",
+          "tags": [
+            "242eeea7-865d-44ac-b30f-b55bcf6424ca",
+            "40cc7e61-c279-47be-b84b-941defc2756e",
+            "ef8d9371-9a72-4a51-9402-3fd16ced28d9",
+            "be8344eb-7bed-4ba0-9045-e100d8699fdb",
+            "833181f5-b657-4c17-8464-7ad1dd03cf4a",
+            "a16fab57-b079-4079-89dc-7fd16b4ebfc9"
+          ],
+          "price_per_hour": 7300,
+          "contact": {
+            "telephone_numbers": ["+420 569 669 341"],
+            "emails": ["karel@ghb.cz"]
+          },
+          "uuid": "f617e706-e06e-4da0-ba04-562aa77431b3"
+        }
+      ]
     },
     {
       "_id": "lqtcyc7z3999j8zcz",
       "clusterName": "Tags",
       "clusterDescription": "List of tags",
-      "data": []
+      "data": [
+        {
+          "uuid": "58338675-bd6b-47c2-b209-ee0a0934610b",
+          "name": "Programování"
+        },
+        {
+          "uuid": "99f7fc48-7a36-419a-b838-0b1528690910",
+          "name": "Veřejná doprava"
+        },
+        {
+          "uuid": "74e6e397-782a-42ff-8a58-41976779a31d",
+          "name": "Matematika"
+        },
+        {
+          "uuid": "d37d79f6-81f9-439d-bd56-0159885e6503",
+          "name": "Moderní technologie"
+        },
+        {
+          "uuid": "ffafc553-7fa5-44f5-a92c-472cfe8f4741",
+          "name": "Milovník své vlasti."
+        },
+        {
+          "uuid": "c54ad02e-8583-4468-a542-be0b0d4596b2",
+          "name": "Literatura"
+        },
+        {
+          "uuid": "e24ec90e-73f9-4bf3-ba47-3257d8c28480",
+          "name": "České dějiny"
+        },
+        {
+          "uuid": "e5299de5-fa6d-49da-be16-e05118e342b0",
+          "name": "Milovník Jana Ámose Komenského"
+        },
+        {
+          "uuid": "dff71f0c-c23f-4ba0-a598-b2d371375b0c",
+          "name": "Mám velký doktorát, co je víc?"
+        },
+        {
+          "uuid": "84d4ff74-b560-4599-97aa-71f119ae408e",
+          "name": "Snad nedopadnu jak Sedlák"
+        },
+        {
+          "uuid": "dc019d83-c724-41d2-a804-a97368788361",
+          "name": "Jestli se tohle dostane ven"
+        },
+        {
+          "uuid": "1f62d754-a058-4c2f-b4d6-c0a694cf36c3",
+          "name": "tak asi budu mít problémek, tak just in case"
+        },
+        {
+          "uuid": "7f39df09-b768-4b5c-ad30-e0a5f2d3a123",
+          "name": "vše tady je myšleno z legrace, prostě potřebujem nějaká testovací data"
+        },
+        { "uuid": "6a9e9c27-f83f-4bfe-92cb-d0317d1fc703" },
+        {
+          "uuid": "242eeea7-865d-44ac-b30f-b55bcf6424ca",
+          "name": "Chemické pokusy"
+        },
+        { "uuid": "40cc7e61-c279-47be-b84b-941defc2756e", "name": "Geologie" },
+        {
+          "uuid": "ef8d9371-9a72-4a51-9402-3fd16ced28d9",
+          "name": "Přírodní vědy"
+        },
+        {
+          "uuid": "be8344eb-7bed-4ba0-9045-e100d8699fdb",
+          "name": "Profesionální tvůrce powerpoint prezentací"
+        },
+        {
+          "uuid": "833181f5-b657-4c17-8464-7ad1dd03cf4a",
+          "name": "Můj bílý plášť je velmi atraktivní"
+        },
+        {
+          "uuid": "a16fab57-b079-4079-89dc-7fd16b4ebfc9",
+          "name": "Mám rád vláčky :)"
+        }
+      ]
     }
   ]
 }

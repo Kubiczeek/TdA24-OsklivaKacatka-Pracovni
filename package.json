@@ -21,6 +21,7 @@
     "joi": "^17.11.0",
     "sanitize-html": "^2.11.0",
     "sanitize.css": "^13.0.0",
+    "svelte-french-toast": "^1.2.0",
     "svelte-select": "^5.8.3",
     "uuid": "^9.0.1",
     "uuidv4": "^6.2.13"
