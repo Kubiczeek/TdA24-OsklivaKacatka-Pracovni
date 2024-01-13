@@ -67,7 +67,7 @@ export const PUT = async ({ params, request }) => {
     // Retrieve the JSON data from the request body
     const obj = await request.json();
 
-    let copyTags;
+    let copyTags = [];
 
     if (obj.tags) {
       // Replace tags with corresponding UUIDs
@@ -103,6 +103,12 @@ export const PUT = async ({ params, request }) => {
       if (!obj[key]) {
         obj[key] = user[key];
       }
+    }
+
+    if (copyTags.length === 0) {
+      copyTags = obj.tags.map((tag) => {
+        return { name: findTagsName(tag), uuid: tag };
+      });
     }
 
     obj.bio = sanitizeHtml(obj.bio, {
