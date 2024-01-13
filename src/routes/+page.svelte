@@ -18,7 +18,6 @@
   }
 
   function onFilter(p) {
-    console.log(p);
     const min = $page.url.searchParams.get("min");
     const max = $page.url.searchParams.get("max");
     const place = $page.url.searchParams.get("place");
@@ -57,7 +56,6 @@
 
       return true;
     });
-    console.log(showedFilters);
   }
 
   const minimum = Math.min(
