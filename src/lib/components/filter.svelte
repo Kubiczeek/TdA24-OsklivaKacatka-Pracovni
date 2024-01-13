@@ -27,6 +27,17 @@
     maxSlide.value = query.get("max") || MAXIMUM;
   });
 
+  function roundToLower(num, step = 10) {
+    return Math.floor(num / step) * step;
+  }
+
+  function roundToHigher(num, step = 10) {
+    return Math.ceil(num / step) * step;
+  }
+
+  MINIMUM = roundToLower(MINIMUM, 100);
+  MAXIMUM = roundToHigher(MAXIMUM, 100);
+
   function filterSubmit() {
     query.set("min", minSlide.value);
     query.set("max", maxSlide.value);
