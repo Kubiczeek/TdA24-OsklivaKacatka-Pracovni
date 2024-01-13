@@ -67,14 +67,18 @@ export const PUT = async ({ params, request }) => {
     // Retrieve the JSON data from the request body
     const obj = await request.json();
 
-    // Replace tags with corresponding UUIDs
-    for (const tag of obj.tags) {
-      tag.uuid = findTagsUuid(tag.name);
+    let copyTags = [];
+
+    if (obj.tags) {
+      // Replace tags with corresponding UUIDs
+      for (const tag of obj.tags) {
+        tag.uuid = findTagsUuid(tag.name);
+      }
+
+      copyTags = obj.tags;
+
+      obj.tags = obj.tags.map((tag) => tag.uuid);
     }
-
-    let copyTags = obj.tags;
-
-    obj.tags = obj.tags.map((tag) => tag.uuid);
 
     // If the UUID property is present in the object, rename it to `uuid`
     if (obj.UUID) {
@@ -99,6 +103,12 @@ export const PUT = async ({ params, request }) => {
       if (!obj[key]) {
         obj[key] = user[key];
       }
+    }
+
+    if (copyTags.length === 0) {
+      copyTags = obj.tags.map((tag) => {
+        return { name: findTagsName(tag), uuid: tag };
+      });
     }
 
     obj.bio = sanitizeHtml(obj.bio, {
@@ -138,6 +148,7 @@ export const PUT = async ({ params, request }) => {
       );
     }
   } catch (error) {
+    console.log(error);
     // Return a 400 response if there is an error parsing the request body
     return new Response(
       JSON.stringify({ code: 400, message: "Invalid request body" }),

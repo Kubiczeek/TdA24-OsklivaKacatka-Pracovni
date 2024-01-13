@@ -1,16 +1,67 @@
 <script>
+  import { page } from "$app/stores";
+  import { onMount } from "svelte";
+  import { replaceState } from "$app/navigation";
   import { close, cog } from "$lib/assets/images.js";
   import { fade, scale } from "svelte/transition";
   import { showModal } from "$lib/stores.js";
   import Select from "svelte-select";
 
-  const complexItems = [
-    { value: "chocolate", label: "Chocolate", group: "Sweet" },
-    { value: "pizza", label: "Pizza", group: "Savory" },
-    { value: "cake", label: "Cake", group: "Sweet", selectable: false },
-    { value: "chips", label: "Chips", group: "Savory" },
-    { value: "ice-cream", label: "Ice Cream", group: "Sweet" },
-  ];
+  export let MINIMUM = 0;
+  export let MAXIMUM = 1000;
+  export let cities;
+  export let complexItems;
+
+  const query = $page.url.searchParams;
+  /*
+    query.get("color");
+    query.set("color", "blue");
+    console.log($page.url.pathname + $page.url.search);
+  */
+  let minText, maxText, minSlide, maxSlide, place, tags;
+
+  onMount(() => {
+    minText.value = query.get("min") || MINIMUM;
+    maxText.value = query.get("max") || MAXIMUM;
+    minSlide.value = query.get("min") || MINIMUM;
+    maxSlide.value = query.get("max") || MAXIMUM;
+  });
+
+  function roundToLower(num, step = 10) {
+    return Math.floor(num / step) * step;
+  }
+
+  function roundToHigher(num, step = 10) {
+    return Math.ceil(num / step) * step;
+  }
+
+  MINIMUM = roundToLower(MINIMUM, 100);
+  MAXIMUM = roundToHigher(MAXIMUM, 100);
+
+  function filterSubmit() {
+    if (minSlide.value != MINIMUM) {
+      query.set("min", minSlide.value);
+    } else {
+      query.delete("min");
+    }
+    if (maxSlide.value != MAXIMUM) {
+      query.set("max", maxSlide.value);
+    } else {
+      query.delete("max");
+    }
+    if (place) {
+      query.set("place", place.value);
+    } else {
+      query.delete("place");
+    }
+    if (tags) {
+      const tempTags = [...tags.map((tag) => tag.value)];
+      query.set("tags", tempTags.join(","));
+    } else {
+      query.delete("tags");
+    }
+    replaceState($page.url.pathname + $page.url.search);
+  }
 </script>
 
 <div class="overlay" transition:fade={{ duration: 250 }} />
@@ -29,19 +80,39 @@
           <span>
             <span class="fnt-OpenSans color-black">minimální cena</span>
             <input
+              on:change={() => {
+                minSlide.value = minText.value;
+                if (parseInt(minSlide.value) > parseInt(maxSlide.value)) {
+                  maxSlide.value = minSlide.value;
+                  maxText.value = minText.value;
+                }
+              }}
+              bind:this={minText}
               class="bg-lightblue fnt-OpenSans"
               style="color: white;"
               type="text"
+              min={MINIMUM}
+              max={MAXIMUM}
               value="500"
             />
           </span>
           <span>
             <span class="fnt-OpenSans color-black">maximální cena</span>
             <input
+              on:change={() => {
+                maxSlide.value = maxText.value;
+                if (parseInt(maxSlide.value) < parseInt(minSlide.value)) {
+                  minSlide.value = maxSlide.value;
+                  minText.value = maxText.value;
+                }
+              }}
+              bind:this={maxText}
               class="bg-lightblue fnt-OpenSans"
               style="color: white;"
               type="text"
               value="2200"
+              min={MINIMUM}
+              max={MAXIMUM}
             />
           </span>
         </div>
@@ -51,8 +122,36 @@
           >za hodinu v českých korunách</span
         >
         <div class="money-inputs-slide">
-          <input type="range" min="0" max="7500" step="100" value="500" />
-          <input type="range" min="0" max="7500" step="100" value="2200" />
+          <input
+            on:input={() => {
+              minText.value = minSlide.value;
+              if (parseInt(minSlide.value) > parseInt(maxSlide.value)) {
+                maxSlide.value = minSlide.value;
+                maxText.value = minText.value;
+              }
+            }}
+            type="range"
+            min={MINIMUM}
+            max={MAXIMUM}
+            step="10"
+            value="500"
+            bind:this={minSlide}
+          />
+          <input
+            on:input={() => {
+              maxText.value = maxSlide.value;
+              if (parseInt(maxSlide.value) < parseInt(minSlide.value)) {
+                minSlide.value = maxSlide.value;
+                minText.value = maxText.value;
+              }
+            }}
+            type="range"
+            min={MINIMUM}
+            max={MAXIMUM}
+            step="10"
+            value="2200"
+            bind:this={maxSlide}
+          />
         </div>
         <span class="fnt-Lalezar color-black mobileView"
           >za hodinu v českých korunách</span
@@ -63,10 +162,11 @@
       <div class="place">
         <span class="fnt-Lalezar color-black">lokalita výuky</span>
         <Select
-          items={complexItems}
+          items={cities}
           placeholder="Vyberte"
-          multiple={true}
           showChevron={true}
+          {place}
+          on:change={(e) => (place = e.detail)}
         />
       </div>
       <div class="tags">
@@ -76,6 +176,8 @@
           placeholder="Vyberte"
           multiple={true}
           showChevron={true}
+          {tags}
+          on:change={(e) => (tags = e.detail)}
         />
       </div>
       <div class="cog-wheel">
@@ -83,8 +185,12 @@
       </div>
     </div>
   </div>
-  <button class="bg-lightblue btn-filter fnt-Lalezar" on:click={showModal.hide}
-    >Filtrovat</button
+  <button
+    class="bg-lightblue btn-filter fnt-Lalezar"
+    on:click={() => {
+      filterSubmit();
+      showModal.hide();
+    }}>Filtrovat</button
   >
 </div>
 
@@ -126,21 +232,22 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     column-gap: 1rem;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
+    padding-top: 1rem;
   }
 
   .place {
     grid-area: place;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.35rem;
   }
 
   .tags {
     grid-area: tags;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.35rem;
   }
 
   .place > span,

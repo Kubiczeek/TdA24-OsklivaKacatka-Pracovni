@@ -11,6 +11,20 @@
     min-width: 0;
   }
 
+  :global(a) {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  :global(.not-selectable) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
   :global(html) {
     font-family: "Open Sans", sans-serif;
   }

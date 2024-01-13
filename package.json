@@ -1,6 +1,6 @@
 {
-  "name": "frontend",
-  "version": "0.0.1",
+  "name": "tour-de-app-2024",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vite dev",
@@ -10,7 +10,6 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-node": "^2.0.0",
-    "@sveltejs/adapter-vercel": "^4.0.4",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "svelte": "^4.2.8",
@@ -22,6 +21,7 @@
     "joi": "^17.11.0",
     "sanitize-html": "^2.11.0",
     "sanitize.css": "^13.0.0",
+    "svelte-french-toast": "^1.2.0",
     "svelte-select": "^5.8.3",
     "uuid": "^9.0.1",
     "uuidv4": "^6.2.13"
