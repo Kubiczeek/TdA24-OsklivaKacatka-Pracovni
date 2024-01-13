@@ -39,8 +39,16 @@
   MAXIMUM = roundToHigher(MAXIMUM, 100);
 
   function filterSubmit() {
-    query.set("min", minSlide.value);
-    query.set("max", maxSlide.value);
+    if (minSlide.value != MINIMUM) {
+      query.set("min", minSlide.value);
+    } else {
+      query.delete("min");
+    }
+    if (maxSlide.value != MAXIMUM) {
+      query.set("max", maxSlide.value);
+    } else {
+      query.delete("max");
+    }
     if (place) {
       query.set("place", place.value);
     } else {

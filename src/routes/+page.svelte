@@ -28,11 +28,14 @@
     }
     reset();
     showedFilters = showedFilters.filter((item) => {
-      if (min && max) {
-        if (
-          item.price_per_hour < parseInt(min) ||
-          item.price_per_hour > parseInt(max)
-        ) {
+      if (min) {
+        if (item.price_per_hour < parseInt(min)) {
+          return false;
+        }
+      }
+
+      if (max) {
+        if (item.price_per_hour > parseInt(max)) {
           return false;
         }
       }
