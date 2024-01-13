@@ -36,7 +36,6 @@
   h1,
   h2,
   h4,
-  a,
   button {
     font-family: "Lalezar", sans-serif;
     margin: 0;

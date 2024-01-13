@@ -139,4 +139,10 @@
     flex-wrap: wrap;
     gap: 0.2rem;
   }
+
+  @media (max-width: 600px) {
+    .img-overlay > span {
+      font-size: 1rem;
+    }
+  }
 </style>

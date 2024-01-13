@@ -23,7 +23,9 @@
     <div class="card">
       <div class="profile">
         <div class="profilePicture desktopView">
-          <img src={data.picture_url} alt="" />
+          <div style="object-fit: cover;">
+            <img src={data.picture_url} alt="" />
+          </div>
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <!-- svelte-ignore a11y-no-static-element-interactions -->
           <span
@@ -235,8 +237,8 @@
   }
 
   .profile {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1.7fr;
     gap: 2rem;
   }
 
@@ -283,7 +285,7 @@
     grid-area: emails;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    grid-template-columns: min-content;
+    grid-template-columns: auto;
     grid-auto-flow: column;
     font-size: 1rem;
     font-weight: 700;
@@ -352,6 +354,7 @@
 
   .profilePicture img {
     border-radius: 25px;
+    max-width: 100%;
   }
 
   .profilePicture {
@@ -490,9 +493,6 @@
       height: 90vh;
     }
 
-    .page-name {
-      font-size: 2.666rem;
-    }
     .container {
       display: flex;
       flex-direction: column;

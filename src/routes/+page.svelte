@@ -5,7 +5,6 @@
   import Card from "$lib/components/card.svelte";
   import Filter from "$lib/components/filter.svelte";
   import { talk } from "$lib/assets/images.js";
-  import { parse } from "svelte/compiler";
 
   export let data;
 
@@ -181,6 +180,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
+    padding-top: 1rem;
     grid-gap: 2rem;
     width: min(95%, 1200px);
   }
@@ -200,6 +200,7 @@
     .container {
       display: flex;
       flex-direction: row;
+      margin-top: 3rem;
       width: min(95%, 320px);
       min-height: 550px;
       overflow-x: auto;
