@@ -2,6 +2,9 @@
   import "sanitize.css";
 </script>
 
+<svelte:head>
+  <title>Teacher Digital Agency</title>
+</svelte:head>
 <slot />
 
 <style>
