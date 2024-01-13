@@ -1,5 +1,6 @@
 <script>
   import { page } from "$app/stores";
+  import { onMount } from "svelte";
   import { replaceState } from "$app/navigation";
   import { close, cog } from "$lib/assets/images.js";
   import { fade, scale } from "svelte/transition";
@@ -7,7 +8,7 @@
   import Select from "svelte-select";
 
   export let MINIMUM = 0;
-  export let MAXIMUM = 7500;
+  export let MAXIMUM = 1000;
   export let cities;
   export let complexItems;
 
@@ -19,15 +20,26 @@
   */
   let minText, maxText, minSlide, maxSlide, place, tags;
 
+  onMount(() => {
+    minText.value = query.get("min") || MINIMUM;
+    maxText.value = query.get("max") || MAXIMUM;
+    minSlide.value = query.get("min") || MINIMUM;
+    maxSlide.value = query.get("max") || MAXIMUM;
+  });
+
   function filterSubmit() {
     query.set("min", minSlide.value);
     query.set("max", maxSlide.value);
     if (place) {
       query.set("place", place.value);
+    } else {
+      query.delete("place");
     }
     if (tags) {
       const tempTags = [...tags.map((tag) => tag.value)];
       query.set("tags", tempTags.join(","));
+    } else {
+      query.delete("tags");
     }
     replaceState($page.url.pathname + $page.url.search);
   }
@@ -102,7 +114,7 @@
             type="range"
             min={MINIMUM}
             max={MAXIMUM}
-            step="100"
+            step="10"
             value="500"
             bind:this={minSlide}
           />
@@ -117,7 +129,7 @@
             type="range"
             min={MINIMUM}
             max={MAXIMUM}
-            step="100"
+            step="10"
             value="2200"
             bind:this={maxSlide}
           />

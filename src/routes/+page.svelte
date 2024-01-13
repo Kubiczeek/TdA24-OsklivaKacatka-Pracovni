@@ -5,14 +5,18 @@
   import Card from "$lib/components/card.svelte";
   import Filter from "$lib/components/filter.svelte";
   import { talk } from "$lib/assets/images.js";
+  import { parse } from "svelte/compiler";
 
   export let data;
 
   let showedFilters = [];
 
-  data.data.forEach((item) => {
-    showedFilters = [...showedFilters, item];
-  });
+  function reset() {
+    showedFilters = [];
+    data.data.forEach((item) => {
+      showedFilters = [...showedFilters, item];
+    });
+  }
 
   function onFilter(p) {
     console.log(p);
@@ -23,10 +27,13 @@
     if (tags) {
       tags = tags.split(",");
     }
-
+    reset();
     showedFilters = showedFilters.filter((item) => {
       if (min && max) {
-        if (item.price_per_hour <= min || item.price_per_hour >= max) {
+        if (
+          item.price_per_hour < parseInt(min) ||
+          item.price_per_hour > parseInt(max)
+        ) {
           return false;
         }
       }
@@ -38,13 +45,17 @@
       }
 
       if (tags) {
-        if (!item.tags.includes(tags)) {
+        const newTags = item.tags.map((tag) => tag.name);
+        let allTagsExist = tags.every((tag) => newTags.includes(tag));
+
+        if (!allTagsExist) {
           return false;
         }
       }
 
       return true;
     });
+    console.log(showedFilters);
   }
 
   const minimum = Math.min(
@@ -57,13 +68,9 @@
       return item.price_per_hour;
     })
   );
-  const allTagsUnique = data.data.map((item) => {
-    return item.tags.map((tag) => {
-      return tag.name;
-    });
+  const tags = data.tags.map((tag) => {
+    return tag.name;
   });
-  //TODO: GET TAGS FROM API = CREATE API ENDPOINT
-
   const allPlacesUnique = [
     ...new Set(
       data.data.map((item) => {
@@ -71,6 +78,8 @@
       })
     ),
   ];
+
+  reset();
 
   $: onFilter($page.url.searchParams);
 </script>
@@ -80,7 +89,7 @@
     MINIMUM={minimum}
     MAXIMUM={maximum}
     cities={allPlacesUnique}
-    complexItems={allTagsUnique}
+    complexItems={tags}
   />
 {/if}
 
