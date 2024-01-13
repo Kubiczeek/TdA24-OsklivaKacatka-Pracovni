@@ -16,6 +16,9 @@
   }
 </script>
 
+<svelte:head>
+  <title>TDA - {data.first_name} {data.middle_name} {data.last_name}</title>
+</svelte:head>
 <Toaster />
 <Navigation icon={raise} color="#00384d" ref="lightblue" pageName="Profil" />
 <div class="main">
