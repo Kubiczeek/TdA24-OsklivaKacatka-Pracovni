@@ -7,8 +7,10 @@ COPY . .
 RUN pnpm run build
 RUN pnpm prune --production
 
+
 FROM node:18-alpine
 WORKDIR /app
+COPY --from=builder /app/db-quickly.json .
 COPY --from=builder /app/build build/
 COPY --from=builder /app/node_modules node_modules/
 COPY package.json .

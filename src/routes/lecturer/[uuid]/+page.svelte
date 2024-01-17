@@ -120,10 +120,7 @@
           </div>
           <div class="grid-sections mobileView">
             <div class="profilePicture mobileView">
-              <img
-                src="https://tourdeapp.cz/storage/images/2023_02_25/412ff296a291f021bbb6de10e8d0b94863fa89308843b/big.png.webp"
-                alt=""
-              />
+              <img src={data.picture_url} alt="" />
             </div>
             <div class="bg-lightblue color-black section kontakt">
               <p class="header">kontaktní údaje</p>
