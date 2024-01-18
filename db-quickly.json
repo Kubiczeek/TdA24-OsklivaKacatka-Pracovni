@@ -171,26 +171,6 @@
       "clusterDescription": "List of tags",
       "data": [
         {
-          "uuid": "58338675-bd6b-47c2-b209-ee0a0934610b",
-          "name": "Programování"
-        },
-        {
-          "uuid": "99f7fc48-7a36-419a-b838-0b1528690910",
-          "name": "Veřejná doprava"
-        },
-        {
-          "uuid": "74e6e397-782a-42ff-8a58-41976779a31d",
-          "name": "Matematika"
-        },
-        {
-          "uuid": "d37d79f6-81f9-439d-bd56-0159885e6503",
-          "name": "Moderní technologie"
-        },
-        {
-          "uuid": "ffafc553-7fa5-44f5-a92c-472cfe8f4741",
-          "name": "Milovník své vlasti."
-        },
-        {
           "uuid": "c54ad02e-8583-4468-a542-be0b0d4596b2",
           "name": "Literatura"
         },
@@ -222,7 +202,6 @@
           "uuid": "7f39df09-b768-4b5c-ad30-e0a5f2d3a123",
           "name": "vše tady je myšleno z legrace, prostě potřebujem nějaká testovací data"
         },
-        { "uuid": "6a9e9c27-f83f-4bfe-92cb-d0317d1fc703" },
         {
           "uuid": "242eeea7-865d-44ac-b30f-b55bcf6424ca",
           "name": "Chemické pokusy"
@@ -296,10 +275,6 @@
         {
           "uuid": "282268fb-572e-47cb-be4c-ef2fe34f0b86",
           "name": "Stejně to dělám jenom pro peníze"
-        },
-        {
-          "uuid": "38d1301e-a19d-4bb4-834a-2d2a8a570482",
-          "name": "be8344eb-7bed-4ba0-9045-e100d8699fdb"
         },
         { "uuid": "e481766a-0548-432c-b726-0d3e884b1365", "name": "Ležení" },
         {

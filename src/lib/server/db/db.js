@@ -100,3 +100,27 @@ export function findTagsName(uuid) {
 
   return false;
 }
+
+/**
+ * Removes all tags from the "Tags" database cluster that are not used by any lecturer.
+ */
+export function removeUnusedTags() {
+  const cluster = Database.getClusterByName("Tags");
+
+  for (const dataItem of cluster.data) {
+    let found = false;
+
+    for (const lecturer of Database.getClusterByName("Lecturers").data) {
+      if (lecturer.tags.includes(dataItem.uuid)) {
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      const index = cluster.data.indexOf(dataItem);
+      cluster.data.splice(index, 1);
+    }
+  }
+  Database.updateClusterByName(cluster.clusterName, cluster);
+}
