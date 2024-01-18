@@ -23,7 +23,7 @@
     const place = $page.url.searchParams.get("place");
     let tags = $page.url.searchParams.get("tags");
     if (tags) {
-      tags = tags.split(",");
+      tags = tags.split(";!;");
     }
     reset();
     showedFilters = showedFilters.filter((item) => {
