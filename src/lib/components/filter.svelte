@@ -56,7 +56,7 @@
     }
     if (tags) {
       const tempTags = [...tags.map((tag) => tag.value)];
-      query.set("tags", tempTags.join(","));
+      query.set("tags", tempTags.join(";!;"));
     } else {
       query.delete("tags");
     }

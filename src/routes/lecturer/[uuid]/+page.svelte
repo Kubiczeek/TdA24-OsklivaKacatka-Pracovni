@@ -402,6 +402,10 @@
   }
 
   @media (max-width: 700px) {
+    .container {
+      padding-top: 4rem;
+    }
+
     .grid-sections {
       display: none;
     }
@@ -496,6 +500,7 @@
     .container {
       display: flex;
       flex-direction: column;
+      padding-top: 4rem;
     }
 
     .profile {

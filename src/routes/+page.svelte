@@ -23,7 +23,7 @@
     const place = $page.url.searchParams.get("place");
     let tags = $page.url.searchParams.get("tags");
     if (tags) {
-      tags = tags.split(",");
+      tags = tags.split(";!;");
     }
     reset();
     showedFilters = showedFilters.filter((item) => {
@@ -202,7 +202,7 @@
       display: flex;
       flex-direction: row;
       margin-top: 3rem;
-      width: min(95%, 320px);
+      width: 95%;
       min-height: 550px;
       overflow-x: auto;
     }

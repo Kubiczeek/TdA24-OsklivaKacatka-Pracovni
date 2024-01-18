@@ -4,6 +4,7 @@ import {
   findTagsUuid,
   findTagsName,
   lecturerSchema,
+  removeUnusedTags,
 } from "$lib/server/db/db.js";
 import sanitizeHtml from "sanitize-html";
 
@@ -127,7 +128,7 @@ export const PUT = async ({ params, request }) => {
       Database.updateClusterByName(cluster.clusterName, cluster);
 
       user.tags = copyTags;
-
+      removeUnusedTags();
       // Return a 200 response with the updated object
       return new Response(JSON.stringify(user), {
         headers: {
@@ -176,6 +177,7 @@ export const DELETE = async ({ params }) => {
   if (userIndex !== -1) {
     cluster.data.splice(userIndex, 1);
     Database.updateClusterByName(cluster.clusterName, cluster);
+    removeUnusedTags();
     return new Response(null, {
       headers: {
         "Content-Type": "application/json",
