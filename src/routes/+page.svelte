@@ -202,7 +202,7 @@
       display: flex;
       flex-direction: row;
       margin-top: 3rem;
-      width: min(95%, 320px);
+      width: 95%;
       min-height: 550px;
       overflow-x: auto;
     }

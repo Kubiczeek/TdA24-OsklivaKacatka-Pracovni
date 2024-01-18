@@ -144,5 +144,9 @@
     .img-overlay > span {
       font-size: 1rem;
     }
+
+    .img-container {
+      min-width: 250px;
+    }
   }
 </style>
