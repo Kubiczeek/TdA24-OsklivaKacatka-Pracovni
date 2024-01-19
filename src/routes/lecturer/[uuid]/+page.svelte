@@ -352,9 +352,15 @@
     line-height: 1.2;
   }
 
+  .profilePicture > div {
+    width: 100%;
+  }
+
   .profilePicture img {
+    object-fit: cover;
     border-radius: 25px;
-    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 1/1;
   }
 
   .profilePicture {
@@ -427,7 +433,7 @@
     }
 
     .numbers span {
-      font-size: 0.8666rem;
+      font-size: 0.8rem;
     }
 
     .middleView {
@@ -460,7 +466,7 @@
     }
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 450px) {
     .grid-sections {
       display: grid;
       grid-template-areas: "profile kontakt" "lokalita finance";
