@@ -61,7 +61,7 @@ export const POST = async ({ request }) => {
   try {
     // Parse the JSON payload from the request body
     const obj = await request.json();
-
+    obj.tags = obj.tags || [];
     // Replace tags with corresponding UUIDs
     for (const tag of obj.tags) {
       tag.uuid = findTagsUuid(tag.name);
@@ -87,11 +87,19 @@ export const POST = async ({ request }) => {
       allowedIframeHostnames: ["www.youtube.com"],
     });
 
-    if (!obj.first_name || !obj.last_name) {
+    if (
+      !obj.first_name ||
+      !obj.last_name ||
+      !obj.contact ||
+      !obj.contact.telephone_numbers ||
+      !obj.contact.emails ||
+      obj.contact.telephone_numbers?.length === 0 ||
+      obj.contact.emails?.length === 0
+    ) {
       return new Response(
         JSON.stringify({
           code: 400,
-          message: "Missing first name or last name.",
+          message: "Missing first name, last name, email, or telephone number",
         }),
         {
           headers: {

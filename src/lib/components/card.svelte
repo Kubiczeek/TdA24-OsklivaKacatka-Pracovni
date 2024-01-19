@@ -12,32 +12,34 @@
   export let claim;
   export let tags;
   export let uuid;
+  const PLACEHOLDER_IMG =
+    "https://media.discordapp.net/attachments/748152477253238857/1197926008775516320/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.png?ex=65bd0a88&is=65aa9588&hm=5c1fa52ab9a49b447b4348b790e24248e928b023d90a9db349293e7522fcd98d&=&format=webp&quality=lossless";
 </script>
 
 <div class="card">
   <a href={"/lecturer/" + uuid} class="img-container">
-    <img src={picture_url} alt="" />
+    <img src={picture_url || PLACEHOLDER_IMG} alt="" />
     <div class="img-overlay">
       <span
-        >{title_before}
-        {first_name}
-        {middle_name}
-        {last_name}
-        {title_after}</span
+        >{title_before ? title_before + " " : ""}
+        {first_name + " "}
+        {middle_name ? middle_name + " " : ""}
+        {last_name + " "}
+        {title_after || ""}</span
       >
     </div>
   </a>
   <p class="claim color-darkblue">
-    {claim}
+    {claim || ""}
   </p>
   <div class="sections">
     <div class="money">
       <p class="subheader color-black">ohodnocení</p>
-      <p class="description">{money} Kč/h</p>
+      <p class="description">{money || "???"} Kč/h</p>
     </div>
     <div class="place">
       <p class="subheader">lokalita</p>
-      <p class="description">{place}</p>
+      <p class="description">{place || "???"}</p>
     </div>
   </div>
   <div class="tags">
