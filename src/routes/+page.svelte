@@ -201,7 +201,7 @@
 
   @media (max-width: 600px) {
     .main {
-      margin-top: 4rem;
+      margin: 0;
     }
 
     .container {
