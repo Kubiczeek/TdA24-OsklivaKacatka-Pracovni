@@ -110,6 +110,8 @@
 
   .img-container > img {
     width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     border-radius: 7px;
   }
 
@@ -142,11 +144,10 @@
 
   @media (max-width: 600px) {
     .img-overlay > span {
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
-
     .img-container {
-      min-width: 250px;
+      min-width: 280px;
     }
   }
 </style>
