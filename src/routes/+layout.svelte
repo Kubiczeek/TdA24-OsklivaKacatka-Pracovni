@@ -14,6 +14,11 @@
     min-width: 0;
   }
 
+  :global(html) {
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+  }
+
   :global(a) {
     text-decoration: none;
     color: inherit;
@@ -26,10 +31,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-
-  :global(html) {
-    font-family: "Open Sans", sans-serif;
   }
 
   :global([ref="lightblue"]) {
