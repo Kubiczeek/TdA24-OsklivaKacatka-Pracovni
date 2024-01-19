@@ -90,6 +90,10 @@
   $: onFilter($page.url.searchParams);
 </script>
 
+<svelte:head>
+  <title>Teacher Digital Agency</title>
+</svelte:head>
+
 {#if $showModal}
   <Filter
     MINIMUM={minimum}
