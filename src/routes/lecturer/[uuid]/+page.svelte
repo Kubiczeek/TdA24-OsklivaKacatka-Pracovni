@@ -4,8 +4,10 @@
   import Tag from "$lib/components/tag.svelte";
   import { raise, phone } from "$lib/assets/images.js";
 
-  let uuid;
+  const PLACEHOLDER_IMG =
+    "https://media.discordapp.net/attachments/748152477253238857/1197926008775516320/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.png?ex=65bd0a88&is=65aa9588&hm=5c1fa52ab9a49b447b4348b790e24248e928b023d90a9db349293e7522fcd98d&=&format=webp&quality=lossless";
 
+  let uuid;
   export let data;
 
   function copyToClipboard() {
@@ -17,7 +19,9 @@
 </script>
 
 <svelte:head>
-  <title>TDA - {data.first_name} {data.middle_name} {data.last_name}</title>
+  <title
+    >TDA - {data.first_name} {data.middle_name || ""} {data.last_name}</title
+  >
 </svelte:head>
 <Toaster />
 <Navigation icon={raise} color="#00384d" ref="lightblue" pageName="Profil" />
@@ -27,7 +31,7 @@
       <div class="profile">
         <div class="profilePicture desktopView">
           <div style="object-fit: cover;">
-            <img src={data.picture_url} alt="" />
+            <img src={data.picture_url || PLACEHOLDER_IMG} alt="" />
           </div>
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -40,14 +44,14 @@
         <div class="info">
           <div class="texts">
             <p class="name header color-black">
-              {data.title_before}
+              {data.title_before || ""}
               {data.first_name}
-              {data.middle_name}
+              {data.middle_name ? " " + data.middle_name : ""}
               {data.last_name}
-              {data.title_after}
+              {data.title_after || ""}
             </p>
             <p class="claim color-darkblue">
-              {data.claim}
+              {data.claim || ""}
             </p>
           </div>
           <div class="grid-sections desktopView">
@@ -76,12 +80,14 @@
             <div class="bg-lightblue color-black section finance">
               <p class="header">finanční ohodnocení</p>
               <p class="section-description">
-                {data.price_per_hour} Kč<span class="small-text">/hodina</span>
+                {data.price_per_hour || "???"} Kč<span class="small-text"
+                  >/hodina</span
+                >
               </p>
             </div>
             <div class="bg-lightblue color-black section lokalita">
               <p class="header">lokalita</p>
-              <p class="section-description">{data.location}</p>
+              <p class="section-description">{data.location || "???"}</p>
             </div>
           </div>
           <div class="grid-sections middleView">
@@ -110,17 +116,19 @@
             <div class="bg-lightblue color-black section finance">
               <p class="header">finanční ohodnocení</p>
               <p class="section-description">
-                {data.price_per_hour} Kč<span class="small-text">/hodina</span>
+                {data.price_per_hour || "???"} Kč<span class="small-text"
+                  >/hodina</span
+                >
               </p>
             </div>
             <div class="bg-lightblue color-black section lokalita">
               <p class="header">lokalita</p>
-              <p class="section-description">{data.location}</p>
+              <p class="section-description">{data.location || "???"}</p>
             </div>
           </div>
           <div class="grid-sections mobileView">
             <div class="profilePicture mobileView">
-              <img src={data.picture_url} alt="" />
+              <img src={data.picture_url || PLACEHOLDER_IMG} alt="" />
             </div>
             <div class="bg-lightblue color-black section kontakt">
               <p class="header">kontaktní údaje</p>
@@ -147,12 +155,14 @@
             <div class="bg-lightblue color-black section finance">
               <p class="header">finanční ohodnocení</p>
               <p class="section-description">
-                {data.price_per_hour} Kč<span class="small-text">/hodina</span>
+                {data.price_per_hour || "???"} Kč<span class="small-text"
+                  >/hodina</span
+                >
               </p>
             </div>
             <div class="bg-lightblue color-black section lokalita">
               <p class="header">lokalita</p>
-              <p class="section-description">{data.location}</p>
+              <p class="section-description">{data.location || "???"}</p>
             </div>
           </div>
         </div>
@@ -161,7 +171,7 @@
         <div class="section bg-lightblue">
           <p class="header">Autobiografie</p>
           <p class="small-text biografie">
-            {@html data.bio}
+            {@html data.bio || "<span>Žádná data</span>"}
           </p>
         </div>
         <div class="tags">

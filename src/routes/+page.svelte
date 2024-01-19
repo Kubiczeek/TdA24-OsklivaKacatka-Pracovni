@@ -17,7 +17,7 @@
     });
   }
 
-  function onFilter(p) {
+  function onFilter() {
     const min = $page.url.searchParams.get("min");
     const max = $page.url.searchParams.get("max");
     const place = $page.url.searchParams.get("place");
@@ -59,14 +59,20 @@
   }
 
   const minimum = Math.min(
-    ...data.data.map((item) => {
-      return item.price_per_hour;
-    })
+    ...data.data
+      .map((item) => {
+        if (!item.price_per_hour) return null;
+        return item.price_per_hour;
+      })
+      .filter((x) => x !== null)
   );
   const maximum = Math.max(
-    ...data.data.map((item) => {
-      return item.price_per_hour;
-    })
+    ...data.data
+      .map((item) => {
+        if (!item.price_per_hour) return null;
+        return item.price_per_hour;
+      })
+      .filter((x) => x !== null)
   );
   const tags = data.tags.map((tag) => {
     return tag.name;
@@ -195,7 +201,7 @@
 
   @media (max-width: 600px) {
     .main {
-      margin-top: 4rem;
+      margin: 0;
     }
 
     .container {
