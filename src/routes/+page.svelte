@@ -1,228 +1,139 @@
 <script>
-  import { page } from "$app/stores";
-  import { showModal } from "$lib/stores.js";
-  import Navigation from "$lib/components/navigation.svelte";
-  import Card from "$lib/components/card.svelte";
-  import Filter from "$lib/components/filter.svelte";
-  import { talk } from "$lib/assets/images.js";
-
-  export let data;
-
-  let showedFilters = [];
-
-  function reset() {
-    showedFilters = [];
-    data.data.forEach((item) => {
-      showedFilters = [...showedFilters, item];
-    });
-  }
-
-  function onFilter() {
-    const min = $page.url.searchParams.get("min");
-    const max = $page.url.searchParams.get("max");
-    const place = $page.url.searchParams.get("place");
-    let tags = $page.url.searchParams.get("tags");
-    if (tags) {
-      tags = tags.split(";!;");
-    }
-    reset();
-    showedFilters = showedFilters.filter((item) => {
-      if (min) {
-        if (item.price_per_hour < parseInt(min)) {
-          return false;
-        }
-      }
-
-      if (max) {
-        if (item.price_per_hour > parseInt(max)) {
-          return false;
-        }
-      }
-
-      if (place) {
-        if (item.location !== place) {
-          return false;
-        }
-      }
-
-      if (tags) {
-        const newTags = item.tags.map((tag) => tag.name);
-        let allTagsExist = tags.every((tag) => newTags.includes(tag));
-
-        if (!allTagsExist) {
-          return false;
-        }
-      }
-
-      return true;
-    });
-  }
-
-  const minimum = Math.min(
-    ...data.data
-      .map((item) => {
-        if (!item.price_per_hour) return null;
-        return item.price_per_hour;
-      })
-      .filter((x) => x !== null)
-  );
-  const maximum = Math.max(
-    ...data.data
-      .map((item) => {
-        if (!item.price_per_hour) return null;
-        return item.price_per_hour;
-      })
-      .filter((x) => x !== null)
-  );
-  const tags = data.tags.map((tag) => {
-    return tag.name;
-  });
-  const allPlacesUnique = [
-    ...new Set(
-      data.data.map((item) => {
-        return item.location;
-      })
-    ),
-  ];
-
-  reset();
-
-  $: onFilter($page.url.searchParams);
+  import { logo_color, magnifier } from "$lib/assets/images.js";
 </script>
 
-<svelte:head>
-  <title>Teacher Digital Agency</title>
-</svelte:head>
-
-{#if $showModal}
-  <Filter
-    MINIMUM={minimum}
-    MAXIMUM={maximum}
-    cities={allPlacesUnique}
-    complexItems={tags}
-  />
-{/if}
-
-<Navigation
-  icon={talk}
-  pageName="Naši učitelé"
-  color="#00384d"
-  ref="lightblue"
-  czechSymbols={true}
-/>
-<div class="main">
-  <div class="container">
-    {#each showedFilters as item}
-      <span>
-        <Card
-          title_before={item.title_before}
-          title_after={item.title_after}
-          first_name={item.first_name}
-          middle_name={item.middle_name}
-          last_name={item.last_name}
-          picture_url={item.picture_url}
-          money={item.price_per_hour}
-          place={item.location}
-          claim={item.claim}
-          tags={item.tags}
-          uuid={item.uuid}
-        />
-      </span>
-    {/each}
+<main>
+  <div class="info">
+    <div class="interactive">
+      <p>
+        Učitelé na pár kliknutí! <br />
+        Vyhledej si pro sebe to prvá ořechové!
+      </p>
+      <div class="container">
+        <input type="text" name="search" id="search" placeholder="Vyhledat" />
+        <button>
+          <img src={magnifier} alt="" />
+        </button>
+      </div>
+      <div class="buttons">
+        <a href="/" style="background-color: #00384D;">Naši lektoři</a>
+        <a href="/" style="background-color: #74C7D3;">O nás</a>
+      </div>
+    </div>
+    <div class="logo">
+      <img src={logo_color} alt="logo" />
+    </div>
   </div>
-</div>
-<button class="pos-fixed bg-lightblue btn-filter" on:click={showModal.show}
-  >Filtr vyhledávání</button
->
-<p class="page-name-rotated">Učitelé</p>
+  <div class="featured"></div>
+</main>
 
 <style>
-  .btn-filter {
-    width: 270px;
-    height: 48px;
-    border-radius: 14px;
-    border: none;
-    outline: none;
-    color: white;
+  p,
+  a,
+  a:visited {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #333;
+  }
+  main {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+  }
+
+  .info {
+    display: flex;
+    width: min(100%, 1200px);
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .interactive {
+    display: flex;
+    flex-direction: column;
     font-family: "Lalezar", sans-serif;
     font-size: 2rem;
-    padding-top: 2px;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    cursor: pointer;
-    transition: background-color 0.25s ease-in-out;
-    box-shadow: 0px 0px 40px 0px rgba(0, 56, 77, 0.2);
-    z-index: 10;
+    gap: 1.333rem;
   }
 
-  .page-name-rotated {
-    font-family: "Lalezar", sans-serif;
-    font-size: 13.333rem;
-    color: rgba(116, 199, 211, 0.1);
-    transform: rotate(-90deg);
-    position: fixed;
-    bottom: 110px;
-    right: -250px;
-    z-index: -1;
-    transition: opacity 0.25s ease-in-out;
-    line-height: 0;
-  }
-
-  @media (max-width: 1540px) {
-    .page-name-rotated {
-      opacity: 0;
-    }
-  }
-
-  .main {
-    margin-top: 4rem;
-    display: grid;
-    width: 100%;
-    height: calc(100vh - 5rem);
-    align-items: center;
-    justify-items: center;
+  input,
+  button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
     font-family: "Open Sans", sans-serif;
-    overflow-y: auto;
-    padding-bottom: 100px;
+    font-size: 1.2rem;
+  }
+
+  button:hover {
+    cursor: pointer;
   }
 
   .container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    padding-top: 1rem;
-    grid-gap: 2rem;
-    width: min(95%, 1200px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.66rem;
+    -webkit-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
+    -moz-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
+    box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
   }
 
-  @media (max-width: 910px) {
-    .container {
-      grid-template-columns: repeat(2, 1fr);
-      width: min(95%, 700px);
-    }
+  .container input {
+    width: 100%;
   }
 
-  @media (max-width: 600px) {
-    .main {
-      margin: 0;
-    }
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 
-    .container {
-      display: flex;
-      flex-direction: row;
-      margin-top: 3rem;
+  .buttons > a {
+    font-family: "Lalezar", sans-serif;
+    font-size: 2rem;
+    background-color: #00384d;
+    color: white;
+    width: 45%;
+    border-radius: 7px;
+    padding-top: 5px;
+    text-align: center;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  .container img {
+    width: auto;
+  }
+
+  img {
+    min-width: 100%;
+    max-width: 100%;
+    width: 330px;
+  }
+
+  @media (max-width: 850px) {
+    .info {
+      flex-direction: column;
+      align-items: center;
       width: 95%;
-      min-height: 550px;
-      overflow-x: auto;
+    }
+
+    .logo {
+      display: none;
     }
   }
 
-  .bg-lightblue {
-    background-color: #74c7d3;
-  }
-
-  .pos-fixed {
-    position: fixed;
+  @media (max-width: 500px) {
+    .buttons a {
+      font-size: 1.5rem;
+    }
   }
 </style>
