@@ -3,137 +3,104 @@
 </script>
 
 <main>
-  <div class="info">
-    <div class="interactive">
-      <p>
-        Učitelé na pár kliknutí! <br />
-        Vyhledej si pro sebe to prvá ořechové!
-      </p>
+  <div class="wrapper">
+    <section class="first">
       <div class="container">
-        <input type="text" name="search" id="search" placeholder="Vyhledat" />
-        <button>
-          <img src={magnifier} alt="" />
-        </button>
+        <p class="ff-Lalezar">Učitelé na pár kliknutí</p>
+        <p class="ff-Lalezar">Vyhledej si pro sebe to pravé ořechové!</p>
+        <div class="search">
+          <input type="text" placeholder="Vyhledat" />
+          <button><img src={magnifier} alt="magnifier" /></button>
+        </div>
+        <div class="buttons">
+          <a href="/" class="ff-Lalezar" style="background-color: #00384D;">
+            Naši lektoři
+          </a>
+          <a href="/" class="ff-Lalezar" style="background-color: #74C7D3;">
+            O nás
+          </a>
+        </div>
       </div>
-      <div class="buttons">
-        <a href="/" style="background-color: #00384D;">Naši lektoři</a>
-        <a href="/" style="background-color: #74C7D3;">O nás</a>
-      </div>
-    </div>
-    <div class="logo">
-      <img src={logo_color} alt="logo" />
-    </div>
+      <img class="logo" src={logo_color} alt="logo_color" />
+    </section>
   </div>
-  <div class="featured"></div>
 </main>
 
 <style>
-  p,
-  a,
-  a:visited {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    color: #333;
-  }
-  main {
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    place-items: center;
-  }
-
-  .info {
-    display: flex;
-    width: min(100%, 1200px);
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
-  .interactive {
-    display: flex;
-    flex-direction: column;
+  .ff-Lalezar {
     font-family: "Lalezar", sans-serif;
-    font-size: 2rem;
-    gap: 1.333rem;
   }
 
-  input,
-  button {
-    border: none;
-    padding: 0;
-    margin: 0;
-    background-color: #fff;
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.2rem;
+  .logo {
+    width: 330px;
   }
 
-  button:hover {
-    cursor: pointer;
+  .wrapper {
+    display: flex;
+    width: min(95%, 1200px);
+    min-height: 90vh;
+    padding: 13rem 0;
+    /* Centring the wrapper */
+    justify-content: center;
+    margin: 0 auto;
   }
 
-  .container {
+  .first {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
-    border: none;
-    border-radius: 0.5rem;
-    padding: 0.66rem;
+    width: 100%;
+    height: min-content;
+  }
+
+  .container > p {
+    font-size: 2rem;
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    margin: 0.75rem 0;
+    font-size: 1.2rem;
+    padding: 0.667rem 0.667rem;
+    border-radius: 7px;
     -webkit-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
     -moz-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
     box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
   }
 
-  .container input {
+  .search > input {
+    font-size: 1.1rem;
     width: 100%;
+    color: #333;
+  }
+
+  .search > input::placeholder {
+    font-size: 1.1rem;
+    color: rgba(51, 51, 51, 0.41);
   }
 
   .buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .buttons > a {
-    font-family: "Lalezar", sans-serif;
-    font-size: 2rem;
-    background-color: #00384d;
-    color: white;
-    width: 45%;
-    border-radius: 7px;
-    padding-top: 5px;
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    padding: 0.3rem 0 0;
+    width: 48%;
     text-align: center;
+    border-radius: 7px;
+    color: #fff;
   }
 
-  input:focus {
-    outline: none;
-  }
-
-  .container img {
-    width: auto;
-  }
-
-  img {
-    min-width: 100%;
-    max-width: 100%;
-    width: 330px;
-  }
-
-  @media (max-width: 850px) {
-    .info {
-      flex-direction: column;
-      align-items: center;
-      width: 95%;
-    }
-
+  @media screen and (max-width: 870px) {
     .logo {
       display: none;
-    }
-  }
-
-  @media (max-width: 500px) {
-    .buttons a {
-      font-size: 1.5rem;
     }
   }
 </style>
