@@ -10,6 +10,10 @@
   let open = false;
 </script>
 
+<svelte:head>
+  <title>Teacher digital Agency</title>
+</svelte:head>
+
 <nav>
   <div class="contents">
     <a href="/">
@@ -72,7 +76,7 @@
     max-width: 100%;
   }
 
-  :global(a, span, p, li) {
+  :global(a, span, p, li, a:visited) {
     font-family: "Open Sans", sans-serif;
     margin: 0;
     padding: 0;
@@ -82,6 +86,16 @@
 
   :global(ul, ol) {
     list-style: none;
+  }
+
+  :global(button, input) {
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  :global(button) {
+    cursor: pointer;
   }
 
   footer {
