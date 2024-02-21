@@ -14,10 +14,10 @@
         </div>
         <div class="buttons">
           <a href="/" class="ff-Lalezar" style="background-color: #00384D;">
-            Naši lektoři
+            Seznam lektorů
           </a>
           <a href="/" class="ff-Lalezar" style="background-color: #74C7D3;">
-            O nás
+            Lektorský portál
           </a>
         </div>
       </div>
@@ -90,7 +90,7 @@
 
   .buttons > a {
     margin-top: 1rem;
-    font-size: 1.8rem;
+    font-size: 1.73rem;
     padding: 0.3rem 0 0;
     width: 48%;
     text-align: center;
@@ -101,6 +101,17 @@
   @media screen and (max-width: 870px) {
     .logo {
       display: none;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .buttons > a {
+      width: 100%;
     }
   }
 </style>
