@@ -1,11 +1,6 @@
 <script>
   import "sanitize.css";
-  import {
-    logo_black,
-    hamburger,
-    cross,
-    logo_color,
-  } from "$lib/assets/images.js";
+  import { logo_black, hamburger, cross } from "$lib/assets/images.js";
 
   let open = false;
 </script>
@@ -42,7 +37,7 @@
 <slot />
 <footer>
   <div class="footer-content">
-    <a href="/"> <img src={logo_color} alt="" /> </a>
+    <a href="/"> <img src={logo_black} alt="" /> </a>
     <ul>
       <li><a href="/">Navigace pro zbloudilé pocestné</a></li>
       <li><a href="/">Domů</a></li>
