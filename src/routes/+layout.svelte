@@ -37,7 +37,7 @@
 <slot />
 <footer>
   <div class="footer-content">
-    <a href="/"> <img src={logo_black} alt="" /> </a>
+    <a href="/" class="footer-logo"> <img src={logo_black} alt="" /> </a>
     <ul>
       <li><a href="/">Navigace pro zbloudilé pocestné</a></li>
       <li><a href="/">Domů</a></li>
@@ -179,6 +179,11 @@
 
   nav img {
     width: 86px;
+  }
+
+  .footer-logo {
+    height: min-content;
+    align-self: center;
   }
 
   @media (max-width: 720px) {
