@@ -17,7 +17,7 @@
     <div class="links">
       <a href="/">Domů</a>
       <a href="/">Seznam lektorů</a>
-      <a href="/">O nás</a>
+      <a href="/about">O nás</a>
       <a href="/">Kontakt</a>
     </div>
     <button on:click={() => (open = true)}>
@@ -39,21 +39,21 @@
   <div class="footer-content">
     <a href="/" class="footer-logo"> <img src={logo_black} alt="" /> </a>
     <ul>
-      <li><a href="/">Navigace pro zbloudilé pocestné</a></li>
+      <li>Navigace pro zbloudilé pocestné</li>
       <li><a href="/">Domů</a></li>
       <li><a href="/">Lektorský portál</a></li>
       <li><a href="/">Seznam lektorů</a></li>
-      <li><a href="/">O nás</a></li>
+      <li><a href="/about">O nás</a></li>
       <li><a href="/">Kontakt</a></li>
     </ul>
     <ul>
-      <li><a href="/">Soukromí</a></li>
+      <li>Soukromí</li>
       <li><a href="/">GDPR</a></li>
       <li><a href="/">Ochrana osobních údajů</a></li>
       <li><a href="/">Licenční podmínky</a></li>
     </ul>
     <ul>
-      <li><a href="/">Ostatní</a></li>
+      <li>Ostatní</li>
       <li><a href="/">Autoři</a></li>
       <li><a href="/">Technologie</a></li>
     </ul>
