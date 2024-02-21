@@ -45,6 +45,7 @@
     <a href="/"> <img src={logo_color} alt="" /> </a>
     <ul>
       <li><a href="/">Navigace pro zbloudilé pocestné</a></li>
+      <li><a href="/">Domů</a></li>
       <li><a href="/">Lektorský portál</a></li>
       <li><a href="/">Seznam lektorů</a></li>
       <li><a href="/">O nás</a></li>
