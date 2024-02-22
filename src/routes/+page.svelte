@@ -1,5 +1,6 @@
 <script>
   import { logo_color, magnifier } from "$lib/assets/images.js";
+  import Search from "$lib/components/search.svelte";
 </script>
 
 <main>
@@ -8,10 +9,7 @@
       <div class="container">
         <p class="ff-Lalezar">Učitelé na pár kliknutí</p>
         <p class="ff-Lalezar">Vyhledej si pro sebe to pravé ořechové!</p>
-        <div class="search">
-          <input type="text" placeholder="Vyhledat" />
-          <button><img src={magnifier} alt="magnifier" /></button>
-        </div>
+        <Search />
         <div class="buttons">
           <a href="/" class="ff-Lalezar" style="background-color: #00384D;">
             Seznam lektorů
@@ -56,29 +54,6 @@
 
   .container > p {
     font-size: 2rem;
-  }
-
-  .search {
-    display: flex;
-    align-items: center;
-    margin: 0.75rem 0;
-    font-size: 1.2rem;
-    padding: 0.667rem 0.667rem;
-    border-radius: 7px;
-    -webkit-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
-    -moz-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
-    box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
-  }
-
-  .search > input {
-    font-size: 1.1rem;
-    width: 100%;
-    color: #333;
-  }
-
-  .search > input::placeholder {
-    font-size: 1.1rem;
-    color: rgba(51, 51, 51, 0.41);
   }
 
   .buttons {
