@@ -1,10 +1,7 @@
-export { default as raise } from "./raise-icon.svg";
-export { default as phone } from "./Phone.svg";
-export { default as pc } from "./pc-icon.svg";
-export { default as logoColor } from "./logo-color.svg";
-export { default as gear } from "./gear-icon.svg";
-export { default as book } from "./book-icon.svg";
-export { default as logo } from "./TDA-logo.svg";
-export { default as talk } from "./talk-icon.svg";
-export { default as close } from "./close-icon.svg";
-export { default as cog } from "./cog-icon.svg";
+export { default as magnifier } from "./Magnifier.svg";
+export { default as cross } from "./cross.svg";
+export { default as hamburger } from "./hamburger.svg";
+export { default as refresh } from "./Refresh.svg";
+export { default as icons_line } from "./TdA_ikony_celek_black.svg";
+export { default as logo_black } from "./TeacherDigitalAgency_LOGO_black.svg";
+export { default as logo_color } from "./TeacherDigitalAgency_LOGO_colour-black.svg";

@@ -1,7 +1,13 @@
 import Database from "db-quickly-js";
 import { reinitializeDB } from "$lib/server/db/db.js";
+import { onMount } from 'svelte';
+import transporter from '$lib/server/nodemailer/nodemailer.js';
+
+
+  // Setup email data with unicode symbols
 
 export const GET = async () => {
+ 
   try {
     reinitializeDB();
 
