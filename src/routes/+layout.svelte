@@ -36,30 +36,33 @@
 </nav>
 <slot />
 <footer>
-  <div class="footer-content">
-    <a href="/" class="footer-logo"> <img src={logo_black} alt="" /> </a>
-    <ul>
-      <li>Navigace pro zbloudilé pocestné</li>
-      <li><a href="/">Domů</a></li>
-      <li><a href="/">Lektorský portál</a></li>
-      <li><a href="/">Seznam lektorů</a></li>
-      <li><a href="/about">O nás</a></li>
-      <li><a href="/contact">Kontakt</a></li>
-    </ul>
-    <ul>
-      <li>Soukromí</li>
-      <li><a href="/">GDPR</a></li>
-      <li><a href="/">Ochrana osobních údajů</a></li>
-      <li><a href="/">Licenční podmínky</a></li>
-    </ul>
-    <ul>
-      <li>Ostatní</li>
-      <li><a href="/">Autoři</a></li>
-      <li><a href="/">Technologie</a></li>
-    </ul>
+  <div>
+    <div class="footer-content">
+      <a href="/" class="footer-logo"> <img src={logo_black} alt="" /> </a>
+      <ul>
+        <li>Navigace pro zbloudilé pocestné</li>
+        <li><a href="/">Domů</a></li>
+        <li><a href="/">Lektorský portál</a></li>
+        <li><a href="/">Seznam lektorů</a></li>
+        <li><a href="/about">O nás</a></li>
+        <li><a href="/contact">Kontakt</a></li>
+      </ul>
+      <ul>
+        <li>Soukromí</li>
+        <li><a href="/">GDPR</a></li>
+        <li><a href="/">Ochrana osobních údajů</a></li>
+        <li><a href="/">Licenční podmínky</a></li>
+      </ul>
+      <ul>
+        <li>Ostatní</li>
+        <li><a href="/">Autoři</a></li>
+        <li><a href="/">Technologie</a></li>
+      </ul>
+    </div>
   </div>
+
+  <p>© 2024 Teacher Digital Agency <span>(Ošklivá Káčátka)</span></p>
 </footer>
-<p>© 2024 Teacher Digital Agency <span>(Ošklivá Káčátka)</span></p>
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Lalezar&family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap");
@@ -94,14 +97,20 @@
     cursor: pointer;
   }
 
+  footer > div {
+    display: flex;
+    justify-content: center;
+  }
+
   footer {
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
-  footer div > a {
+  footer .footer-content > a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,7 +120,7 @@
     width: 137px;
   }
 
-  footer div {
+  footer .footer-content {
     width: min(1200px, 95%);
     display: flex;
     flex-direction: row;
@@ -191,11 +200,11 @@
       display: none;
     }
 
-    footer div {
+    footer .footer-content {
       flex-direction: column;
     }
 
-    footer div > a {
+    footer .footer-content > a {
       display: none;
     }
 
