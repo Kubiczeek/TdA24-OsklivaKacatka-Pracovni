@@ -28,6 +28,7 @@
     min-height: 90vh;
     width: min(95%, 850px);
     margin: 0 auto;
+    margin-bottom: 10rem;
     padding: 2rem 0;
   }
 
