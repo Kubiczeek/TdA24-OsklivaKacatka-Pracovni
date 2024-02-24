@@ -1,5 +1,102 @@
 <script>
   import Tag from "$lib/components/tag.svelte";
+  import { onMount } from "svelte";
+  import { page } from "$app/stores";
+  import { goto } from "$app/navigation";
+
+  export let MINIMUM = 0;
+  export let MAXIMUM = 4900;
+
+  const query = $page.url.searchParams;
+
+  let minText, maxText, minSlide, maxSlide, city, region;
+
+  function roundToLower(num, step = 10) {
+    return Math.floor(num / step) * step;
+  }
+
+  function roundToHigher(num, step = 10) {
+    return Math.ceil(num / step) * step;
+  }
+
+  export let tagsArray = [
+    "Matematika",
+    "Dobrovolnictví",
+    "Výtvarná výchova",
+    "Angličtina",
+    "Čeština",
+    "Biologie",
+    "Chemie",
+    "Ekonomie",
+    "Geografie",
+    "Dějepis",
+    "Zeměpis",
+  ];
+
+  MINIMUM = roundToLower(MINIMUM, 100);
+  MAXIMUM = roundToHigher(MAXIMUM, 100);
+
+  function clearUrlParams() {
+    minText.value = MINIMUM;
+    maxText.value = MAXIMUM;
+    minSlide.value = MINIMUM;
+    maxSlide.value = MAXIMUM;
+    city.value = "-1";
+    region.value = "-1";
+    goto(`${$page.url.pathname.toString()}`);
+  }
+
+  function updatePriceLimit() {
+    const text = `${minText.value == MINIMUM ? "-1" : minText.value}--${
+      maxText.value == MAXIMUM ? "-1" : maxText.value
+    }`;
+    if (text !== "-1---1") {
+      query.set("limit", text);
+    } else {
+      query.delete("limit");
+    }
+    goto(`${$page.url.pathname.toString()}?${query.toString()}`);
+  }
+
+  function updateCity() {
+    if (city.value !== "-1") {
+      query.set("city", city.value);
+    } else {
+      query.delete("city");
+    }
+    goto(`${$page.url.pathname.toString()}?${query.toString()}`);
+  }
+
+  function updateRegion() {
+    if (region.value !== "-1") {
+      query.set("region", region.value);
+    } else {
+      query.delete("region");
+    }
+    goto(`${$page.url.pathname.toString()}?${query.toString()}`);
+  }
+
+  function updateTags(index) {
+    let tags = query.get("tags")?.split(",") || [];
+    if (tags.includes(index.toString())) {
+      tags = tags.filter((item) => item !== index.toString());
+    } else {
+      tags.push(index);
+    }
+    if (tags.length > 0) {
+      query.set("tags", tags.join(","));
+    } else {
+      query.delete("tags");
+    }
+    goto(`${$page.url.pathname.toString()}?${query.toString()}`);
+  }
+
+  onMount(() => {
+    minText.value = query.get("min") || MINIMUM;
+    maxText.value = query.get("max") || MAXIMUM;
+    minSlide.value = query.get("min") || MINIMUM;
+    maxSlide.value = query.get("max") || MAXIMUM;
+  });
 </script>
 
 <div class="filter">
@@ -8,69 +105,123 @@
       <span class="ff-Lalezar header">Filtry</span>
       <span class="showed">Zobrazeno 8 lektorů</span>
     </span>
-    <button class="remove-filter">Zrušit aktivní filtry</button>
+    <button class="remove-filter" on:click={() => clearUrlParams()}
+      >Zrušit aktivní filtry</button
+    >
   </div>
   <div class="filter-bottom">
     <div class="price">
       <div class="low-price">
         <div class="text-input">
           <span class="ff-Lalezar">Min. cena:</span>
-          <input type="text" maxlength="4" value="0" />
+          <input
+            type="text"
+            on:change={() => {
+              minSlide.value = minText.value;
+              if (parseInt(minSlide.value) > parseInt(maxSlide.value)) {
+                maxSlide.value = minSlide.value;
+                maxText.value = minText.value;
+              }
+              updatePriceLimit();
+            }}
+            bind:this={minText}
+            value={MINIMUM}
+            min={MINIMUM}
+            max={MAXIMUM}
+          />
         </div>
         <input
           type="range"
-          value="0"
-          min="0"
-          max="1000"
-          step="100"
-          name=""
-          id=""
+          bind:this={minSlide}
+          on:input={() => {
+            minText.value = minSlide.value;
+            if (parseInt(minSlide.value) > parseInt(maxSlide.value)) {
+              maxSlide.value = minSlide.value;
+              maxText.value = minText.value;
+            }
+          }}
+          on:change={() => updatePriceLimit()}
+          min={MINIMUM}
+          max={MAXIMUM}
+          value={MINIMUM}
+          step="10"
         />
       </div>
       <div class="high-price">
         <div class="text-input">
           <span class="ff-Lalezar">Max. cena:</span>
-          <input type="text" maxlength="4" value="5000" />
+          <input
+            type="text"
+            on:change={() => {
+              maxSlide.value = maxText.value;
+              if (parseInt(maxSlide.value) < parseInt(minSlide.value)) {
+                minSlide.value = maxSlide.value;
+                minText.value = maxText.value;
+              }
+              updatePriceLimit();
+            }}
+            bind:this={maxText}
+            min={MINIMUM}
+            max={MAXIMUM}
+            value={MAXIMUM}
+          />
         </div>
         <input
           type="range"
-          min="0"
-          value="5000"
-          max="10000"
-          step="100"
-          name=""
-          id=""
+          bind:this={maxSlide}
+          on:input={() => {
+            maxText.value = maxSlide.value;
+            if (parseInt(maxSlide.value) < parseInt(minSlide.value)) {
+              minSlide.value = maxSlide.value;
+              minText.value = maxText.value;
+            }
+          }}
+          on:change={() => updatePriceLimit()}
+          min={MINIMUM}
+          max={MAXIMUM}
+          value={MAXIMUM}
+          step="10"
         />
       </div>
     </div>
     <div class="place">
       <div class="region">
         <span class="ff-Lalezar">Kraj:</span>
-        <select name="region" id="">
-          <option value="" selected>Žádné</option>
-          <option value="">Vysočina</option>
-          <option value="">Středočeský</option>
-          <option value="">Jihočeský</option>
-          <option value="">Plzeňský</option>
-          <option value="">Karlovarský</option>
-          <option value="">Ústecký</option>
-          <option value="">Liberecký</option>
-          <option value="">Královéhradecký</option>
+        <select
+          name="region"
+          on:change={() => updateRegion()}
+          bind:this={region}
+          id=""
+        >
+          <option value="-1" selected>Žádné</option>
+          <option value="1">Vysočina</option>
+          <option value="2">Středočeský</option>
+          <option value="3">Jihočeský</option>
+          <option value="4">Plzeňský</option>
+          <option value="5">Karlovarský</option>
+          <option value="6">Ústecký</option>
+          <option value="7">Liberecký</option>
+          <option value="8">Královéhradecký</option>
         </select>
       </div>
       <div class="city">
         <span class="ff-Lalezar">Město:</span>
-        <select name="region" id="">
-          <option value="" selected>Žádné</option>
-          <option value="">Online</option>
-          <option value="">Havlíčkův Brod</option>
-          <option value="">Praha</option>
-          <option value="">České Budějovice</option>
-          <option value="">Plzeň</option>
-          <option value="">Karlovy Vary</option>
-          <option value="">Ústí nad Labem</option>
-          <option value="">Liberec</option>
-          <option value="">Hradec Králové</option>
+        <select
+          name="city"
+          on:change={() => updateCity()}
+          bind:this={city}
+          id=""
+        >
+          <option value="-1" selected>Žádné</option>
+          <option value="1">Online</option>
+          <option value="2">Havlíčkův Brod</option>
+          <option value="3">Praha</option>
+          <option value="4">České Budějovice</option>
+          <option value="5">Plzeň</option>
+          <option value="6">Karlovy Vary</option>
+          <option value="7">Ústí nad Labem</option>
+          <option value="8">Liberec</option>
+          <option value="9">Hradec Králové</option>
         </select>
       </div>
     </div>
@@ -79,14 +230,11 @@
   <div class="tags">
     <p class="ff-Lalezar">Dovednosti</p>
     <div class="tags-container">
-      <Tag text="Matematika" />
-      <Tag text="Matematika" />
-      <Tag text="Matematika" />
-      <Tag text="Matematika" />
-      <Tag text="Matematika" />
-      <Tag text="Matematika" />
-      <Tag text="Matematika" />
-      <Tag text="Matematika" />
+      {#each tagsArray as item, i}
+        <button on:click={() => updateTags(i)} style="padding: 0; margin: 0;">
+          <Tag text={item} index={i} />
+        </button>
+      {/each}
     </div>
   </div>
 </div>

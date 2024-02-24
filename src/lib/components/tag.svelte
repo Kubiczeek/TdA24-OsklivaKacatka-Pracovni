@@ -1,19 +1,34 @@
 <script>
+  import { page } from "$app/stores";
+
   export let text;
   export let click = true;
-  export let number = 1;
-  let state = false;
+  export let index = -1;
+  $: state = false;
+
+  $: if (index > -1) {
+    const query = $page.url.searchParams;
+    state = false;
+    query
+      .get("tags")
+      ?.split(",")
+      .forEach((tag) => {
+        if (tag.toString() === index.toString()) {
+          state = true;
+        }
+      });
+  }
 </script>
 
 {#if click}
-  <button on:click={() => (state = !state)} class="tag">
+  <button class="tag">
     <span class:state class="pre">
       {#if state}
         x
       {:else}
         +
       {/if}</span
-    ><span class="text">{text}</span><span class="number">({number})</span>
+    ><span class="text">{text}</span>
   </button>
 {:else}
   <div class="tag tag2">
@@ -53,16 +68,8 @@
 
   .text {
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #fff;
-  }
-
-  .number {
-    font-size: 0.65rem;
-    color: #b8b8b8;
-    align-self: flex-end;
-    font-weight: 400;
-    padding-bottom: 1.5px;
   }
 
   button {
