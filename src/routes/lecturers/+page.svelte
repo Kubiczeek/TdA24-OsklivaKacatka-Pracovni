@@ -1,8 +1,69 @@
 <script>
+  import { page } from "$app/stores";
   import { refresh } from "$lib/assets/images.js";
   import Search from "$lib/components/search.svelte";
   import Filter from "$lib/components/filter.svelte";
   import Lecturer from "$lib/components/lecturer.svelte";
+
+  export let data; // data fetched from api, data.data and data.tags
+  const tags = data.tags.map((tag) => tag.name);
+  const fujCities = [...new Set(data.data.map((item) => item.location))];
+  const uniqueCities = [
+    ...new Set(
+      [...fujCities].filter((item) => item !== null && item !== undefined)
+    ),
+  ];
+
+  const minimum = Math.min(
+    ...data.data
+      .map((item) => {
+        if (!item.price_per_hour) return null;
+        return item.price_per_hour;
+      })
+      .filter((x) => x !== null)
+  );
+
+  const maximum = Math.max(
+    ...data.data
+      .map((item) => {
+        if (!item.price_per_hour) return null;
+        return item.price_per_hour;
+      })
+      .filter((x) => x !== null)
+  );
+
+  let showedFilters = [];
+  function reset() {
+    showedFilters = [];
+    data.data.forEach((item) => {
+      showedFilters = [...showedFilters, item];
+    });
+  }
+
+  function onFilter() {
+    reset();
+    let [min, max] = (
+      $page.url.searchParams.get("limit")?.split("--") || [minimum, maximum]
+    ).map((x) => parseInt(x));
+    if (min === -1) min = minimum;
+    if (max === -1) max = maximum;
+    const city = uniqueCities[$page.url.searchParams.get("city")] || null;
+    const tagIndex = $page.url.searchParams.get("tags")?.split(",") || [];
+    const tagsFiltered = tagIndex.map((index) => tags[index]);
+    showedFilters = showedFilters.filter((item) => {
+      if (min > item.price_per_hour || max < item.price_per_hour) return false;
+      if (city && city !== item.location) return false;
+      if (tagsFiltered.length > 0) {
+        const newTags = item.tags.map((tag) => tag.name);
+        const allTagsExist = tagsFiltered.every((tag) => newTags.includes(tag));
+        if (!allTagsExist) return false;
+      }
+      return true;
+    });
+  }
+
+  $: page.subscribe(onFilter);
+  onFilter();
 </script>
 
 <div class="wrapper">
@@ -13,9 +74,17 @@
     </button>
     <Search />
   </div>
-  <Filter />
+  <Filter
+    MINIMUM={minimum}
+    MAXIMUM={maximum}
+    tagsArray={tags}
+    cities={uniqueCities}
+    length={showedFilters.length}
+  />
   <div class="container">
-    <Lecturer />
+    {#each showedFilters as item (item.uuid)}
+      <Lecturer data={item} />
+    {/each}
   </div>
 </div>
 

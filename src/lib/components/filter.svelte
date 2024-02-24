@@ -2,14 +2,16 @@
   import Tag from "$lib/components/tag.svelte";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
-  import { goto } from "$app/navigation";
+  import { pushState, goto } from "$app/navigation";
 
   export let MINIMUM = 0;
   export let MAXIMUM = 4900;
+  export let cities;
+  export let length;
 
   const query = $page.url.searchParams;
 
-  let minText, maxText, minSlide, maxSlide, city, region;
+  let minText, maxText, minSlide, maxSlide, city;
 
   function roundToLower(num, step = 10) {
     return Math.floor(num / step) * step;
@@ -42,8 +44,10 @@
     minSlide.value = MINIMUM;
     maxSlide.value = MAXIMUM;
     city.value = "-1";
-    region.value = "-1";
-    goto(`${$page.url.pathname.toString()}`);
+    query.delete("limit");
+    query.delete("city");
+    query.delete("tags");
+    pushState(`${$page.url.pathname.toString()}`);
   }
 
   function updatePriceLimit() {
@@ -55,7 +59,7 @@
     } else {
       query.delete("limit");
     }
-    goto(`${$page.url.pathname.toString()}?${query.toString()}`);
+    pushState(`${$page.url.pathname.toString()}?${query.toString()}`);
   }
 
   function updateCity() {
@@ -64,7 +68,7 @@
     } else {
       query.delete("city");
     }
-    goto(`${$page.url.pathname.toString()}?${query.toString()}`);
+    pushState(`${$page.url.pathname.toString()}?${query.toString()}`);
   }
 
   function updateTags(index) {
@@ -79,14 +83,20 @@
     } else {
       query.delete("tags");
     }
-    goto(`${$page.url.pathname.toString()}?${query.toString()}`);
+    pushState(`${$page.url.pathname.toString()}?${query.toString()}`);
   }
 
   onMount(() => {
-    minText.value = query.get("min") || MINIMUM;
-    maxText.value = query.get("max") || MAXIMUM;
-    minSlide.value = query.get("min") || MINIMUM;
-    maxSlide.value = query.get("max") || MAXIMUM;
+    let [min, max] = (
+      $page.url.searchParams.get("limit")?.split("--") || [MINIMUM, MAXIMUM]
+    ).map((x) => parseInt(x));
+    if (min === -1) min = MINIMUM;
+    if (max === -1) max = MAXIMUM;
+    minText.value = min || MINIMUM;
+    maxText.value = max || MAXIMUM;
+    minSlide.value = min || MINIMUM;
+    maxSlide.value = max || MAXIMUM;
+    city.value = $page.url.searchParams.get("city") || "-1";
   });
 </script>
 
@@ -94,7 +104,13 @@
   <div class="filter-top">
     <span>
       <span class="ff-Lalezar header">Filtry</span>
-      <span class="showed">Zobrazeno 8 lektorů</span>
+      {#if length === 1}
+        <span class="showed">Zobrazeno {length} lektor</span>
+      {:else if length > 1 && length < 5}
+        <span class="showed">Zobrazeno {length} lektoři</span>
+      {:else}
+        <span class="showed">Zobrazeno {length} lektorů</span>
+      {/if}
     </span>
     <button class="remove-filter" on:click={() => clearUrlParams()}
       >Zrušit aktivní filtry</button
@@ -185,15 +201,9 @@
           id=""
         >
           <option value="-1" selected>Žádné</option>
-          <option value="1">Online</option>
-          <option value="2">Havlíčkův Brod</option>
-          <option value="3">Praha</option>
-          <option value="4">České Budějovice</option>
-          <option value="5">Plzeň</option>
-          <option value="6">Karlovy Vary</option>
-          <option value="7">Ústí nad Labem</option>
-          <option value="8">Liberec</option>
-          <option value="9">Hradec Králové</option>
+          {#each cities as item, i}
+            <option value={i}>{item}</option>
+          {/each}
         </select>
       </div>
     </div>

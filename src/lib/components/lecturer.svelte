@@ -1,47 +1,73 @@
 <script>
   import Tag from "$lib/components/tag.svelte";
+  export let data;
+  let {
+    bio,
+    claim,
+    first_name,
+    last_name,
+    location,
+    middle_name,
+    picture_url,
+    price_per_hour,
+    tags,
+    title_after,
+    title_before,
+  } = data;
+
+  function handleError() {
+    picture_url =
+      "https://i.ibb.co/cvPZj86/depositphotos-247872612-stock-illustration-no-image-available-icon-vector.png";
+  }
+  picture_url = picture_url
+    ? picture_url
+    : "https://i.ibb.co/cvPZj86/depositphotos-247872612-stock-illustration-no-image-available-icon-vector.png";
+  title_before = title_before ? title_before : "";
+  title_after = title_after ? title_after : "";
+  price_per_hour = price_per_hour ? price_per_hour : "Neurčeno";
+  location = location ? location : "Neurčeno";
+  bio = bio ? bio : "U lektora není uveden žádný popis.";
 </script>
 
 <div class="card">
   <div class="img-profile">
+    <!-- svelte-ignore a11y-img-redundant-alt -->
     <img
-      src="https://nova-ott-images-tn.ssl.cdn.cra.cz/r1200x/8391bc4b-1b3c-4803-ba80-dc37e35ab39b.jpg"
-      alt="profile"
+      src={picture_url}
+      style="font-family: 'Open Sans', sans-serif;"
+      alt="Profile picture or placeholder should be here, weird they are not displayed right? Maybe some ghosts are spooking around here 👻👻👻🫣🫣"
+      on:error={handleError}
     />
   </div>
   <div class="info">
     <div class="head">
-      <p class="name ff-Lalezar">Mgr. Petra Swil Plachá MBA</p>
+      <p class="name ff-Lalezar">
+        {title_before}
+        {first_name}
+        {middle_name}
+        {last_name}
+        {title_after}
+      </p>
       <p class="claim">
-        Aktivní studentka / Předsedkyně spolku / Projektová manažerka
+        {claim ? claim : ""}
       </p>
     </div>
     <div class="changeable">
       <p class="place-text">
-        Lokalita: <span class="place">Havlíčkův Brod, Online</span>
+        Lokalita: <span class="place">{location}</span>
       </p>
       <p class="price-text">
-        Cena: <span class="price">700</span>
+        Cena: <span class="price">{price_per_hour}</span>
         <span class="price-small">kč/h</span>
       </p>
     </div>
     <div class="tags">
-      <Tag text="Matematika" click={false} />
-      <Tag text="Matematika" click={false} />
-      <Tag text="Matematika" click={false} />
-      <Tag text="Matematika" click={false} />
-      <Tag text="Matematika" click={false} />
-      <Tag text="Matematika" click={false} />
-      <Tag text="Matematika" click={false} />
-      <Tag text="Matematika" click={false} />
-      <Tag text="Matematika" click={false} />
-      <Tag text="Matematika" click={false} />
+      {#each tags as tag}
+        <Tag text={tag.name} click={false} />
+      {/each}
     </div>
     <p class="about">
-      Baví mě organizovat věci. Ať už to bylo vyvíjení mobilních aplikací ve
-      Futured, pořádání konferencí, spolupráce na soutěžích Prezentiáda,
-      pIšQworky, Tour de App a Středoškolák roku, nebo třeba dobrovolnictví,
-      vždycky jsem skončila u projektového...
+      {@html bio.length > 258 ? bio.slice(0, 258) + "..." : bio}
     </p>
   </div>
 </div>
