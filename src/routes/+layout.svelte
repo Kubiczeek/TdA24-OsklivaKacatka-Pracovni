@@ -43,7 +43,7 @@
         <li>Navigace pro zbloudilé pocestné</li>
         <li><a href="/">Domů</a></li>
         <li><a href="/">Lektorský portál</a></li>
-        <li><a href="/">Seznam lektorů</a></li>
+        <li><a href="/lecturers">Seznam lektorů</a></li>
         <li><a href="/about">O nás</a></li>
         <li><a href="/contact">Kontakt</a></li>
       </ul>
