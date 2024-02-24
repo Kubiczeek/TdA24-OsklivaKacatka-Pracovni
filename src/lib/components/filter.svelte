@@ -185,25 +185,6 @@
       </div>
     </div>
     <div class="place">
-      <div class="region">
-        <span class="ff-Lalezar">Kraj:</span>
-        <select
-          name="region"
-          on:change={() => updateRegion()}
-          bind:this={region}
-          id=""
-        >
-          <option value="-1" selected>Žádné</option>
-          <option value="1">Vysočina</option>
-          <option value="2">Středočeský</option>
-          <option value="3">Jihočeský</option>
-          <option value="4">Plzeňský</option>
-          <option value="5">Karlovarský</option>
-          <option value="6">Ústecký</option>
-          <option value="7">Liberecký</option>
-          <option value="8">Královéhradecký</option>
-        </select>
-      </div>
       <div class="city">
         <span class="ff-Lalezar">Město:</span>
         <select
@@ -325,8 +306,7 @@
     gap: 5px;
   }
 
-  .city,
-  .region {
+  .city {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -335,8 +315,7 @@
     width: 100%;
   }
 
-  .city > span,
-  .region > span {
+  .city > span {
     font-size: 1.2rem;
   }
 
@@ -456,7 +435,6 @@
       width: 100%;
     }
 
-    .region,
     .city {
       flex-direction: column;
       align-items: flex-start;
