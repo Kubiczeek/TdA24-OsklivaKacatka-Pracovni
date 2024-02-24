@@ -16,9 +16,9 @@
     </a>
     <div class="links">
       <a href="/">Domů</a>
-      <a href="/">Seznam lektorů</a>
+      <a href="/lecturers">Seznam lektorů</a>
       <a href="/about">O nás</a>
-      <a href="/">Kontakt</a>
+      <a href="/contact">Kontakt</a>
     </div>
     <button on:click={() => (open = true)}>
       <img src={hamburger} alt="" />
