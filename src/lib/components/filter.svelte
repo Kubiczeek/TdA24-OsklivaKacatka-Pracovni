@@ -67,15 +67,6 @@
     goto(`${$page.url.pathname.toString()}?${query.toString()}`);
   }
 
-  function updateRegion() {
-    if (region.value !== "-1") {
-      query.set("region", region.value);
-    } else {
-      query.delete("region");
-    }
-    goto(`${$page.url.pathname.toString()}?${query.toString()}`);
-  }
-
   function updateTags(index) {
     let tags = query.get("tags")?.split(",") || [];
     if (tags.includes(index.toString())) {
