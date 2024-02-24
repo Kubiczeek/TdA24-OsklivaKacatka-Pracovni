@@ -48,7 +48,6 @@
   }
 
   .tag2 {
-    width: min-content;
     padding: 2px 9px;
   }
 
