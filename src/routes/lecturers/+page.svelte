@@ -41,10 +41,6 @@
     text-decoration: underline;
   }
 
-  .ff-Lalezar {
-    font-family: "Lalezar", sans-serif;
-  }
-
   .container {
     display: flex;
     flex-direction: column;
