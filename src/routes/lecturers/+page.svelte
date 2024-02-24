@@ -1,5 +1,5 @@
 <script>
-  import { magnifier, refresh } from "$lib/assets/images.js";
+  import { refresh } from "$lib/assets/images.js";
   import Search from "$lib/components/search.svelte";
   import Filter from "$lib/components/filter.svelte";
   import Lecturer from "$lib/components/lecturer.svelte";
