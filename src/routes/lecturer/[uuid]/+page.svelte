@@ -1,44 +1,68 @@
 <script>
   import { place, phone, money, email } from "$lib/assets/images.js";
   import Tag from "$lib/components/Tag.svelte";
+
+  export let data;
+
+  function handleError() {
+    picture_url =
+      "https://i.ibb.co/cvPZj86/depositphotos-247872612-stock-illustration-no-image-available-icon-vector.png";
+  }
 </script>
 
 <div class="wrapper">
   <p class="page-nav">
-    <a href="/">Hlavní stránka</a> &gt; <a href="/">Seznam lektorů</a> &gt; Jakub
+    <a href="/">Hlavní stránka</a> &gt; <a href="/lecturers">Seznam lektorů</a> &gt;
+    Jakub
   </p>
   <div class="container">
     <div class="top-info">
       <div class="user-img">
         <!-- svelte-ignore a11y-img-redundant-alt -->
-        <img src="https://via.placeholder.com/300" alt="Profile picture" />
+        <img
+          src={data.picture_url ||
+            "https://i.ibb.co/cvPZj86/depositphotos-247872612-stock-illustration-no-image-available-icon-vector.png"}
+          on:error={handleError}
+          alt="Profile picture or placeholder should be here, weird they are not displayed right? Maybe some ghosts are spooking around here 👻👻👻🫣🫣"
+        />
       </div>
       <div class="info">
-        <p class="ff-Lalezar name">Mgr. Petra Swil Plachá MBA</p>
+        <p class="ff-Lalezar name">
+          {data.title_before}
+          {data.first_name}
+          {data.middle_name}
+          {data.last_name}
+          {data.title_after}
+        </p>
         <p class="claim">
-          Aktivní studentka / Předsedkyně spolku / Projektová manažerka
+          {data.claim || ""}
         </p>
         <div class="place-money">
           <div class="place">
             <img src={place} alt="" />
-            <span>Havlíčkův Brod</span>
+            <span>{data.location || "Dohodou"}</span>
           </div>
           <div class="money">
             <img src={money} alt="" />
-            <span>700</span> <span class="small-text">kč/h</span>
+            <span>{data.price_per_hour || "Dohodou"}</span>
+            <span class="small-text">kč/h</span>
           </div>
         </div>
         <div class="phone">
           <img src={phone} alt="" />
-          <span
-            ><span class="small-text">+420</span> <span>730 815 832</span></span
-          >
+          {#each data.contact.telephone_numbers as phone_number}
+            <span
+              ><span class="small-text">{phone_number.split(" ")[0]}</span>
+              <span>{phone_number.split(" ").slice(1).join(" ")}</span></span
+            >
+          {/each}
         </div>
         <div class="email">
           <div class="email-img"><img src={email} alt="" /></div>
           <div class="email-list">
-            <a href="mailto:" class="email-address">placha@scg.cz</a>
-            <a href="mailto:" class="email-address">predseda@scg.cz</a>
+            {#each data.contact.emails as email}
+              <a href={`mailto:${email}`} class="email-address">{email}</a>
+            {/each}
           </div>
         </div>
       </div>
@@ -47,23 +71,13 @@
       <div class="bio-container">
         <p class="ff-Lalezar header small-text">Autobiografie</p>
         <p class="bio">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-          facilis eaque id velit veritatis, aspernatur reiciendis officia
-          aliquam optio earum dolorum fuga ex, porro quis ab. Cumque quidem unde
-          nesciunt, cum excepturi voluptates optio corrupti magni dolorum ullam.
+          {@html data.bio || "Tato osoba zatím nemá vyplněnou biografii."}
         </p>
       </div>
       <div class="tags">
-        <Tag text="Předsedkyně" click={false} />
-        <Tag text="Předsedkyně" click={false} />
-        <Tag text="Předsedkyně" click={false} />
-        <Tag text="Předsedkyně" click={false} />
-        <Tag text="Předsedkyně" click={false} />
-        <Tag text="Předsedkyně" click={false} />
-        <Tag text="Předsedkyně" click={false} />
-        <Tag text="Předsedkyně" click={false} />
-        <Tag text="Předsedkyně" click={false} />
-        <Tag text="Předsedkyně" click={false} />
+        {#each data.tags as tag}
+          <Tag text={tag.name} click={false} />
+        {/each}
       </div>
     </div>
   </div>
@@ -103,6 +117,7 @@
     align-items: center;
     gap: 10px;
     padding: 1rem;
+    border-radius: 7px;
     width: 100%;
     -webkit-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
     -moz-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
@@ -252,5 +267,9 @@
     .user-img {
       align-self: center;
     }
+  }
+
+  img {
+    font-family: "Open Sans", sans-serif;
   }
 </style>
