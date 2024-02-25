@@ -9,9 +9,13 @@
       <div class="container">
         <p class="ff-Lalezar">Učitelé na pár kliknutí</p>
         <p class="ff-Lalezar">Vyhledej si pro sebe to pravé ořechové!</p>
-        <Search />
+        <Search redirect={true} />
         <div class="buttons">
-          <a href="/lecturers" class="ff-Lalezar" style="background-color: #00384D;">
+          <a
+            href="/lecturers"
+            class="ff-Lalezar"
+            style="background-color: #00384D;"
+          >
             Seznam lektorů
           </a>
           <a href="/" class="ff-Lalezar" style="background-color: #74C7D3;">

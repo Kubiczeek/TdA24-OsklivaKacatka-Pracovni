@@ -2,14 +2,12 @@
   import Tag from "$lib/components/tag.svelte";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
-  import { pushState, goto } from "$app/navigation";
+  import { pushState } from "$app/navigation";
 
   export let MINIMUM = 0;
   export let MAXIMUM = 4900;
   export let cities;
   export let length;
-
-  const query = $page.url.searchParams;
 
   let minText, maxText, minSlide, maxSlide, city;
 
@@ -39,6 +37,7 @@
   MAXIMUM = roundToHigher(MAXIMUM, 100);
 
   function clearUrlParams() {
+    const query = $page.url.searchParams;
     minText.value = MINIMUM;
     maxText.value = MAXIMUM;
     minSlide.value = MINIMUM;
@@ -51,6 +50,8 @@
   }
 
   function updatePriceLimit() {
+    const query = $page.url.searchParams;
+
     const text = `${minText.value == MINIMUM ? "-1" : minText.value}--${
       maxText.value == MAXIMUM ? "-1" : maxText.value
     }`;
@@ -63,6 +64,7 @@
   }
 
   function updateCity() {
+    const query = $page.url.searchParams;
     if (city.value !== "-1") {
       query.set("city", city.value);
     } else {
@@ -72,6 +74,7 @@
   }
 
   function updateTags(index) {
+    const query = $page.url.searchParams;
     let tags = query.get("tags")?.split(",") || [];
     if (tags.includes(index.toString())) {
       tags = tags.filter((item) => item !== index.toString());

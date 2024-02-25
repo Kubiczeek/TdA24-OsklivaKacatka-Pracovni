@@ -1,5 +1,6 @@
 <script>
   import { page } from "$app/stores";
+  import { pushState } from "$app/navigation";
   import { refresh } from "$lib/assets/images.js";
   import Search from "$lib/components/search.svelte";
   import Filter from "$lib/components/filter.svelte";
@@ -40,6 +41,11 @@
     });
   }
 
+  function onRefresh() {
+    $page.url.searchParams.delete("search");
+    pushState($page.url);
+  }
+
   function onFilter() {
     reset();
     let [min, max] = (
@@ -50,6 +56,7 @@
     const city = uniqueCities[$page.url.searchParams.get("city")] || null;
     const tagIndex = $page.url.searchParams.get("tags")?.split(",") || [];
     const tagsFiltered = tagIndex.map((index) => tags[index]);
+    const search = $page.url.searchParams.get("search") || null;
     showedFilters = showedFilters.filter((item) => {
       if (min > item.price_per_hour || max < item.price_per_hour) return false;
       if (city && city !== item.location) return false;
@@ -57,6 +64,27 @@
         const newTags = item.tags.map((tag) => tag.name);
         const allTagsExist = tagsFiltered.every((tag) => newTags.includes(tag));
         if (!allTagsExist) return false;
+      }
+      if (search) {
+        const searchIn =
+          item.title_before +
+          " " +
+          item.first_name +
+          " " +
+          item.middle_name +
+          " " +
+          item.last_name +
+          " " +
+          item.title_after +
+          " " +
+          item.tags.map((tag) => tag.name).join(" ") +
+          " " +
+          item.location +
+          " " +
+          item.description +
+          " " +
+          item.price_per_hour;
+        return searchIn.toLowerCase().includes(search.toLowerCase());
       }
       return true;
     });
@@ -69,7 +97,7 @@
 <div class="wrapper">
   <p class="page-nav"><a href="/">Hlavní stránka</a> > Seznam lektorů</p>
   <div class="search-bar">
-    <button>
+    <button on:click={() => onRefresh()}>
       <img src={refresh} alt="refresh" />
     </button>
     <Search />

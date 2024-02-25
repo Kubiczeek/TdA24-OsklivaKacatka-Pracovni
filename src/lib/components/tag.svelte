@@ -6,22 +6,25 @@
   export let index = -1;
   $: state = false;
 
-  $: if (index > -1) {
-    const query = $page.url.searchParams;
-    state = false;
-    query
-      .get("tags")
-      ?.split(",")
-      .forEach((tag) => {
-        if (tag.toString() === index.toString()) {
-          state = true;
-        }
-      });
+  function check(searchParams) {
+    if (index > -1) {
+      state = false;
+      searchParams
+        ?.get("tags")
+        ?.split(",")
+        .forEach((tag) => {
+          if (tag.toString() == index.toString()) {
+            state = true;
+          }
+        });
+    }
   }
+
+  $: check($page.url.searchParams);
 </script>
 
 {#if click}
-  <button class="tag">
+  <button class="tag" on:click={() => check()}>
     <span class:state class="pre">
       {#if state}
         x
