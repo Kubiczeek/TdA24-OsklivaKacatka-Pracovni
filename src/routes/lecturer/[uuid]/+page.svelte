@@ -94,6 +94,7 @@
     width: min(95%, 800px);
     margin: 0 auto;
     padding: 2rem 0;
+    margin-top: 3rem;
   }
 
   .page-nav {
