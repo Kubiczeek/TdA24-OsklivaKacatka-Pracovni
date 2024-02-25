@@ -52,6 +52,7 @@
 
   .tag2 {
     padding: 2px 9px;
+    width: min-content;
   }
 
   .tag2 .text {
