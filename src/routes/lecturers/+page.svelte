@@ -1,10 +1,11 @@
 <script>
   import { page } from "$app/stores";
-  import { pushState } from "$app/navigation";
+  import { pushState, replaceState } from "$app/navigation";
   import { refresh } from "$lib/assets/images.js";
   import Search from "$lib/components/search.svelte";
   import Filter from "$lib/components/filter.svelte";
   import Lecturer from "$lib/components/lecturer.svelte";
+  import { onMount } from "svelte";
 
   export let data; // data fetched from api, data.data and data.tags
   const tags = data.tags.map((tag) => tag.name);
@@ -143,8 +144,9 @@
     {#each Array(Math.ceil(showedFilters.length / 5)) as _, i}
       <button
         on:click={() => setPage(i + 1)}
-        class={i + 1 == $page.url.searchParams.get("page") ? "active" : ""}
-        >{i + 1}</button
+        class={i + 1 == ($page.url.searchParams.get("page") || 1)
+          ? "active"
+          : ""}>{i + 1}</button
       >
     {/each}
     <button class="right-arrow" on:click={() => increasePage()}>&gt;</button>
