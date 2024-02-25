@@ -11,6 +11,7 @@
     picture_url,
     price_per_hour,
     tags,
+    uuid,
     title_after,
     title_before,
   } = data;
@@ -29,7 +30,7 @@
   bio = bio ? bio : "U lektora není uveden žádný popis.";
 </script>
 
-<div class="card">
+<a href={`/lecturer/${uuid}`} class="card">
   <div class="img-profile">
     <!-- svelte-ignore a11y-img-redundant-alt -->
     <img
@@ -70,7 +71,7 @@
       {@html bio.length > 258 ? bio.slice(0, 258) + "..." : bio}
     </p>
   </div>
-</div>
+</a>
 
 <style>
   .ff-Lalezar {
