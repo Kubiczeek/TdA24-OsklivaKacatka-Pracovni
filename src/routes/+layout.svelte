@@ -28,8 +28,9 @@
         <img src={cross} alt="" />
       </button>
       <a href="/">Domů</a>
-      <a href="/">Seznam lektorů</a>
-      <a href="/">O nás</a>
+      <a href="/lecturers">Seznam lektorů</a>
+      <a href="/">Lektorský portál</a>
+      <a href="/about">O nás</a>
       <a href="/contact">Kontakt</a>
     </div>
   </div>
