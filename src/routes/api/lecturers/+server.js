@@ -1,4 +1,6 @@
 import Database from "db-quickly-js";
+import { hashPassword } from "../../../lib/server/hash/hash";
+
 import {
   reinitializeDB,
   findTagsUuid,
@@ -73,7 +75,7 @@ export const POST = async ({ request }) => {
     // Generate a UUID for the object
     obj.uuid = uuidv4();
     const tagsCopy = obj.tags;
-
+    
     // Replace the tags array with an array of UUIDs
     obj.tags = obj.tags.map((tag) => tag.uuid);
 
@@ -91,6 +93,8 @@ export const POST = async ({ request }) => {
       !obj.first_name ||
       !obj.last_name ||
       !obj.contact ||
+      !obj.username ||
+      !obj.password ||
       !obj.contact.telephone_numbers ||
       !obj.contact.emails ||
       obj.contact.telephone_numbers?.length === 0 ||
@@ -99,7 +103,7 @@ export const POST = async ({ request }) => {
       return new Response(
         JSON.stringify({
           code: 400,
-          message: "Missing first name, last name, email, or telephone number",
+          message: "Missing first username, password, name, last name, email, or telephone number",
         }),
         {
           headers: {
@@ -109,7 +113,8 @@ export const POST = async ({ request }) => {
         }
       );
     }
-
+obj.password = await hashPassword(obj.password);
+console.log(obj.password)
     // Push the object to the "Lecturers" cluster
     saved.data.push(obj);
 

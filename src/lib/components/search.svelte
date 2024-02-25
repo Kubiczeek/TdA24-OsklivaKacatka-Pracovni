@@ -1,47 +1,10 @@
 <script>
   import { magnifier } from "$lib/assets/images.js";
-  import { page } from "$app/stores";
-  import { pushState, goto } from "$app/navigation";
-  import { onMount } from "svelte";
-
-  let search;
-  export let redirect = false;
-
-  function onSearch() {
-    const query = $page.url.searchParams;
-    if (search.value) {
-      $page.url.searchParams.set("search", search.value);
-    } else {
-      $page.url.searchParams.delete("search");
-    }
-    if (redirect) {
-      goto(`/lecturers?${query.toString()}`);
-    } else {
-      pushState(`/lecturers?${query.toString()}`);
-    }
-  }
-
-  onMount(() => {
-    search.value = $page.url.searchParams.get("search") || "";
-  });
-
-  $: if (search) {
-    search.value = $page.url.searchParams.get("search") || "";
-  }
 </script>
 
 <div class="search">
-  <input
-    type="text"
-    bind:this={search}
-    placeholder="Vyhledat"
-    on:keydown={(event) => {
-      if (event.key === "Enter") {
-        onSearch();
-      }
-    }}
-  />
-  <button on:click={onSearch}><img src={magnifier} alt="magnifier" /></button>
+  <input type="text" placeholder="Vyhledat" />
+  <button><img src={magnifier} alt="magnifier" /></button>
 </div>
 
 <style>

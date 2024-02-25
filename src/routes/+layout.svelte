@@ -16,9 +16,9 @@
     </a>
     <div class="links">
       <a href="/">Domů</a>
-      <a href="/lecturers">Seznam lektorů</a>
+      <a href="/">Seznam lektorů</a>
       <a href="/about">O nás</a>
-      <a href="/contact">Kontakt</a>
+      <a href="/">Kontakt</a>
     </div>
     <button on:click={() => (open = true)}>
       <img src={hamburger} alt="" />
@@ -28,9 +28,8 @@
         <img src={cross} alt="" />
       </button>
       <a href="/">Domů</a>
-      <a href="/lecturers">Seznam lektorů</a>
-      <a href="/">Lektorský portál</a>
-      <a href="/about">O nás</a>
+      <a href="/">Seznam lektorů</a>
+      <a href="/">O nás</a>
       <a href="/contact">Kontakt</a>
     </div>
   </div>
@@ -44,7 +43,7 @@
         <li>Navigace pro zbloudilé pocestné</li>
         <li><a href="/">Domů</a></li>
         <li><a href="/">Lektorský portál</a></li>
-        <li><a href="/lecturers">Seznam lektorů</a></li>
+        <li><a href="/">Seznam lektorů</a></li>
         <li><a href="/about">O nás</a></li>
         <li><a href="/contact">Kontakt</a></li>
       </ul>
