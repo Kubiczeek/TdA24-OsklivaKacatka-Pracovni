@@ -34,6 +34,8 @@
   );
 
   let showedFilters = [];
+  $: pageNum = Number($page.url.searchParams.get("page")) || 1;
+
   function reset() {
     showedFilters = [];
     data.data.forEach((item) => {
@@ -55,6 +57,7 @@
     if (max === -1) max = maximum;
     const city = uniqueCities[$page.url.searchParams.get("city")] || null;
     const tagIndex = $page.url.searchParams.get("tags")?.split(",") || [];
+    const pageNum = $page.url.searchParams.get("page") || 1;
     const tagsFiltered = tagIndex.map((index) => tags[index]);
     const search = $page.url.searchParams.get("search") || null;
     showedFilters = showedFilters.filter((item) => {
@@ -90,6 +93,27 @@
     });
   }
 
+  function increasePage() {
+    const pageNum = $page.url.searchParams.get("page") || 1;
+    if (pageNum >= Math.ceil(showedFilters.length / 5)) return;
+    $page.url.searchParams.set("page", parseInt(pageNum) + 1);
+    pushState($page.url);
+  }
+
+  function decreasePage() {
+    const pageNum = $page.url.searchParams.get("page") || 1;
+    if (pageNum <= 1) return;
+    $page.url.searchParams.set("page", parseInt(pageNum) - 1);
+    pushState($page.url);
+  }
+
+  function setPage(pageNum) {
+    if (pageNum >= 1 && pageNum <= Math.ceil(showedFilters.length / 5)) {
+      $page.url.searchParams.set("page", pageNum);
+      pushState($page.url);
+    }
+  }
+
   $: page.subscribe(onFilter);
   onFilter();
 </script>
@@ -110,9 +134,20 @@
     length={showedFilters.length}
   />
   <div class="container">
-    {#each showedFilters as item (item.uuid)}
+    {#each showedFilters.slice((pageNum - 1) * 5, pageNum * 5) as item (item.uuid)}
       <Lecturer data={item} />
     {/each}
+  </div>
+  <div class="pagination">
+    <button class="left-arrow" on:click={() => decreasePage()}>&lt;</button>
+    {#each Array(Math.ceil(showedFilters.length / 5)) as _, i}
+      <button
+        on:click={() => setPage(i + 1)}
+        class={i + 1 == $page.url.searchParams.get("page") ? "active" : ""}
+        >{i + 1}</button
+      >
+    {/each}
+    <button class="right-arrow" on:click={() => increasePage()}>&gt;</button>
   </div>
 </div>
 
@@ -161,5 +196,37 @@
     -webkit-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
     -moz-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
     box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .pagination button {
+    font-size: 1.2rem;
+    font-weight: 400;
+    transition: color 0.3s;
+  }
+
+  .pagination .active {
+    color: #fecb2e;
+    font-size: 1.25rem;
+    text-decoration: underline;
+  }
+
+  .pagination .right-arrow,
+  .pagination .left-arrow {
+    border-radius: 4px;
+    background-color: #fecb2e;
+    width: 30px;
+    height: 30px;
+    font-weight: 400;
+    text-align: center;
   }
 </style>
