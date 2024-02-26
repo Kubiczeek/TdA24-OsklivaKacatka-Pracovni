@@ -68,7 +68,7 @@ export const POST = async ({ request }) => {
     }
 
     // Retrieve the "Lecturers" cluster from the database
-    let saved = Database.getClusterByName("Lecturers");
+    let saved = Database.getClusterByName("Reservations");
 
     // Generate a UUID for the object
     obj.uuid = uuidv4();
