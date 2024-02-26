@@ -1,6 +1,8 @@
 <script>
   import { place, phone, money, email } from "$lib/assets/images.js";
+  import { showModal } from "$lib/stores.js";
   import Tag from "$lib/components/Tag.svelte";
+  import Modal from "$lib/components/modal.svelte";
 
   export let data;
 
@@ -10,6 +12,9 @@
   }
 </script>
 
+{#if $showModal}
+  <Modal />
+{/if}
 <div class="wrapper">
   <p class="page-nav">
     <a href="/">Hlavní stránka</a> &gt; <a href="/lecturers">Seznam lektorů</a> &gt;
@@ -81,7 +86,7 @@
       </div>
     </div>
   </div>
-  <button class="reserve">Rezervovat termín</button>
+  <button class="reserve" on:click={showModal.show}>Rezervovat termín</button>
 </div>
 
 <style>
@@ -267,6 +272,11 @@
 
     .user-img {
       align-self: center;
+    }
+
+    .email-list {
+      display: flex;
+      flex-direction: column;
     }
   }
 
