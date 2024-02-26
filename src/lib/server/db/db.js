@@ -7,7 +7,13 @@ export const contactInfoSchema = Joi.object({
   telephone_numbers: Joi.array().items(Joi.string()).unique().min(1).required(),
   emails: Joi.array().items(Joi.string().email()).unique().min(1).required(),
 });
-
+const calendarEntrySchema = Joi.object({
+  day: Joi.string().valid("Po", "Út", "St", "Čt", "Pá", "So", "Ne"),
+  from: Joi.string().regex(/^\d{2}:\d{2}$/),
+  to: Joi.string().regex(/^\d{2}:\d{2}$/),
+  break: Joi.string().regex(/^\d+$/),
+  length: Joi.string().regex(/^\d+$/),
+});
 // Define schema for the Lecturer object
 export const lecturerSchema = Joi.object({
   uuid: Joi.string().uuid().default(uuidv4()).required(),
@@ -26,13 +32,7 @@ export const lecturerSchema = Joi.object({
 
   contact: contactInfoSchema.required(),
 });
-const calendarEntrySchema = Joi.object({
-  day: Joi.string().valid("Po", "Út", "St", "Čt", "Pá", "So", "Ne"),
-  from: Joi.string().regex(/^\d{2}:\d{2}$/),
-  to: Joi.string().regex(/^\d{2}:\d{2}$/),
-  break: Joi.string().regex(/^\d+$/),
-  length: Joi.string().regex(/^\d+$/),
-});
+
 export const resSchema = Joi.object({
   timeStart: Joi.string()
     .regex(/^([01]\d|2[0-3]):([0-5]\d)$/)
