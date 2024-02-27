@@ -33,11 +33,11 @@
       </div>
       <div class="info">
         <p class="ff-Lalezar name">
-          {data.title_before}
+          {data.title_before || ""}
           {data.first_name}
-          {data.middle_name}
+          {data.middle_name || ""}
           {data.last_name}
-          {data.title_after}
+          {data.title_after || ""}
         </p>
         <p class="claim">
           {data.claim || ""}
@@ -145,6 +145,8 @@
   .user-img > img {
     border-radius: 7px;
     width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
   }
 
   .info {
