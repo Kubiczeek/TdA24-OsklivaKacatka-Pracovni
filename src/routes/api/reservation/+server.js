@@ -1,4 +1,5 @@
 import Database from "db-quickly-js";
+import { sendConfClient } from "$lib/server/nodemailer/nodemailer.js";
 import {
   reinitializeDB,
   findTagsUuid,
@@ -53,7 +54,7 @@ export const POST = async ({ request }) => {
   let saved = Database.getClusterByName("Reservations");
   // Generate a UUID for the object
   obj.uuid = uuidv4();
-
+  obj.status = "verifyingClient";
   // Validate the object against the resSchema
   const { error } = resSchema.validate(obj);
 
@@ -82,6 +83,34 @@ export const POST = async ({ request }) => {
         status: 400,
       }
     );
+  }
+  const cluster = Database.getClusterByName("Lecturers");
+
+  // Iterate through each object in the cluster data
+  for (const ob of cluster.data) {
+    const { uuid } = ob;
+
+    ob.tags = ob.tags.map((tag) => {
+      return { name: findTagsName(tag), uuid: tag };
+    });
+    const namen =
+      ob.title_before +
+      " " +
+      ob.first_name +
+      " " +
+      ob.middle_name +
+      " " +
+      ob.last_name;
+    if (uuid === obj.lectorUuid) {
+      sendConfClient(
+        ob.price_per_hour,
+        ob.contact.telephone_numbers[0],
+        ob.contact.emails[0],
+        namen,
+        obj.theme,
+        "mikulic.tablet.kluci@gmail.com"
+      );
+    }
   }
 
   // Push the object to the "Lecturers" cluster
