@@ -13,6 +13,7 @@ const calendarEntrySchema = Joi.object({
   to: Joi.string().regex(/^\d{2}:\d{2}$/),
   break: Joi.string().regex(/^\d+$/),
   length: Joi.string().regex(/^\d+$/),
+   teaching: Joi.boolean().required(),
 });
 // Define schema for the Lecturer object
 export const lecturerSchema = Joi.object({
@@ -29,7 +30,7 @@ export const lecturerSchema = Joi.object({
   tags: Joi.array().items(Joi.string().uuid()).unique(),
   price_per_hour: Joi.number().integer().min(0),
   calendar: Joi.array().items(calendarEntrySchema),
-
+ activeReservations: Joi.boolean().required(),
   contact: contactInfoSchema.required(),
 });
 
