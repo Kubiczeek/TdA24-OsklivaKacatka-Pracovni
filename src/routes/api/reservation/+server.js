@@ -68,7 +68,6 @@ export const POST = async ({ request }) => {
     !obj.theme ||
     !obj.clientAge ||
     !obj.lectorUuid ||
-
     obj.telNumber.length === 0
   ) {
     return new Response(
