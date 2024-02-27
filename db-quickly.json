@@ -182,6 +182,7 @@
           "middle_name": "Knedlík",
           "last_name": "Macháčková",
           "title_after": "VŠŽ",  activeReservations: true,
+online: true,
 
           "picture_url": "https://nova-ott-images-tn.ssl.cdn.cra.cz/r1200x/8391bc4b-1b3c-4803-ba80-dc37e35ab39b.jpg",
           "location": "Havířov",
@@ -263,8 +264,9 @@
           "uuid": "b1238fc1-9a5e-4305-bb8b-b44d15a0c504"
         },
         {
-          "title_before": "Ing. et. Ing.",
-          "first_name": "Robert",
+          "title_before": "Ing. et. Ing.",activeReservations: true,
+          "first_name": "Robert",online: true,
+
           "calendar": [
             {
               "day": "Po",
@@ -325,7 +327,8 @@
           ],
           "middle_name": "Ženšen",
           "last_name": "Švýcarský",activeReservations: true,
-          "title_after": "PhD. et PhD. MBA",
+          "title_after": "PhD. et PhD. MBA",online: true,
+
           "picture_url": "https://cdn.discordapp.com/attachments/863911326811422773/1142145552348360774/image.png?ex=65b3e96f&is=65a1746f&hm=1f6bab1e60107745ba7fb59dd6ad37559eafaaf7ebc83485503c325b8e2860d4&",
           "location": "Žampašská Nová Víska",
           "claim": "Práce je jako cibule, taky má vrstvy",
