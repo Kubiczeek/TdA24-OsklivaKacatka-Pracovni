@@ -175,263 +175,14 @@
       "clusterName": "Lecturers",
       "clusterDescription": "List of lecturers",
       "data": [
-        {
-          "title_before": "profi.",
-          "first_name": "Jakub",
-          "middle_name": "",
-          "last_name": "Jakůbek",
-          "title_after": "",
-          "picture_url": "https://media.discordapp.net/attachments/748152477253238857/1197644666418499794/98931503_kubik-na-nocniku.png?ex=65bc0483&is=65a98f83&hm=955db6d841cfe8bf7bb9af74f6bdf2fbbe353bc801ff22a85b0c225e406f411b&=&format=webp&quality=lossless&width=669&height=671",
-          "location": "Havlíčkův Brod",
-          "claim": "Místo stěžování je lepší přiložit ruku k dílu.",
-          "bio": "Jsem <b>sedmnáctiletý</b> dopravní nadšenec. Navštěvuji gymnázium v půvabném městě v srdci České republiky - <i>v Havlíčkově Brodě</i>. Mezi mé zájmy patří matematika, doprava a především <b>programování</b>.",
-          "tags": ["be8344eb-7bed-4ba0-9045-e100d8699fdb"],
-          "price_per_hour": 840,
-          "contact": {
-            "telephone_numbers": ["+420 730 815 832"],
-            "emails": [
-              "jakubakubek@gmail.com",
-              "kubacze55@gmail.com",
-              "jakubjakubek55@gmail.com"
-            ]
-          },
-          "uuid": "d5c28fc9-243e-4dbc-8a3f-32e679070184"
-        },
-        {
-          "title_before": "Mgr.",
-          "first_name": "Pepik",
-          "middle_name": "",
-          "last_name": "Schenk",
-          "title_after": "PhD.",
-          "picture_url": "https://media.discordapp.net/attachments/748152477253238857/1197644951245295697/800px-thumbnail.png?ex=65bc04c7&is=65a98fc7&hm=5097c37f03dc4277eae2ac210f44478e08bd4ff4ea79a4fea45967dc54a336e9&=&format=webp&quality=lossless&width=582&height=671",
-          "location": "Havlíčkův Brod",
-          "claim": "Kolega Sedlák si nerad poměřoval velikost doktorátů",
-          "bio": "Těší mě, jmenuji se Pepik a učím češtinu na bordským gymplu. Rád zpívám a vedu společně s kolegou Láskou školní pěvecký sbor. Rád si dělám z věcí legarci. Doufám, že budeme spolupracovat!",
-          "tags": [
-            "c54ad02e-8583-4468-a542-be0b0d4596b2",
-            "e24ec90e-73f9-4bf3-ba47-3257d8c28480",
-            "e5299de5-fa6d-49da-be16-e05118e342b0",
-            "dff71f0c-c23f-4ba0-a598-b2d371375b0c",
-            "84d4ff74-b560-4599-97aa-71f119ae408e",
-            "cac3a4d1-9213-47b5-92f3-41fb165ae7fa"
-          ],
-          "price_per_hour": 1070,
-          "contact": {
-            "telephone_numbers": ["+420 128 444 792"],
-            "emails": ["schenk@ghb.cz"]
-          },
-          "calendar": [
-            {
-              "day": "Po",
-              "from": "14:00",
-              "to": "16:00",
-              "break": "15",
-              "length": "120"
-            },
-            {
-              "day": "Út",
-              "from": "11:30",
-              "to": "13:00",
-              "break": "0",
-              "length": "90"
-            },
-            {
-              "day": "St",
-              "from": "09:00",
-              "to": "11:00",
-              "break": "10",
-              "length": "120"
-            },
-            {
-              "day": "Čt",
-              "from": "16:30",
-              "to": "18:30",
-              "break": "0",
-              "length": "120"
-            },
-            {
-              "day": "Pá",
-              "from": "13:30",
-              "to": "15:30",
-              "break": "10",
-              "length": "120"
-            },
-            {
-              "day": "So",
-              "from": "10:00",
-              "to": "12:00",
-              "break": "0",
-              "length": "120"
-            },
-            {
-              "day": "Ne",
-              "from": "14:30",
-              "to": "16:30",
-              "break": "0",
-              "length": "120"
-            }
-          ],
-          "uuid": "9accbf0d-7143-4029-b412-c91d139140dd"
-        },
-        {
-          "title_before": "Mgr.",
-          "first_name": "George",
-          "middle_name": "",
-          "last_name": "Kája",
-          "title_after": "",
-          "picture_url": "https://media.discordapp.net/attachments/748152477253238857/1197645032409284730/89160549_1_l.png?ex=65bc04da&is=65a98fda&hm=45274a6f28cb65175f58801ff8206c819c3c37e772901169471b8fe168188eef&=&format=webp&quality=lossless",
-          "location": "Havlíčkův Brod",
-          "claim": "Tak už můžete jít. Ale běda vám jestli někdo budete v bufíku přede mnou",
-          "bio": "Dobrý den... Posaďte se! Jsem rád, že vás mohu přivítat u mě na profilu. Kájo já ťá znám. Pojď jdem sa ožrat. Pokud máte nějaké otázky na mou osobu, neváhejte mne kontaktovat. Snad ten počítač nebude unavený jako vy devátou vyučovací hodinu.",
-          "tags": [
-            "242eeea7-865d-44ac-b30f-b55bcf6424ca",
-            "40cc7e61-c279-47be-b84b-941defc2756e",
-            "ef8d9371-9a72-4a51-9402-3fd16ced28d9",
-            "be8344eb-7bed-4ba0-9045-e100d8699fdb",
-            "833181f5-b657-4c17-8464-7ad1dd03cf4a",
-            "a16fab57-b079-4079-89dc-7fd16b4ebfc9",
-            "cac3a4d1-9213-47b5-92f3-41fb165ae7fa"
-          ],
-          "price_per_hour": 915,
-          "contact": {
-            "telephone_numbers": ["+420 600 121 212"],
-            "emails": ["kajo@ja.ta", "znam@jdemse.ozrat"]
-          },
-          "uuid": "f617e706-e06e-4da0-ba04-562aa77431b3",
-          "calendar": [
-            {
-              "day": "Po",
-              "from": "08:30",
-              "to": "10:30",
-              "break": "20",
-              "length": "120"
-            },
-            {
-              "day": "Út",
-              "from": "13:00",
-              "to": "15:00",
-              "break": "30",
-              "length": "120"
-            },
-            {
-              "day": "St",
-              "from": "11:30",
-              "to": "13:30",
-              "break": "15",
-              "length": "120"
-            },
-            {
-              "day": "Čt",
-              "from": "15:30",
-              "to": "17:30",
-              "break": "25",
-              "length": "120"
-            },
-            {
-              "day": "Pá",
-              "from": "09:00",
-              "to": "11:00",
-              "break": "10",
-              "length": "120"
-            },
-            {
-              "day": "So",
-              "from": "12:30",
-              "to": "14:30",
-              "break": "5",
-              "length": "120"
-            },
-            {
-              "day": "Ne",
-              "from": "16:00",
-              "to": "18:00",
-              "break": "15",
-              "length": "120"
-            }
-          ]
-        },
-        {
-          "title_before": "Prof.",
-          "first_name": "Šimon",
-          "middle_name": "Vladimirovichovich",
-          "last_name": "Mach",
-          "title_after": "PhD.",
-          "picture_url": "https://media.discordapp.net/attachments/748152477253238857/1197643138630684712/1452b13f47b8a9a99d714093dbce.png?ex=65bc0317&is=65a98e17&hm=65ce5db71293bf7aef2057b8c040763ea48232bedc546946b5899a908783d9f0&=&format=webp&quality=lossless",
-          "location": "Přibyslav",
-          "claim": "crazy idea, co kdyby jsme začaly brát tvrdý drogy",
-          "bio": "Těší mě, jmenuji se Šimon a neučím se češtinu na bordským gymplu. Nerad zpívám a nezapojuji se do školního pěveckého sboru. Rád si beru věci osobně. Doufám, že s vámi nebudu muset spolupracovat!",
-          "tags": [
-            "e8193547-33c5-4060-9293-6717c1be3ce2",
-            "7eb8c465-45b6-4dc5-b747-263ebcc3561a",
-            "b84a5ea7-452f-4aa5-8652-d42e4ccad614",
-            "43bc830d-0598-416f-ab98-f20675f976f7",
-            "cc29cae8-882b-45fd-a2b4-36ec43dafef1",
-            "3f6aead4-3216-4f60-8040-6ccdf88c2285"
-          ],
-          "price_per_hour": 1500,
-          "contact": {
-            "telephone_numbers": ["+420 420 69 69 69"],
-            "emails": ["2026amach@ghb.cz"]
-          },
-          "uuid": "e1e599e8-aaf4-4d1b-b1df-0be04db28bfb",
-          "calendar": [
-            {
-              "day": "Po",
-              "from": "08:30",
-              "to": "10:30",
-              "break": "20",
-              "length": "120"
-            },
-            {
-              "day": "Út",
-              "from": "13:00",
-              "to": "15:00",
-              "break": "30",
-              "length": "120"
-            },
-            {
-              "day": "St",
-              "from": "11:30",
-              "to": "13:30",
-              "break": "15",
-              "length": "120"
-            },
-            {
-              "day": "Čt",
-              "from": "15:30",
-              "to": "17:30",
-              "break": "25",
-              "length": "120"
-            },
-            {
-              "day": "Pá",
-              "from": "09:00",
-              "to": "11:00",
-              "break": "10",
-              "length": "120"
-            },
-            {
-              "day": "So",
-              "from": "12:30",
-              "to": "14:30",
-              "break": "5",
-              "length": "120"
-            },
-            {
-              "day": "Ne",
-              "from": "16:00",
-              "to": "18:00",
-              "break": "15",
-              "length": "120"
-            }
-          ]
-        },
+  
         {
           "title_before": "",
           "first_name": "Lucie",
           "middle_name": "Knedlík",
           "last_name": "Macháčková",
-          "title_after": "VŠŽ",
+          "title_after": "VŠŽ",  activeReservations: true,
+
           "picture_url": "https://nova-ott-images-tn.ssl.cdn.cra.cz/r1200x/8391bc4b-1b3c-4803-ba80-dc37e35ab39b.jpg",
           "location": "Havířov",
           "claim": "Do houskových knedlíků se nedávají housky!",
@@ -451,12 +202,14 @@
             {
               "day": "Po",
               "from": "08:30",
-              "to": "10:30",
+              "to": "10:30",    teaching: true,
+
               "break": "20",
               "length": "120"
             },
             {
-              "day": "Út",
+              "day": "Út",    teaching: true,
+
               "from": "13:00",
               "to": "15:00",
               "break": "30",
@@ -464,14 +217,16 @@
             },
             {
               "day": "St",
-              "from": "11:30",
+              "from": "11:30",    teaching: true,
+
               "to": "13:30",
               "break": "15",
               "length": "120"
             },
             {
               "day": "Čt",
-              "from": "15:30",
+              "from": "15:30",    teaching: true,
+
               "to": "17:30",
               "break": "25",
               "length": "120"
@@ -479,20 +234,23 @@
             {
               "day": "Pá",
               "from": "09:00",
-              "to": "11:00",
+              "to": "11:00",    teaching: true,
+
               "break": "10",
               "length": "120"
             },
             {
               "day": "So",
               "from": "12:30",
-              "to": "14:30",
+              "to": "14:30",    teaching: true,
+
               "break": "5",
               "length": "120"
             },
             {
               "day": "Ne",
-              "from": "16:00",
+              "from": "16:00",    teaching: true,
+
               "to": "18:00",
               "break": "15",
               "length": "120"
@@ -510,14 +268,16 @@
           "calendar": [
             {
               "day": "Po",
-              "from": "08:30",
+              "from": "08:30",    teaching: true,
+
               "to": "10:30",
               "break": "20",
               "length": "120"
             },
             {
               "day": "Út",
-              "from": "13:00",
+              "from": "13:00",    teaching: true,
+
               "to": "15:00",
               "break": "30",
               "length": "120"
@@ -525,13 +285,15 @@
             {
               "day": "St",
               "from": "11:30",
-              "to": "13:30",
+              "to": "13:30",    teaching: true,
+
               "break": "15",
               "length": "120"
             },
             {
               "day": "Čt",
-              "from": "15:30",
+              "from": "15:30",    teaching: true,
+
               "to": "17:30",
               "break": "25",
               "length": "120"
@@ -539,27 +301,30 @@
             {
               "day": "Pá",
               "from": "09:00",
-              "to": "11:00",
+              "to": "11:00",    teaching: true,
+
               "break": "10",
               "length": "120"
             },
             {
               "day": "So",
               "from": "12:30",
-              "to": "14:30",
+              "to": "14:30",    teaching: true,
+
               "break": "5",
               "length": "120"
             },
             {
               "day": "Ne",
-              "from": "16:00",
+              "from": "16:00",    teaching: true,
+
               "to": "18:00",
               "break": "15",
               "length": "120"
             }
           ],
           "middle_name": "Ženšen",
-          "last_name": "Švýcarský",
+          "last_name": "Švýcarský",activeReservations: true,
           "title_after": "PhD. et PhD. MBA",
           "picture_url": "https://cdn.discordapp.com/attachments/863911326811422773/1142145552348360774/image.png?ex=65b3e96f&is=65a1746f&hm=1f6bab1e60107745ba7fb59dd6ad37559eafaaf7ebc83485503c325b8e2860d4&",
           "location": "Žampašská Nová Víska",
