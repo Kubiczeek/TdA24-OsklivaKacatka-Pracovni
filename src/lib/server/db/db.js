@@ -24,7 +24,28 @@ export const lecturerSchema = Joi.object({
   price_per_hour: Joi.number().integer().min(0),
   contact: contactInfoSchema.required(),
 });
-
+export const resSchema = Joi.object({
+  timeStart: Joi.string()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/)
+    .required(),
+  timeEnd: Joi.string()
+    .regex(/^([01]\d|2[0-3]):([0-5]\d)$/)
+    .required(),
+  clientEmail: Joi.string().email().required(),
+  clientName: Joi.string().required(),
+  clientSurname: Joi.string().required(),
+  clientNote: Joi.string(),
+  telNumber: Joi.string().pattern(/^\d{9}$/),
+  date: Joi.string()
+    .regex(/^\d{2}.\d{2}.\d{4}$/)
+    .required(),
+  theme: Joi.string().required(),
+  clientAge: Joi.number().integer().min(0),
+  uuid: Joi.string().uuid().default(uuidv4()).required(),
+  lectorUuid: Joi.string().uuid().required(),
+  lectorPlace: Joi.string(),
+  lectorMessage: Joi.string(),
+});
 /**
  * Reinitializes the database by initializing it with a name and description,
  * and creating two specific clusters if they don't exist.
