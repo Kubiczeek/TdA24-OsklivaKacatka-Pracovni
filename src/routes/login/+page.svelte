@@ -114,6 +114,7 @@
     font-size: 1.2rem;
     transition: all 0.3s;
     padding-left: 2px;
+    z-index: -1;
   }
 
   input:focus ~ label,
