@@ -1,7 +1,8 @@
 <script>
-  import { logo_black } from "$lib/assets/images.js";
+  import { logo_black, hamburger, cross } from "$lib/assets/images.js";
   import toast, { Toaster } from "svelte-french-toast";
 
+  let open = false;
   let nTels = 1;
   let nEmails = 1;
   let nTags = [];
@@ -12,6 +13,21 @@
 </svelte:head>
 
 <Toaster />
+<nav>
+  <img src={logo_black} alt="" />
+  <button on:click={() => (open = true)}>
+    <img src={hamburger} alt="" />
+  </button>
+</nav>
+<div class="sidebar-m" class:open>
+  <button class="close" on:click={() => (open = false)}>
+    <img src={cross} alt="" />
+  </button>
+  <a href="/app/reservation">Rezervace</a>
+  <a href="/app/settings">Nastavení rezervací</a>
+  <a href="/app/info">Osobní informace</a>
+  <a href="/logout">Odhlásit se</a>
+</div>
 <div class="wrapper">
   <div class="sidebar">
     <div class="top-side">
@@ -20,9 +36,7 @@
       </a>
       <div class="links">
         <a class="ff-Lalezar" href="/app/reservation">Rezervace</a>
-        <a class="ff-Lalezar" href="/app/reservation"
-          >Nastavení&nbsp;rezervací</a
-        >
+        <a class="ff-Lalezar" href="/app/settings">Nastavení&nbsp;rezervací</a>
         <a class="ff-Lalezar active" href="/app/info">Osobní&nbsp;informace</a>
       </div>
     </div>
@@ -30,169 +44,10 @@
       <a href="/logout" class="ff-Lalezar">Odhlásit&nbsp;se</a>
     </div>
   </div>
-  <div class="content">
-    <h1 class="ff-Lalezar">Osobní informace</h1>
-    <div class="name">
-      <div class="div-input">
-        <p class="input-name">
-          Křestní jméno&ThinSpace;<span class="required">*</span>
-        </p>
-        <input required type="text" class="text" placeholder="Josef" />
-      </div>
-      <div class="div-input">
-        <p class="input-name">Druhé jméno</p>
-        <input type="text" class="text" placeholder="Adam" />
-      </div>
-      <div class="div-input">
-        <p class="input-name">
-          Příjmení&ThinSpace;<span class="required">*</span>
-        </p>
-        <input required type="text" class="text" placeholder="Novák" />
-      </div>
-    </div>
-    <div class="name">
-      <div class="div-input">
-        <p class="input-name">Titul před jménem</p>
-        <input type="text" class="text" placeholder="Mgr, et Mgr." />
-      </div>
-      <div class="div-input">
-        <p class="input-name">Titul za jménem</p>
-        <input type="text" class="text" placeholder="WcDr." />
-      </div>
-    </div>
-    <div class="name">
-      <div class="div-input">
-        <p class="input-name">Claim</p>
-        <input
-          type="text"
-          class="text"
-          placeholder="Do houskových knedlíků se nedávají housky!"
-        />
-      </div>
-    </div>
-    <div class="name">
-      <div class="div-input">
-        <p class="input-name">Město</p>
-        <input type="text" class="text" placeholder="Praha" />
-      </div>
-      <div class="div-input checkbox">
-        <p class="input-name">Vyučuji&NonBreakingSpace;online?</p>
-        <input type="checkbox" />
-      </div>
-    </div>
-    <div class="name">
-      <div class="div-input">
-        <p class="input-name">
-          Telefonní čísla&ThinSpace;<span class="required">*</span>
-        </p>
-        {#each Array(nTels) as _, i}
-          <input
-            required
-            type="tel"
-            class="text"
-            placeholder="+420 123 456 789"
-            on:focusout={(e) => {
-              if (i === nTels - 1 && i != 0 && e.target.value == "") nTels--;
-            }}
-          />
-        {/each}
-        <button on:click={() => nTels++} class="add-field"
-          >+&nbsp;Přidat&nbsp;další&nbsp;pole</button
-        >
-      </div>
-      <div class="div-input">
-        <p class="input-name">
-          Emailové adresy&ThinSpace;<span class="required">*</span>
-        </p>
-        {#each Array(nEmails) as _, i}
-          <!-- content here -->
-          <input
-            required
-            type="email"
-            class="text"
-            on:focusout={(e) => {
-              if (i === nEmails - 1 && i != 0 && e.target.value == "")
-                nEmails--;
-            }}
-            placeholder="pepik.schenk@gmail.com"
-          />
-        {/each}
-        <button on:click={() => nEmails++} class="add-field"
-          >+&nbsp;Přidat&nbsp;další&nbsp;pole</button
-        >
-      </div>
-    </div>
-    <div class="name">
-      <div class="div-input">
-        <p class="input-name">
-          Cena&ThickSpace;<span class="small-text">(kč/h)</span>
-        </p>
-        <input type="number" class="text" placeholder="250" />
-      </div>
-    </div>
-    <div class="name">
-      <div class="div-input">
-        <p class="input-name">Autobiografie</p>
-        <input
-          type="text"
-          class="text-area"
-          placeholder="Baví mě organizovat věci. Ať už to bylo vyvíjení mobilních aplikací ve Futured, pořádání konferencí, spolupráce na soutěžích Prezentiáda, pIšQworky, <b>Tour de App</b> a Středoškolák roku, nebo třeba dobrovolnictví, vždycky jsem skončila u projektového managementu, rozvíjení soft-skills a vzdělávání. U studentských..."
-        />
-      </div>
-    </div>
-    <div class="name">
-      <div class="div-input">
-        <p class="input-name">Dovednosti</p>
-        <input
-          type="text"
-          class="add-tag"
-          on:focusout={(e) => {
-            if (e.target.value != "") {
-              nTags = [...nTags, e.target.value];
-              e.target.value = "";
-            }
-          }}
-          on:keydown={(e) => {
-            if (e.key === "Enter") {
-              if (e.target.value != "") {
-                nTags = [...nTags, e.target.value];
-                e.target.value = "";
-              }
-            }
-          }}
-          placeholder="Napište název dovednosti pro přidání..."
-        />
-        <div class="tags">
-          {#each nTags as s, i}
-            <button
-              on:click={() => {
-                nTags = nTags.filter((_, j) => j != i);
-              }}
-              class="tag"
-              ><span class="small-text">x</span>&ThickSpace;{s} {i}</button
-            >
-          {/each}
-        </div>
-      </div>
-    </div>
-    <button
-      class="saveChanges"
-      on:click={() => {
-        toast.success("Změny byly úspěšně uloženy!", {
-          style: "font-family: 'Open Sans', sans-serif;",
-          position: "bottom-right",
-        });
-      }}>Uložit změny</button
-    >
-  </div>
+  <div class="content"></div>
 </div>
 
 <style>
-  h1 {
-    padding: 0;
-    margin: 0;
-  }
-
   .ff-Lalezar {
     font-family: "Lalezar", sans-serif;
   }
@@ -211,7 +66,8 @@
     -moz-box-shadow: 2px 0px 15px 0px rgba(51, 51, 51, 0.06);
     box-shadow: 2px 0px 15px 0px rgba(51, 51, 51, 0.06);
     padding: 1.33rem 2rem;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
   }
 
   .sidebar a {
@@ -250,122 +106,73 @@
     gap: 1rem;
   }
 
-  .content h1 {
-    font-size: 3rem;
-    width: 100%;
-    text-align: center;
-    color: #333333;
+  nav,
+  .sidebar-m {
+    display: none;
   }
 
-  .div-input {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 0.25rem;
+  @media (max-width: 1000px) {
+    .sidebar {
+      height: auto;
+    }
+
+    .content {
+      padding: 2rem 1.5rem;
+    }
   }
 
-  input {
-    border: 1px solid #b8b8b8;
-    border-radius: 6px;
-    color: #333333;
-    width: 100%;
-    padding: 0.4rem 0.66rem;
-  }
+  @media (max-width: 656px) {
+    nav {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
 
-  input::placeholder {
-    color: #b8b8b8;
-    opacity: 1;
-  }
+    nav > img {
+      width: 70px;
+    }
 
-  .input-name {
-    display: flex;
-    font-weight: 600;
-  }
+    nav > button > img {
+      width: 34px;
+    }
 
-  .required {
-    color: red;
-    padding-top: 2px;
-    font-size: 0.7rem;
-  }
+    .sidebar {
+      display: none;
+    }
 
-  .name {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: 1.5rem;
-  }
+    .sidebar-m {
+      display: flex;
+      position: fixed;
+      flex-direction: column;
+      align-items: flex-end;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      font-weight: 700;
+      font-size: 1.4rem;
+      padding: 1rem 2rem;
 
-  .checkbox {
-    flex-direction: row;
-    align-items: center;
-    padding-top: 1.5rem;
-    gap: 2rem;
-  }
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+    }
 
-  input[type="checkbox"] {
-    width: 1rem;
-    height: 1rem;
-    border: 1px solid #b8b8b8;
-    border-radius: 6px;
-    color: #333333;
-    padding: 0.4rem 0.66rem;
-  }
+    .sidebar-m > button {
+      display: block;
+      border: none;
+      background-color: transparent;
+      width: auto;
+      padding: 1rem 0;
+    }
 
-  .add-field {
-    color: #b8b8b8;
-    width: fit-content;
-  }
+    .sidebar-m > button img {
+      width: 30px;
+    }
 
-  .small-text {
-    font-weight: 400;
-    font-size: 0.8rem;
-    align-self: flex-end;
-  }
-
-  .text-area {
-    height: auto;
-  }
-
-  .add-tag {
-    width: 25%;
-  }
-
-  .tags {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 0.2rem;
-    gap: 0.25rem;
-  }
-
-  .tag {
-    border-radius: 4px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #74c7d3;
-    gap: 2px;
-    color: #fff;
-    padding: 3px 9px;
-    font-weight: 600;
-  }
-
-  .tag .small-text {
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding-bottom: 1px;
-  }
-
-  .saveChanges {
-    background-color: #74c7d3;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 1rem;
-    color: #fff;
-    padding: 0.5rem;
-    align-self: flex-start;
-    width: fit-content;
-    margin-top: 1rem;
+    .open {
+      opacity: 1;
+      left: 0;
+    }
   }
 </style>

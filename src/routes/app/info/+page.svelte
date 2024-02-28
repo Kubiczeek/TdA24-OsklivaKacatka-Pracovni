@@ -36,9 +36,7 @@
       </a>
       <div class="links">
         <a class="ff-Lalezar" href="/app/reservation">Rezervace</a>
-        <a class="ff-Lalezar" href="/app/reservation"
-          >Nastavení&nbsp;rezervací</a
-        >
+        <a class="ff-Lalezar" href="/app/settings">Nastavení&nbsp;rezervací</a>
         <a class="ff-Lalezar active" href="/app/info">Osobní&nbsp;informace</a>
       </div>
     </div>
