@@ -1,8 +1,7 @@
 <script>
-  import { logo_black, hamburger, cross } from "$lib/assets/images.js";
+  import { logo_black } from "$lib/assets/images.js";
   import toast, { Toaster } from "svelte-french-toast";
 
-  let open = false;
   let nTels = 1;
   let nEmails = 1;
   let nTags = [];
@@ -13,21 +12,6 @@
 </svelte:head>
 
 <Toaster />
-<nav>
-  <img src={logo_black} alt="" />
-  <button on:click={() => (open = true)}>
-    <img src={hamburger} alt="" />
-  </button>
-</nav>
-<div class="sidebar-m" class:open>
-  <button class="close" on:click={() => (open = false)}>
-    <img src={cross} alt="" />
-  </button>
-  <a href="/app/reservation">Rezervace</a>
-  <a href="/app/settings">Nastavení rezervací</a>
-  <a href="/app/info">Osobní informace</a>
-  <a href="/logout">Odhlásit se</a>
-</div>
 <div class="wrapper">
   <div class="sidebar">
     <div class="top-side">
@@ -227,8 +211,7 @@
     -moz-box-shadow: 2px 0px 15px 0px rgba(51, 51, 51, 0.06);
     box-shadow: 2px 0px 15px 0px rgba(51, 51, 51, 0.06);
     padding: 1.33rem 2rem;
-    height: auto;
-    min-height: 100vh;
+    height: 100vh;
   }
 
   .sidebar a {
@@ -384,87 +367,5 @@
     align-self: flex-start;
     width: fit-content;
     margin-top: 1rem;
-  }
-
-  nav,
-  .sidebar-m {
-    display: none;
-  }
-
-  @media (max-width: 1000px) {
-    .sidebar {
-      height: auto;
-    }
-
-    .name {
-      flex-direction: column;
-    }
-
-    .checkbox {
-      padding: 0;
-    }
-
-    .add-tag {
-      width: 100%;
-    }
-
-    .content {
-      padding: 2rem 1.5rem;
-    }
-  }
-
-  @media (max-width: 656px) {
-    nav {
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    nav > img {
-      width: 70px;
-    }
-
-    nav > button > img {
-      width: 34px;
-    }
-
-    .sidebar {
-      display: none;
-    }
-
-    .sidebar-m {
-      display: flex;
-      position: fixed;
-      flex-direction: column;
-      align-items: flex-end;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100vh;
-      font-weight: 700;
-      font-size: 1.4rem;
-      padding: 1rem 2rem;
-
-      backdrop-filter: blur(3px);
-      opacity: 0;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .sidebar-m > button {
-      display: block;
-      border: none;
-      background-color: transparent;
-      width: auto;
-      padding: 1rem 0;
-    }
-
-    .sidebar-m > button img {
-      width: 30px;
-    }
-
-    .open {
-      opacity: 1;
-      left: 0;
-    }
   }
 </style>
