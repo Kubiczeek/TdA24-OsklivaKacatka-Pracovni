@@ -17,19 +17,25 @@ function findPasswordByUsername(username, data) {
   }
   return false; // Return false if username is not found
 }
+function findUuidByUsername(username, data) {
+  for (const obj of data) {
+    if (obj.username === username) {
+      return obj.uuid;
+    }
+  }
+  return false; // Return false if username is not found
+}
 
 // Handle POST request
 export const POST = async ({ request }) => {
   // Initialize the database
   reinitializeDB();
-
   try {
     // Parse the JSON payload from the request body
     const obj = await request.json();
 
     // Get the cluster of lecturers from the database
     const lecturers = Database.getClusterByName("Lecturers");
-
     // Find the hashed password for the provided username
     let hashPass = findPasswordByUsername(obj.username, lecturers.data);
 
@@ -50,6 +56,7 @@ export const POST = async ({ request }) => {
 
       if (validation) {
         // Hash the provided password and return the modified object with status 200
+        obj.uuid = findUuidByUsername(obj.username, lecturers.data);
         obj.password = hashPass;
         return new Response(JSON.stringify(obj), {
           headers: {

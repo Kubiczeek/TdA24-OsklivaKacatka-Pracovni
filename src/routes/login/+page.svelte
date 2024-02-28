@@ -13,12 +13,12 @@
         });
 
         const result = await response.json();
-
         if (response.ok) {
             username = '';
 password = '';
-console.log("lmao",result.password)
-document.cookie = `auth=${result.password}`;
+document.cookie = `auth=${result.password}; Secure; HttpsOnly; SameSite=Strict`;
+document.cookie = `uuid=${result.uuid}; Secure; HttpsOnly; SameSite=Strict`;
+
 
             // Handle successful login here (e.g., redirect to a profile page)
         } else {

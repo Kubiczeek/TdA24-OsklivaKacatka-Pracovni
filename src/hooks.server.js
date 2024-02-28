@@ -12,7 +12,6 @@ export const handle = async ({ event, resolve }) => {
   const { cookies } = event;
   const bisc = cookies.get("auth");
   event.locals.user = valCookie(bisc);
-
   if (event.url.pathname.startsWith("/app")) {
     if (!event.locals.user) {
       throw redirect(303, "/login");
@@ -22,7 +21,6 @@ export const handle = async ({ event, resolve }) => {
   const response = await resolve(event); // Stage 2
 
   // Stage 3
-
   return response;
 };
 
