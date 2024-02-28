@@ -1,34 +1,31 @@
 <script>
   import "sanitize.css";
   import { logo_black } from "$lib/assets/images.js";
-  import { redirect } from "@sveltejs/kit";
+  import { goto } from "$app/navigation";
 
-  let username = '';
-    let password = '';
+  let username = "";
+  let password = "";
 
-    async function submitForm() {
-        
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        });
+  async function submitForm() {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
 
-        const result = await response.json();
-        if (response.ok) {
-            username = '';
-            password = '';
-            document.cookie = `auth=${result.password}; Secure; HttpsOnly; SameSite=Strict`;
-            document.cookie = `uuid=${result.uuid}; Secure; HttpsOnly; SameSite=Strict`;
-
-            // Handle successful login here (e.g., redirect to a profile page)
-        } else {
-            console.error('Login failed', result.error);
-            // Handle login failure here (e.g., display an error message)
-        }
+    const result = await response.json();
+    if (response.ok) {
+      username = "";
+      password = "";
+      document.cookie = `auth=${result.password}; Secure; HttpsOnly; SameSite=Strict`;
+      document.cookie = `uuid=${result.uuid}; Secure; HttpsOnly; SameSite=Strict`;
+      goto("/app/reservation");
+    } else {
+      console.error("Login failed", result.error);
     }
+  }
 </script>
 
 <svelte:head>
@@ -44,11 +41,23 @@
     <div class="form-login">
       <div class="credentials">
         <div>
-          <input bind:value={username} required type="text" name="username" id="" />
+          <input
+            bind:value={username}
+            required
+            type="text"
+            name="username"
+            id=""
+          />
           <label for="username" class="blue">username</label>
         </div>
         <div>
-          <input   bind:value={password} required type="password" name="username" id="" />
+          <input
+            bind:value={password}
+            required
+            type="password"
+            name="username"
+            id=""
+          />
           <label for="username" class="blue">password</label>
         </div>
       </div>
@@ -142,6 +151,7 @@
     font-size: 1.2rem;
     transition: all 0.3s;
     padding-left: 2px;
+    z-index: -1;
   }
 
   input:focus ~ label,
