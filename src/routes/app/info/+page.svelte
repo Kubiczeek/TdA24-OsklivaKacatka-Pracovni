@@ -1,12 +1,17 @@
 <script>
   import { logo_black } from "$lib/assets/images.js";
-  import Tag from "$lib/components/Tag.svelte";
+  import toast, { Toaster } from "svelte-french-toast";
+
+  let nTels = 1;
+  let nEmails = 1;
+  let nTags = [];
 </script>
 
 <svelte:head>
   <title>TdA - Lektorský Portál - Info</title>
 </svelte:head>
 
+<Toaster />
 <div class="wrapper">
   <div class="sidebar">
     <div class="top-side">
@@ -14,8 +19,11 @@
         <img src={logo_black} alt="" />
       </a>
       <div class="links">
-        <a class="ff-Lalezar active" href="/app/info">Osobní&nbsp;informace</a>
         <a class="ff-Lalezar" href="/app/reservation">Rezervace</a>
+        <a class="ff-Lalezar" href="/app/reservation"
+          >Nastavení&nbsp;rezervací</a
+        >
+        <a class="ff-Lalezar active" href="/app/info">Osobní&nbsp;informace</a>
       </div>
     </div>
     <div class="bot-side">
@@ -77,25 +85,41 @@
         <p class="input-name">
           Telefonní čísla&ThinSpace;<span class="required">*</span>
         </p>
-        <input
-          required
-          type="tel"
-          class="text"
-          placeholder="+420 123 456 789"
-        />
-        <button class="add-field">+&nbsp;Přidat&nbsp;další&nbsp;pole</button>
+        {#each Array(nTels) as _, i}
+          <input
+            required
+            type="tel"
+            class="text"
+            placeholder="+420 123 456 789"
+            on:focusout={(e) => {
+              if (i === nTels - 1 && i != 0 && e.target.value == "") nTels--;
+            }}
+          />
+        {/each}
+        <button on:click={() => nTels++} class="add-field"
+          >+&nbsp;Přidat&nbsp;další&nbsp;pole</button
+        >
       </div>
       <div class="div-input">
         <p class="input-name">
           Emailové adresy&ThinSpace;<span class="required">*</span>
         </p>
-        <input
-          required
-          type="email"
-          class="text"
-          placeholder="pepik.schenk@gmail.com"
-        />
-        <button class="add-field">+&nbsp;Přidat&nbsp;další&nbsp;pole</button>
+        {#each Array(nEmails) as _, i}
+          <!-- content here -->
+          <input
+            required
+            type="email"
+            class="text"
+            on:focusout={(e) => {
+              if (i === nEmails - 1 && i != 0 && e.target.value == "")
+                nEmails--;
+            }}
+            placeholder="pepik.schenk@gmail.com"
+          />
+        {/each}
+        <button on:click={() => nEmails++} class="add-field"
+          >+&nbsp;Přidat&nbsp;další&nbsp;pole</button
+        >
       </div>
     </div>
     <div class="name">
@@ -122,17 +146,44 @@
         <input
           type="text"
           class="add-tag"
+          on:focusout={(e) => {
+            if (e.target.value != "") {
+              nTags = [...nTags, e.target.value];
+              e.target.value = "";
+            }
+          }}
+          on:keydown={(e) => {
+            if (e.key === "Enter") {
+              if (e.target.value != "") {
+                nTags = [...nTags, e.target.value];
+                e.target.value = "";
+              }
+            }
+          }}
           placeholder="Napište název dovednosti pro přidání..."
         />
         <div class="tags">
-          {#each Array(15) as item}
-            <button class="tag"
-              ><span class="small-text">x</span>&ThickSpace;Matematika</button
+          {#each nTags as s, i}
+            <button
+              on:click={() => {
+                nTags = nTags.filter((_, j) => j != i);
+              }}
+              class="tag"
+              ><span class="small-text">x</span>&ThickSpace;{s} {i}</button
             >
           {/each}
         </div>
       </div>
     </div>
+    <button
+      class="saveChanges"
+      on:click={() => {
+        toast.success("Změny byly úspěšně uloženy!", {
+          style: "font-family: 'Open Sans', sans-serif;",
+          position: "bottom-right",
+        });
+      }}>Uložit změny</button
+    >
   </div>
 </div>
 
@@ -292,7 +343,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: #333;
+    background-color: #74c7d3;
     gap: 2px;
     color: #fff;
     padding: 3px 9px;
@@ -304,5 +355,17 @@
     font-weight: 700;
     font-size: 0.85rem;
     padding-bottom: 1px;
+  }
+
+  .saveChanges {
+    background-color: #74c7d3;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+    padding: 0.5rem;
+    align-self: flex-start;
+    width: fit-content;
+    margin-top: 1rem;
   }
 </style>
