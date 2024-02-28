@@ -21,7 +21,7 @@
       password = "";
       document.cookie = `auth=${result.password}; Secure; HttpsOnly; SameSite=Strict`;
       document.cookie = `uuid=${result.uuid}; Secure; HttpsOnly; SameSite=Strict`;
-      goto("/app/reservation");
+      goto("/app/info");
     } else {
       console.error("Login failed", result.error);
     }
