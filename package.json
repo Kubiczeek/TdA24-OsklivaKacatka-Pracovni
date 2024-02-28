@@ -17,6 +17,7 @@
   },
   "type": "module",
   "dependencies": {
+    "argon2": "^0.40.1",
     "db-quickly-js": "^1.0.0",
     "joi": "^17.11.0",
     "sanitize-html": "^2.11.0",

@@ -9,6 +9,9 @@
       "clusterDescription": "List of lecturers",
       "data": [
         {
+          "username": "s",
+          "password": "$argon2id$v=19$m=65536,t=3,p=4$AsvGc15t26rozQoDbdqWvQ$skkyrPIdaHgXCRLrZFp5OdlICwMfjFzAsg36CpAXYkM",
+
           "title_before": "profi.",
           "first_name": "Jakub",
           "middle_name": "",
