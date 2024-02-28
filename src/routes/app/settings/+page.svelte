@@ -3,9 +3,7 @@
   import toast, { Toaster } from "svelte-french-toast";
 
   let open = false;
-  let nTels = 1;
-  let nEmails = 1;
-  let nTags = [];
+  let selectedDay = "Po";
 </script>
 
 <svelte:head>
@@ -36,18 +34,118 @@
       </a>
       <div class="links">
         <a class="ff-Lalezar" href="/app/reservation">Rezervace</a>
-        <a class="ff-Lalezar" href="/app/settings">Nastavení&nbsp;rezervací</a>
-        <a class="ff-Lalezar active" href="/app/info">Osobní&nbsp;informace</a>
+        <a class="ff-Lalezar active" href="/app/settings"
+          >Nastavení&nbsp;rezervací</a
+        >
+        <a class="ff-Lalezar" href="/app/info">Osobní&nbsp;informace</a>
       </div>
     </div>
     <div class="bot-side">
       <a href="/logout" class="ff-Lalezar">Odhlásit&nbsp;se</a>
     </div>
   </div>
-  <div class="content"></div>
+  <div class="content">
+    <h1 class="ff-Lalezar">Nastavení rezervací</h1>
+    <div class="calendar">
+      <button
+        class:day-select={selectedDay === "Po"}
+        class="day"
+        on:click={() => (selectedDay = "Po")}>Po</button
+      >
+      <button
+        class:day-select={selectedDay === "Út"}
+        class="day"
+        on:click={() => (selectedDay = "Út")}>Út</button
+      >
+      <button
+        class:day-select={selectedDay === "St"}
+        class="day"
+        on:click={() => (selectedDay = "St")}>St</button
+      >
+      <button
+        class:day-select={selectedDay === "Čt"}
+        class="day"
+        on:click={() => (selectedDay = "Čt")}>Čt</button
+      >
+      <button
+        class:day-select={selectedDay === "Pá"}
+        class="day"
+        on:click={() => (selectedDay = "Pá")}>Pá</button
+      >
+      <button
+        class:day-select={selectedDay === "So"}
+        class="day"
+        on:click={() => (selectedDay = "So")}>So</button
+      >
+      <button
+        class:day-select={selectedDay === "Ne"}
+        class="day"
+        on:click={() => (selectedDay = "Ne")}>Ne</button
+      >
+    </div>
+    <div class="input-area">
+      <label for="start">Začátek v:</label>
+      <input type="time" id="start" name="start" />
+    </div>
+    <div class="input-area">
+      <label for="end">Konec do:</label>
+      <input type="time" id="end" name="end" />
+    </div>
+    <div class="input-area">
+      <label for="length">Délka jedné schůze (min):</label>
+      <input
+        type="number"
+        id="length"
+        name="length"
+        min="1"
+        placeholder="50"
+        on:change={(e) => {
+          if (e.target.value < 1) {
+            e.target.value = 1;
+          }
+        }}
+      />
+    </div>
+    <div class="input-area">
+      <label for="break">Délka přestávky mezi schůzkami (min):</label>
+      <input
+        type="number"
+        id="break"
+        name="break"
+        min="0"
+        placeholder="10"
+        on:change={(e) => {
+          if (e.target.value < 0) {
+            e.target.value = 0;
+          }
+        }}
+      />
+    </div>
+    <button
+      class="saveChanges"
+      on:click={() => {
+        toast.success("Změny byly úspěšně uloženy!", {
+          style: "font-family: 'Open Sans', sans-serif;",
+          position: "bottom-right",
+        });
+      }}>Uložit změny</button
+    >
+  </div>
 </div>
 
 <style>
+  h1 {
+    padding: 0;
+    margin: 0;
+  }
+
+  .content h1 {
+    font-size: 3rem;
+    width: 100%;
+    text-align: left;
+    color: #333333;
+  }
+
   .ff-Lalezar {
     font-family: "Lalezar", sans-serif;
   }
@@ -109,6 +207,71 @@
   nav,
   .sidebar-m {
     display: none;
+  }
+
+  .calendar {
+    display: flex;
+    gap: 0.33rem;
+    flex-direction: row;
+  }
+
+  .day {
+    font-size: 1rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: 40px;
+    color: #fff;
+    background-color: #74c7d3;
+    font-weight: 600;
+    transition: background-color 0.2s;
+  }
+
+  .day-select {
+    background-color: #00384d;
+  }
+
+  .input-area {
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+    align-items: center;
+  }
+
+  label,
+  input {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  input {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid #b8b8b8;
+    border-radius: 6px;
+    width: auto;
+  }
+
+  input::placeholder {
+    color: #b8b8b8;
+    opacity: 1;
+    font-size: 0.8rem;
+  }
+
+  .saveChanges {
+    background-color: #74c7d3;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+    padding: 0.5rem;
+    align-self: flex-start;
+    width: fit-content;
+    margin-top: 1rem;
   }
 
   @media (max-width: 1000px) {
@@ -173,6 +336,10 @@
     .open {
       opacity: 1;
       left: 0;
+    }
+
+    label {
+      font-size: 0.9rem;
     }
   }
 </style>
