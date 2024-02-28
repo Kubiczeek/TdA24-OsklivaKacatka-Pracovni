@@ -268,7 +268,7 @@
   .content h1 {
     font-size: 3rem;
     width: 100%;
-    text-align: center;
+    text-align: left;
     color: #333333;
   }
 
