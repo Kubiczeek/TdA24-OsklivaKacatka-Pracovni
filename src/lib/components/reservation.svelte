@@ -1,6 +1,8 @@
 <script>
   import { chevron } from "$lib/assets/images.js";
-  import { showModalAccept } from "$lib/stores.js";
+  import { showModalAccept, showModalDecline, modalData } from "$lib/stores.js";
+
+  export let info;
 
   let more = false;
 </script>
@@ -10,39 +12,56 @@
     ><img class="chevron" src={chevron} alt="" /></button
   >
   <div class="always">
-    <p class="ff-Lalezar">Adam Mikulič</p>
+    <p class="ff-Lalezar">{info.clientName + " " + info.clientSurname}</p>
     <div class="time-date">
-      <span>10.02.2024</span>
+      <span>{info.date}</span>
       <div />
-      <span>7:30 - 8:30</span>
+      <span>{info.timeStart} - {info.timeEnd}</span>
     </div>
     <p class="sub">
-      Místo: <button on:click={showModalAccept.show} class="red-text"
-        >Určit místo (klikni)</button
-      >
+      Místo:
+      {#if info.place != "" && info.place != null && info.place != undefined && info.place}
+        {info.place}
+      {:else}
+        <button
+          on:click={() => {
+            showModalAccept.show();
+            modalData.set(info);
+          }}
+          class="red-text">Určit místo (klikni)</button
+        >
+      {/if}
     </p>
-    <p class="sub">Téma: Doučování matematiky</p>
-    <p class="sub">Věk: 16</p>
+    <p class="sub">Téma: {info.theme}</p>
+    <p class="sub">Věk: {info.clientAge}</p>
   </div>
   <div class="optional">
     <p class="ff-Lalezar">kontaktní údaje</p>
-    <a class="sub" href="mailto:">Email: schenk@gmail.com</a>
-    <p class="sub" href="">Telefonní číslo: +420 123 456 879</p>
+    <a class="sub" href={"mailto:" + info.clientEmail}
+      >Email: {info.clientEmail}</a
+    >
+    <p class="sub" href="">Telefonní číslo: {info.telNumber}</p>
     <div class="note">
       <p>Poznámka:</p>
       <p class="note-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum est minima
-        omnis porro, aliquid dicta facere quibusdam, impedit quidem hic delectus
-        animi qui maxime accusamus! Rem at deserunt impedit fuga mollitia amet,
-        officia repellat quasi vitae! Commodi doloremque eligendi sed ullam illo
-        nam. Similique, doloremque!
+        {info.clientNote}
       </p>
     </div>
     <div class="buttons">
-      <button class="accept" on:click={showModalAccept.show}
-        >Potvrdit schůzku</button
+      <button
+        class="accept"
+        on:click={() => {
+          showModalAccept.show();
+          modalData.set(info);
+        }}>Potvrdit schůzku</button
       >
-      <button class="cancel">Zrušit schůzku</button>
+      <button
+        class="cancel"
+        on:click={() => {
+          showModalDecline.show;
+          modalData.set(info);
+        }}>Zrušit schůzku</button
+      >
     </div>
   </div>
 </div>

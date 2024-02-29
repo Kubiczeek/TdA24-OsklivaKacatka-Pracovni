@@ -1,70 +1,54 @@
 <script>
-  import { showModalAccept, modalData } from "$lib/stores.js";
+  import { showModalDecline } from "$lib/stores.js";
+  import { onMount } from "svelte";
   import { blur } from "svelte/transition";
+  import { goto } from "$app/navigation";
 </script>
 
 <div class="overlay" transition:blur={{ duration: 300 }}>
   <form class="modal">
     <p class="ff-Lalezar">Potvrzení schůzky</p>
+    <p class="description">
+      Právě se chystáte zrušit následující schůzku. Změny jsou nevratné, proto
+      zkontrolujte, zda chcete zrušit správnou schůzku.
+    </p>
     <div class="time-date">
-      <span>{$modalData.date}</span>
+      <span>10.02.2024</span>
       <div />
-      <span>{$modalData.timeStart} - {$modalData.timeEnd}</span>
+      <span>7:30 - 8:30</span>
+    </div>
+    <div class="name">
+      <p class="text">Jméno: <span class="value">Adam Mikulič</span></p>
     </div>
     <div class="name">
       <p class="text">
-        Jméno: <span class="value"
-          >{$modalData.clientName + " " + $modalData.clientSurname}</span
+        Email: <a href="mailto:" class="value">amik@gmail.com</a>
+      </p>
+    </div>
+    <div class="name">
+      <p class="text">
+        Telefonní číslo: <span class="value">+420 123 456 789</span>
+      </p>
+    </div>
+    <div class="name">
+      <p class="text">Věk: <span class="value">14</span></p>
+    </div>
+    <div class="name">
+      <p class="text">
+        Téma: <span class="value">Příprava na příjmací zkoušky - 9. třída</span>
+      </p>
+    </div>
+    <div class="name">
+      <p class="text">
+        Poznámka klienta: <span class="value"
+          >Syn možná přijde o pár minut později</span
         >
       </p>
-    </div>
-    <div class="name">
-      <p class="text">
-        Email: <a class="value" href={"mailto:" + $modalData.clientEmail}
-          >Email: {$modalData.clientEmail}</a
-        >
-      </p>
-    </div>
-    <div class="name">
-      <p class="text">
-        Telefonní číslo: <span class="value">{$modalData.telNumber}</span>
-      </p>
-    </div>
-    <div class="name">
-      <p class="text">Věk: <span class="value">{$modalData.clientAge}</span></p>
-    </div>
-    <div class="name">
-      <p class="text">
-        Téma: <span class="value">{$modalData.theme}</span>
-      </p>
-    </div>
-    <div class="name">
-      <p class="text">
-        Poznámka klienta: <span class="value">{$modalData.clientNote}</span>
-      </p>
-    </div>
-    <div class="name">
-      <p class="bold-text">Místo:</p>
-      <input
-        type="text"
-        name="place"
-        placeholder="Doplňte místo konání..."
-        id=""
-      />
-    </div>
-    <div class="special">
-      <span>Zpráva:</span><input
-        type="text"
-        placeholder="Vaše zpráva..."
-        name="clientNote"
-      />
     </div>
     <div class="buttons">
-      <button class="submit" type="submit"
-        >Přidat&nbsp;místo a potvrdit&nbsp;schůzku</button
-      >
-      <button type="button" class="cancel" on:click={showModalAccept.hide}
-        >Zrušit</button
+      <button class="submit" type="submit">Zrušit&nbsp;schůzku</button>
+      <button type="button" class="cancel" on:click={showModalDecline.hide}
+        >Ponechat&nbsp;schůzku</button
       >
     </div>
   </form>
@@ -76,6 +60,14 @@
     font-size: 2rem;
     align-self: center;
     line-height: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 1rem;
   }
 
   .overlay {
@@ -116,25 +108,9 @@
     gap: 15px;
   }
 
-  input {
-    border: 1px solid #b8b8b8;
-    border-radius: 7px;
-    padding: 3px 10px;
-    font-family: "Open Sans", sans-serif;
-    font-size: 1rem;
-    width: 100%;
-  }
-
   a,
   span {
     font-weight: 600;
-  }
-
-  .modal > .special {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
   }
 
   .time-date {
@@ -157,10 +133,6 @@
     padding: 0 1rem;
   }
 
-  .special input {
-    width: 100%;
-  }
-
   .buttons {
     display: flex;
     flex-direction: row;
@@ -174,7 +146,7 @@
   }
 
   .submit {
-    background-color: #74c7d3;
+    background-color: #e46464;
     border-radius: 4px;
     font-weight: 600;
     font-size: 1rem;
@@ -189,10 +161,6 @@
     font-size: 1rem;
     color: #b8b8b8;
     padding: 0.5rem;
-  }
-
-  .bold-text {
-    font-weight: 600;
   }
 
   @media screen and (max-width: 550px) {

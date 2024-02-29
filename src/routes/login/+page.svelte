@@ -20,7 +20,7 @@
       username = "";
       password = "";
       document.cookie = `auth=${result.password}; Secure; HttpsOnly; SameSite=Strict`;
-      document.cookie = `uuid=${result.uuid}; Secure; HttpsOnly; SameSite=Strict`;
+      document.cookie = `uuid=${result.uuid};`;
       goto("/app/reservation");
     } else {
       console.error("Login failed", result.error);

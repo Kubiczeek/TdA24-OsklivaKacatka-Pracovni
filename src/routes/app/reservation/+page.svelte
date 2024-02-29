@@ -1,9 +1,18 @@
 <script>
   import { logo_black, hamburger, cross } from "$lib/assets/images.js";
   import toast, { Toaster } from "svelte-french-toast";
-  import { showModalAccept } from "$lib/stores.js";
+  import { showModalAccept, showModalDecline } from "$lib/stores.js";
   import ModalConfirm from "$lib/components/modal-confirm.svelte";
+  import ModalDecline from "$lib/components/modal-decline.svelte";
   import Reservation from "$lib/components/reservation.svelte";
+
+  export let data;
+
+  console.log(data.reservation);
+
+  const reservation = data.reservation.filter((item) => {
+    return item.lectorUuid == data.data.uuid;
+  });
 
   let open = false;
 </script>
@@ -15,6 +24,9 @@
 <Toaster />
 {#if $showModalAccept}
   <ModalConfirm />
+{/if}
+{#if $showModalDecline}
+  <ModalDecline />
 {/if}
 <nav>
   <img src={logo_black} alt="" />
@@ -51,9 +63,13 @@
     <h1 class="ff-Lalezar">Naplánované schůzky</h1>
     <div class="allow-reservations">
       <label for="allowReservations">Aktivní systém rezervací:</label>
-      <input type="checkbox" id="allowReservations" />
+      <input
+        type="checkbox"
+        id="allowReservations"
+        checked={data.data.online}
+      />
     </div>
-    <div class="sort">
+    <!-- <div class="sort">
       <label for="select">Seřadit podle:</label>
       <select name="select" id="" class="sort">
         <option value="1">Abecedně A-Z</option>
@@ -61,14 +77,11 @@
         <option value="3">Nejnovější</option>
         <option value="4">Nejstarší</option>
       </select>
-    </div>
+    </div> -->
     <div class="reservations">
-      <Reservation />
-      <Reservation />
-      <Reservation />
-      <Reservation />
-      <Reservation />
-      <Reservation />
+      {#each reservation as item}
+        <Reservation info={item} />
+      {/each}
     </div>
   </div>
 </div>
