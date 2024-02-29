@@ -7,101 +7,102 @@ import {
   removeUnusedTags,
   resSchema,
 } from "$lib/server/db/db.js";
-import { lectorConfSendClient } from "$lib/server/nodemailer/nodemailer.js";
+import {
+  lectorConfSendClient,
+  lectorDeniedSendClient,
+} from "$lib/server/nodemailer/nodemailer.js";
 
 export const POST = async ({ params, request }) => {
   // Initialize the database
   reinitializeDB();
-  try {
-    //obj.decision, obj.message, obj.place
-    // Parse the JSON payload from the request body
-    const obj = await request.json();
-    if (obj.decision) {
-      let cluster = Database.getClusterByName("Reservations");
+  //try {
+  //obj.decision, obj.message, obj.place
+  // Parse the JSON payload from the request body
+  const obj = await request.json();
+  let user;
+  console.log(obj.decision);
+  if (obj.decision === true) {
+    let cluster = Database.getClusterByName("Reservations");
 
-      let user = cluster.data.find((item) => item.uuid === params.uuid);
-      user.place = obj.place;
+    user = cluster.data.find((item) => item.uuid === params.uuid);
+    user.place = obj.place;
+    user.status = "accepted";
+    console.log(user);
+    const c = Database.getClusterByName("Lecturers");
 
-      console.log(user);
-      const c = Database.getClusterByName("Lecturers");
+    for (const ob of c.data) {
+      const { uuid } = ob;
 
-      for (const ob of c.data) {
-        const { uuid } = ob;
-
-        const namen =
-          ob.title_before +
-          " " +
-          ob.first_name +
-          " " +
-          ob.middle_name +
-          " " +
-          ob.last_name;
-        if (uuid === user.lectorUuid) {
-          lectorConfSendClient(
-            ob.price_per_hour,
-            ob.contact.telephone_numbers[0],
-            ob.contact.emails[0],
-            namen,
-            obj.theme,
-            "mikulic.tablet.kluci@gmail.com",
-            obj.message,
-            obj.place
-          );
-        }
+      const namen =
+        ob.title_before +
+        " " +
+        ob.first_name +
+        " " +
+        ob.middle_name +
+        " " +
+        ob.last_name;
+      if (uuid === user.lectorUuid) {
+        lectorConfSendClient(
+          ob.price_per_hour,
+          ob.contact.telephone_numbers[0],
+          ob.contact.emails[0],
+          namen,
+          obj.theme,
+          user.clientEmail,
+          obj.message,
+          obj.place,
+          user.timeStart,
+          user.date
+        );
       }
-      Database.updateClusterByName(cluster.clusterName, cluster);
-    } else {
-      /*   let cluster = Database.getClusterByName("Reservations");
-
-      let user = cluster.data.find((item) => item.uuid === params.uuid);
-      user.place = obj.place;
-      console.log(user);
-
-      const c = Database.getClusterByName("Lecturers");
-
-      for (const ob of c.data) {
-        const { uuid } = ob;
-
-        const namen =
-          ob.title_before +
-          " " +
-          ob.first_name +
-          " " +
-          ob.middle_name +
-          " " +
-          ob.last_name;
-        if (uuid === user.lectorUuid) {
-          lectorConfSendClient(
-            ob.price_per_hour,
-            ob.contact.telephone_numbers[0],
-            ob.contact.emails[0],
-            namen,
-            obj.theme,
-            "mikulic.tablet.kluci@gmail.com",
-            obj.message,
-            obj.place
-          );
-        }
-      }*/
     }
+    Database.updateClusterByName(cluster.clusterName, cluster);
+  } else {
+    let cluster = Database.getClusterByName("Reservations");
 
-    return new Response(JSON.stringify(user), {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      status: 200,
-    });
-  } catch {
-    return new Response(
-      JSON.stringify({ code: 404, message: "User not found" }),
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        status: 404,
+    user = cluster.data.find((item) => item.uuid === params.uuid);
+
+    user.status = "denied";
+
+    const c = Database.getClusterByName("Lecturers");
+
+    for (const ob of c.data) {
+      const { uuid } = ob;
+
+      const namen =
+        ob.title_before +
+        " " +
+        ob.first_name +
+        " " +
+        ob.middle_name +
+        " " +
+        ob.last_name;
+
+      if (uuid === user.lectorUuid) {
+        lectorDeniedSendClient(
+          ob.price_per_hour,
+          ob.contact.telephone_numbers[0],
+          ob.contact.emails[0],
+          namen,
+          obj.theme,
+          user.clientEmail,
+          obj.message,
+          obj.place,
+          user.timeStart,
+          user.date
+        );
       }
-    );
+    }
+    Database.updateClusterByName(cluster.clusterName, cluster);
   }
+
+  return new Response(JSON.stringify(user), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    status: 200,
+  });
+  // }
 };
 
 /**

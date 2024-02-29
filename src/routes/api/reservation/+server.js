@@ -101,7 +101,6 @@ export const POST = async ({ request }) => {
       ob.middle_name +
       " " +
       ob.last_name;
-    console.log(uuid === obj.lectorUuid);
     if (uuid === obj.lectorUuid) {
       sendConfClient(
         ob.price_per_hour,
@@ -109,7 +108,9 @@ export const POST = async ({ request }) => {
         ob.contact.emails[0],
         namen,
         obj.theme,
-        "mikulic.tablet.kluci@gmail.com"
+        obj.clientEmail,
+        obj.timeStart,
+        obj.date
       );
     }
   }

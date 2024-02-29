@@ -43,8 +43,6 @@ export const resSchema = Joi.object({
   clientAge: Joi.number().integer().min(0),
   uuid: Joi.string().uuid().default(uuidv4()).required(),
   lectorUuid: Joi.string().uuid().required(),
-  lectorPlace: Joi.string(),
-  lectorMessage: Joi.string(),
 });
 /**
  * Reinitializes the database by initializing it with a name and description,
