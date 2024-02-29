@@ -1,9 +1,60 @@
 <script>
   import { logo_black, hamburger, cross } from "$lib/assets/images.js";
+  import { onMount } from "svelte";
   import toast, { Toaster } from "svelte-french-toast";
+
+  export let data;
+
+  console.log(data);
 
   let open = false;
   let selectedDay = "Po";
+
+  let from, to, breakTime, length;
+
+  function change(day) {
+    for (const dayObject of data.calendar) {
+      if (dayObject.day == day) {
+        from.value = dayObject.from;
+        to.value = dayObject.to;
+        breakTime.value = dayObject.break;
+        length.value = dayObject.length;
+      }
+    }
+  }
+
+  function saveChanges() {
+    console.log(data.calendar);
+    const modifiedCalendar = data.calendar.map((dayObject) => {
+      if (dayObject.day === selectedDay) {
+        dayObject.from = from.value;
+        dayObject.to = to.value;
+        dayObject.break = breakTime.value;
+        dayObject.length = length.value;
+      }
+      return dayObject;
+    });
+    data.calendar = modifiedCalendar;
+    console.log(data.calendar);
+    console.log(data.calendar);
+    fetch(`/api/lecturers/${data.uuid}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      console.log(res);
+      toast("Změny byly úspěšně uloženy!", {
+        style: "font-family: 'Open Sans', sans-serif;",
+        position: "bottom-right",
+      });
+    });
+  }
+
+  onMount(() => {
+    change(selectedDay);
+  });
 </script>
 
 <svelte:head>
@@ -50,46 +101,67 @@
       <button
         class:day-select={selectedDay === "Po"}
         class="day"
-        on:click={() => (selectedDay = "Po")}>Po</button
+        on:click={() => {
+          selectedDay = "Po";
+          change(selectedDay);
+        }}>Po</button
       >
       <button
         class:day-select={selectedDay === "Út"}
         class="day"
-        on:click={() => (selectedDay = "Út")}>Út</button
+        on:click={() => {
+          selectedDay = "Út";
+          change(selectedDay);
+        }}>Út</button
       >
       <button
         class:day-select={selectedDay === "St"}
         class="day"
-        on:click={() => (selectedDay = "St")}>St</button
+        on:click={() => {
+          selectedDay = "St";
+          change(selectedDay);
+        }}>St</button
       >
       <button
         class:day-select={selectedDay === "Čt"}
         class="day"
-        on:click={() => (selectedDay = "Čt")}>Čt</button
+        on:click={() => {
+          selectedDay = "Čt";
+          change(selectedDay);
+        }}>Čt</button
       >
       <button
         class:day-select={selectedDay === "Pá"}
         class="day"
-        on:click={() => (selectedDay = "Pá")}>Pá</button
+        on:click={() => {
+          selectedDay = "Pá";
+          change(selectedDay);
+        }}>Pá</button
       >
       <button
         class:day-select={selectedDay === "So"}
         class="day"
-        on:click={() => (selectedDay = "So")}>So</button
+        on:click={() => {
+          selectedDay = "So";
+          change(selectedDay);
+        }}>So</button
       >
       <button
         class:day-select={selectedDay === "Ne"}
         class="day"
-        on:click={() => (selectedDay = "Ne")}>Ne</button
+        on:click={() => {
+          selectedDay = "Ne";
+          change(selectedDay);
+        }}>Ne</button
       >
     </div>
     <div class="input-area">
       <label for="start">Začátek v:</label>
-      <input type="time" id="start" name="start" />
+      <input type="time" id="start" name="start" bind:this={from} />
     </div>
     <div class="input-area">
       <label for="end">Konec do:</label>
-      <input type="time" id="end" name="end" />
+      <input type="time" id="end" name="end" bind:this={to} />
     </div>
     <div class="input-area">
       <label for="length">Délka jedné schůze (min):</label>
@@ -99,6 +171,7 @@
         name="length"
         min="1"
         placeholder="50"
+        bind:this={length}
         on:change={(e) => {
           if (e.target.value < 1) {
             e.target.value = 1;
@@ -114,6 +187,7 @@
         name="break"
         min="0"
         placeholder="10"
+        bind:this={breakTime}
         on:change={(e) => {
           if (e.target.value < 0) {
             e.target.value = 0;
@@ -121,15 +195,7 @@
         }}
       />
     </div>
-    <button
-      class="saveChanges"
-      on:click={() => {
-        toast.success("Změny byly úspěšně uloženy!", {
-          style: "font-family: 'Open Sans', sans-serif;",
-          position: "bottom-right",
-        });
-      }}>Uložit změny</button
-    >
+    <button class="saveChanges" on:click={saveChanges}>Uložit změny</button>
   </div>
 </div>
 

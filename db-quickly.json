@@ -9,80 +9,200 @@
       "clusterDescription": "List of reservations",
       "data": [
         {
+          "timeStart": "14:20",
+          "timeEnd": "14:35",
+          "clientEmail": "mikulic.tablet.kluci@gmail.com",
+          "clientName": "adam",
+          "clientSurname": "Mikuliš",
+          "clientNote": "bring me chocolate",
+          "telNumber": "735726960",
+          "date": "15.03.2024",
+          "theme": "prepare for real life ",
+          "clientAge": "16",
+          "lectorUuid": "625d7e49-a9ef-4808-8048-11a673f4772b",
+          "uuid": "7e32b274-09fa-49d6-9da3-999407ced2d2",
           "status": "accepted",
-          "timeStart": "15:40",
-          "timeEnd": "16:10",
-          "clientEmail": "mikulic.tablet.kluci@gmail.com",
-          "clientName": "Adam",
-          "clientSurname": "Mikuliš",
-          "clientNote": "Je trochu akustický ale pujde to",
-          "telNumber": "735726963",
-          "date": "31.02.2024",
-          "theme": "doučování ZSV",
-          "clientAge": "12",
-          "place": "Cukrárna",
-          "uuid": "d6c69fc9-243e-4dbc-8a3f-32e674162518",
-          "lectorUuid": "283cb961-2e71-40d0-9b55-7af4120b459c",
-          "lectorMessage": "I like you "
+          "place": "Havířov"
         },
         {
-          "timeStart": "22:22",
-          "timeEnd": "12:30",
+          "timeStart": "14:20",
+          "timeEnd": "14:35",
           "clientEmail": "mikulic.tablet.kluci@gmail.com",
           "clientName": "adam",
           "clientSurname": "Mikuliš",
-          "clientNote": "dj bring a notebook.",
+          "clientNote": "bring me chocolate",
           "telNumber": "735726960",
           "date": "15.03.2024",
-          "theme": "Music ",
+          "theme": "prepare for real life ",
           "clientAge": "16",
-          "lectorUuid": "283cb961-2e71-40d0-9b55-7af4120b459c",
-          "uuid": "22b06296-e763-46be-91e0-72a110cb0946",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "02e78415-a38c-438b-b72b-65e2e2b11248",
+          "status": "verifyingClient"
+        },
+        {
+          "timeStart": "14:20",
+          "timeEnd": "14:45",
+          "clientEmail": "mikulic.tablet.kluci@gmail.com",
+          "clientName": "adam",
+          "clientSurname": "Mikuliš",
+          "clientNote": "dont bring me chocolate",
+          "telNumber": "735726960",
+          "date": "17.03.2024",
+          "theme": "dont prepare for real life ",
+          "clientAge": "17",
+          "lectorUuid": "397173b1-3703-4ba1-9c08-d0fd639e1b83",
+          "uuid": "0c1d8580-b004-4ec0-b572-f99eebfde5cd",
+          "status": "verifyingClient"
+        },
+        {
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
+          "clientEmail": "jakubakoubek@gmail.com",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": "dont bring me weapon",
+          "telNumber": "735726960",
+          "date": "21.03.2024",
+          "theme": "weapons of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "397173b1-3703-4ba1-9c08-d0fd639e1b83",
+          "uuid": "ba843c7f-e19b-4ed3-803e-5fbe52958b85",
+          "status": "verifyingClient"
+        },
+        {
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
+          "clientEmail": "jakubakoubek@gmail.com",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": " bring me train",
+          "telNumber": "735726960",
+          "date": "21.03.2024",
+          "theme": "trains of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "324480e1-a0d5-4852-864e-58d38a752a5a",
+          "status": "verifyingClient"
+        },
+        {
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
+          "clientEmail": "jakubakoubek@gmail.com",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": " bring me train",
+          "telNumber": "735726960",
+          "date": "21.03.2024",
+          "theme": "trains of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "4615d791-4b10-4797-95c4-2d54a70ea4d0",
+          "status": "verifyingClient"
+        },
+        {
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
+          "clientEmail": "jakubakoubek@gmail.com",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": " bring me train",
+          "telNumber": "735726960",
+          "date": "21.03.2024",
+          "theme": "trains of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "ecd0a291-f0f8-496b-973c-9c983f2c0629",
           "status": "denied"
         },
         {
-          "timeStart": "22:22",
-          "timeEnd": "12:30",
-          "clientEmail": "mikulic.tablet.kluci@gmail.com",
-          "clientName": "adam",
-          "clientSurname": "Mikuliš",
-          "clientNote": "dj bring a notebook.",
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
+          "clientEmail": "jakubakoubek@gmail.com",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": " bring me train",
           "telNumber": "735726960",
-          "date": "15.03.2024",
-          "theme": "Music ",
-          "clientAge": "16",
-          "lectorUuid": "283cb961-2e71-40d0-9b55-7af4120b459c",
-          "uuid": "00b2bdd8-bc21-457d-bd55-161b12d5e91a",
+          "date": "21.03.2024",
+          "theme": "trains of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "7ac48121-6564-47a5-a8f9-26061ac2e613",
+          "status": "verifyingClient"
+        },
+        {
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
+          "clientEmail": "jakubakoubek@gmail.com",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": " bring me train",
+          "telNumber": "735726960",
+          "date": "21.03.2024",
+          "theme": "trains of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "f6540cd5-21f4-4535-bfdf-6c57e5afdf63",
+          "status": "verifyingClient"
+        },
+        {
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
+          "clientEmail": "jakubakoubek@gmail.com",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": " bring me train",
+          "telNumber": "735726960",
+          "date": "21.03.2024",
+          "theme": "trains of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "8c82e638-6d6b-4a64-9a5c-539d24c16186",
+          "status": "verifyingClient"
+        },
+        {
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
+          "clientEmail": "jakubakoubek@gmail.com",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": " bring me train",
+          "telNumber": "735726960",
+          "date": "21.03.2024",
+          "theme": "trains of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "28c00f73-6475-4ee8-bd22-85e8bd5ebc0a",
           "status": "denied"
         },
         {
-          "timeStart": "11:11",
-          "timeEnd": "12:30",
-          "clientEmail": "mikulic.tablet.kluci@gmail.com",
-          "clientName": "adam",
-          "clientSurname": "Mikuliš",
-          "clientNote": "dj bring a notebook.",
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
+          "clientEmail": "jakubakoubek@gmail.com",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": " bring me train",
           "telNumber": "735726960",
-          "date": "15.03.2024",
-          "theme": "Music ",
-          "clientAge": "16",
-          "lectorUuid": "283cb961-2e71-40d0-9b55-7af4120b459c",
-          "uuid": "85010905-26cf-4730-9723-e38cc32f9a26",
-          "status": "denied"
+          "date": "21.03.2024",
+          "theme": "trains of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "19877c7e-a143-4ee1-8fbf-47136cc452df",
+          "status": "accepted",
+          "place": "Havířov"
         },
         {
-          "timeStart": "11:11",
-          "timeEnd": "12:30",
+          "timeStart": "10:10",
+          "timeEnd": "11:12",
           "clientEmail": "mikulic.tablet.kluci@gmail.com",
-          "clientName": "adam",
-          "clientSurname": "Mikuliš",
-          "clientNote": "dj bring a notebook.",
+          "clientName": "Jakub",
+          "clientSurname": "Jakoubek",
+          "clientNote": " bring me train",
           "telNumber": "735726960",
-          "date": "15.03.2024",
-          "theme": "Music ",
-          "clientAge": "16",
-          "lectorUuid": "283cb961-2e71-40d0-9b55-7af4120b459c",
-          "uuid": "c8f29c4f-14e4-4b5f-ba04-3f1e0f0cde99",
+          "date": "21.03.2024",
+          "theme": "trains of mediaval history ",
+          "clientAge": "17",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "uuid": "1bab0b1a-0c0e-44f1-a7b1-f44db0179118",
           "status": "accepted",
           "place": "Havířov"
         }
@@ -94,266 +214,17 @@
       "clusterDescription": "List of lecturers",
       "data": [
         {
-          "title_before": "profi.",
-          "first_name": "Jakub",
-          "middle_name": "",
-          "last_name": "Jakůbek",
-          "title_after": "",
-          "picture_url": "https://media.discordapp.net/attachments/748152477253238857/1197644666418499794/98931503_kubik-na-nocniku.png?ex=65bc0483&is=65a98f83&hm=955db6d841cfe8bf7bb9af74f6bdf2fbbe353bc801ff22a85b0c225e406f411b&=&format=webp&quality=lossless&width=669&height=671",
-          "location": "Havlíčkův Brod",
-          "claim": "Místo stěžování je lepší přiložit ruku k dílu.",
-          "bio": "Jsem <b>sedmnáctiletý</b> dopravní nadšenec. Navštěvuji gymnázium v půvabném městě v srdci České republiky - <i>v Havlíčkově Brodě</i>. Mezi mé zájmy patří matematika, doprava a především <b>programování</b>.",
-          "tags": ["be8344eb-7bed-4ba0-9045-e100d8699fdb"],
-          "price_per_hour": 840,
-          "contact": {
-            "telephone_numbers": ["+420 730 815 832"],
-            "emails": [
-              "jakubakubek@gmail.com",
-              "kubacze55@gmail.com",
-              "jakubjakubek55@gmail.com"
-            ]
-          },
-          "uuid": "d5c28fc9-243e-4dbc-8a3f-32e679070184"
-        },
-        {
-          "title_before": "Mgr.",
-          "first_name": "Pepik",
-          "middle_name": "",
-          "last_name": "Schenk",
-          "title_after": "PhD.",
-          "picture_url": "https://media.discordapp.net/attachments/748152477253238857/1197644951245295697/800px-thumbnail.png?ex=65bc04c7&is=65a98fc7&hm=5097c37f03dc4277eae2ac210f44478e08bd4ff4ea79a4fea45967dc54a336e9&=&format=webp&quality=lossless&width=582&height=671",
-          "location": "Havlíčkův Brod",
-          "claim": "Kolega Sedlák si nerad poměřoval velikost doktorátů",
-          "bio": "Těší mě, jmenuji se Pepik a učím češtinu na bordským gymplu. Rád zpívám a vedu společně s kolegou Láskou školní pěvecký sbor. Rád si dělám z věcí legarci. Doufám, že budeme spolupracovat!",
-          "tags": [
-            "c54ad02e-8583-4468-a542-be0b0d4596b2",
-            "e24ec90e-73f9-4bf3-ba47-3257d8c28480",
-            "e5299de5-fa6d-49da-be16-e05118e342b0",
-            "dff71f0c-c23f-4ba0-a598-b2d371375b0c",
-            "84d4ff74-b560-4599-97aa-71f119ae408e",
-            "cac3a4d1-9213-47b5-92f3-41fb165ae7fa"
-          ],
-          "price_per_hour": 1070,
-          "contact": {
-            "telephone_numbers": ["+420 128 444 792"],
-            "emails": ["schenk@ghb.cz"]
-          },
-          "calendar": [
-            {
-              "day": "Po",
-              "from": "14:00",
-              "to": "16:00",
-              "break": "15",
-              "length": "120"
-            },
-            {
-              "day": "Út",
-              "from": "11:30",
-              "to": "13:00",
-              "break": "0",
-              "length": "90"
-            },
-            {
-              "day": "St",
-              "from": "09:00",
-              "to": "11:00",
-              "break": "10",
-              "length": "120"
-            },
-            {
-              "day": "Čt",
-              "from": "16:30",
-              "to": "18:30",
-              "break": "0",
-              "length": "120"
-            },
-            {
-              "day": "Pá",
-              "from": "13:30",
-              "to": "15:30",
-              "break": "10",
-              "length": "120"
-            },
-            {
-              "day": "So",
-              "from": "10:00",
-              "to": "12:00",
-              "break": "0",
-              "length": "120"
-            },
-            {
-              "day": "Ne",
-              "from": "14:30",
-              "to": "16:30",
-              "break": "0",
-              "length": "120"
-            }
-          ],
-          "uuid": "9accbf0d-7143-4029-b412-c91d139140dd"
-        },
-        {
+          "username": "kaja",
+          "password": "$argon2id$v=19$m=65536,t=3,p=4$5s2OIqIiNxv5hIxE3evm5w$2nLKn4RznY1zqrsb+gwwX1JYFRzxuoMC4R9Sm8jgR8s",
           "title_before": "Mgr.",
           "first_name": "George",
           "middle_name": "",
           "last_name": "Kája",
           "title_after": "",
-          "picture_url": "https://media.discordapp.net/attachments/748152477253238857/1197645032409284730/89160549_1_l.png?ex=65bc04da&is=65a98fda&hm=45274a6f28cb65175f58801ff8206c819c3c37e772901169471b8fe168188eef&=&format=webp&quality=lossless",
+          "picture_url": "https://raw.githubusercontent.com/AM1k21/RL-Ch-Co/main/images/3.png",
           "location": "Havlíčkův Brod",
           "claim": "Tak už můžete jít. Ale běda vám jestli někdo budete v bufíku přede mnou",
           "bio": "Dobrý den... Posaďte se! Jsem rád, že vás mohu přivítat u mě na profilu. Kájo já ťá znám. Pojď jdem sa ožrat. Pokud máte nějaké otázky na mou osobu, neváhejte mne kontaktovat. Snad ten počítač nebude unavený jako vy devátou vyučovací hodinu.",
-          "tags": [
-            "242eeea7-865d-44ac-b30f-b55bcf6424ca",
-            "40cc7e61-c279-47be-b84b-941defc2756e",
-            "ef8d9371-9a72-4a51-9402-3fd16ced28d9",
-            "be8344eb-7bed-4ba0-9045-e100d8699fdb",
-            "833181f5-b657-4c17-8464-7ad1dd03cf4a",
-            "a16fab57-b079-4079-89dc-7fd16b4ebfc9",
-            "cac3a4d1-9213-47b5-92f3-41fb165ae7fa"
-          ],
-          "price_per_hour": 915,
-          "contact": {
-            "telephone_numbers": ["+420 600 121 212"],
-            "emails": ["kajo@ja.ta", "znam@jdemse.ozrat"]
-          },
-          "uuid": "f617e706-e06e-4da0-ba04-562aa77431b3",
-          "calendar": [
-            {
-              "day": "Po",
-              "from": "08:30",
-              "to": "10:30",
-              "break": "20",
-              "length": "120"
-            },
-            {
-              "day": "Út",
-              "from": "13:00",
-              "to": "15:00",
-              "break": "30",
-              "length": "120"
-            },
-            {
-              "day": "St",
-              "from": "11:30",
-              "to": "13:30",
-              "break": "15",
-              "length": "120"
-            },
-            {
-              "day": "Čt",
-              "from": "15:30",
-              "to": "17:30",
-              "break": "25",
-              "length": "120"
-            },
-            {
-              "day": "Pá",
-              "from": "09:00",
-              "to": "11:00",
-              "break": "10",
-              "length": "120"
-            },
-            {
-              "day": "So",
-              "from": "12:30",
-              "to": "14:30",
-              "break": "5",
-              "length": "120"
-            },
-            {
-              "day": "Ne",
-              "from": "16:00",
-              "to": "18:00",
-              "break": "15",
-              "length": "120"
-            }
-          ]
-        },
-        {
-          "title_before": "Prof.",
-          "first_name": "Šimon",
-          "middle_name": "Vladimirovichovich",
-          "last_name": "Mach",
-          "title_after": "PhD.",
-          "picture_url": "https://media.discordapp.net/attachments/748152477253238857/1197643138630684712/1452b13f47b8a9a99d714093dbce.png?ex=65bc0317&is=65a98e17&hm=65ce5db71293bf7aef2057b8c040763ea48232bedc546946b5899a908783d9f0&=&format=webp&quality=lossless",
-          "location": "Přibyslav",
-          "claim": "crazy idea, co kdyby jsme začaly brát tvrdý drogy",
-          "bio": "Těší mě, jmenuji se Šimon a neučím se češtinu na bordským gymplu. Nerad zpívám a nezapojuji se do školního pěveckého sboru. Rád si beru věci osobně. Doufám, že s vámi nebudu muset spolupracovat!",
-          "tags": [
-            "e8193547-33c5-4060-9293-6717c1be3ce2",
-            "7eb8c465-45b6-4dc5-b747-263ebcc3561a",
-            "b84a5ea7-452f-4aa5-8652-d42e4ccad614",
-            "43bc830d-0598-416f-ab98-f20675f976f7",
-            "cc29cae8-882b-45fd-a2b4-36ec43dafef1",
-            "3f6aead4-3216-4f60-8040-6ccdf88c2285"
-          ],
-          "price_per_hour": 1500,
-          "contact": {
-            "telephone_numbers": ["+420 420 69 69 69"],
-            "emails": ["2026amach@ghb.cz"]
-          },
-          "uuid": "e1e599e8-aaf4-4d1b-b1df-0be04db28bfb",
-          "calendar": [
-            {
-              "day": "Po",
-              "from": "08:30",
-              "to": "10:30",
-              "break": "20",
-              "length": "120"
-            },
-            {
-              "day": "Út",
-              "from": "13:00",
-              "to": "15:00",
-              "break": "30",
-              "length": "120"
-            },
-            {
-              "day": "St",
-              "from": "11:30",
-              "to": "13:30",
-              "break": "15",
-              "length": "120"
-            },
-            {
-              "day": "Čt",
-              "from": "15:30",
-              "to": "17:30",
-              "break": "25",
-              "length": "120"
-            },
-            {
-              "day": "Pá",
-              "from": "09:00",
-              "to": "11:00",
-              "break": "10",
-              "length": "120"
-            },
-            {
-              "day": "So",
-              "from": "12:30",
-              "to": "14:30",
-              "break": "5",
-              "length": "120"
-            },
-            {
-              "day": "Ne",
-              "from": "16:00",
-              "to": "18:00",
-              "break": "15",
-              "length": "120"
-            }
-          ]
-        },
-        {
-          "title_before": "",
-          "first_name": "Lucie",
-          "middle_name": "Knedlík",
-          "last_name": "Macháčková",
-          "title_after": "VŠŽ",
-          "picture_url": "https://nova-ott-images-tn.ssl.cdn.cra.cz/r1200x/8391bc4b-1b3c-4803-ba80-dc37e35ab39b.jpg",
-          "location": "Havířov",
-          "claim": "Do houskových knedlíků se nedávají housky!",
-          "bio": "I můj manžel dělá lepší houfkový knedlíky než já a ten tam housky neda určitě nedává.",
           "tags": [
             "41e938c7-c04d-4ec8-ac90-e2aed28c5a89",
             "76d0d719-09e2-4dee-bf34-135970896ee4",
@@ -364,14 +235,18 @@
             "de3c8168-0fae-470e-9926-5b8e98382442",
             "282268fb-572e-47cb-be4c-ef2fe34f0b86"
           ],
-          "price_per_hour": 115,
+          "price_per_hour": 915,
+          "contact": {
+            "telephone_numbers": ["+420 600 121 212"],
+            "emails": ["kajo@ja.ta", "znam@jdemse.ozrat"]
+          },
           "calendar": [
             {
               "day": "Po",
-              "from": "08:30",
-              "to": "10:30",
-              "break": "20",
-              "length": "120"
+              "from": "12:30",
+              "to": "19:30",
+              "break": "10",
+              "length": "40"
             },
             {
               "day": "Út",
@@ -416,15 +291,36 @@
               "length": "120"
             }
           ],
-          "contact": {
-            "telephone_numbers": ["+420 666 999 666"],
-            "emails": ["ta-divna-luca@psycharna.havirov.cz"]
-          },
-          "uuid": "b1238fc1-9a5e-4305-bb8b-b44d15a0c504"
+          "uuid": "625d7e49-a9ef-4808-8048-11a673f4772b"
         },
         {
-          "title_before": "Ing. et. Ing.",
-          "first_name": "Robert",
+          "username": "Vladimir",
+          "password": "$argon2id$v=19$m=65536,t=3,p=4$ntmrP6CB8Bot8lHPBwP74Q$NpktPTIYk9O/ylaOHCk3niJwLJcFjnX2zvjmhFzsLGs",
+          "title_before": "Prof.",
+          "first_name": "Šimon",
+          "middle_name": "Vladimirovichovich",
+          "last_name": "Mach",
+          "title_after": "PhD.",
+          "picture_url": "https://www.sstebrno.cz/wp-content/uploads/2023/04/grand_programovani04042023.jpg",
+          "location": "Přibyslav",
+          "claim": "crazy idea, co kdyby jsme začaly brát tvrdý drogy",
+          "bio": "Těší mě, jmenuji se Šimon a neučím se češtinu na bordským gymplu. Nerad zpívám a nezapojuji se do školního pěveckého sboru. Rád si beru věci osobně. Doufám, že s vámi nebudu muset spolupracovat!",
+          "tags": [
+            "e8193547-33c5-4060-9293-6717c1be3ce2",
+            "7eb8c465-45b6-4dc5-b747-263ebcc3561a",
+            "b84a5ea7-452f-4aa5-8652-d42e4ccad614",
+            "43bc830d-0598-416f-ab98-f20675f976f7",
+            "cc29cae8-882b-45fd-a2b4-36ec43dafef1",
+            "3f6aead4-3216-4f60-8040-6ccdf88c2285",
+            "5ec1009a-d44f-44e6-b896-d0b631969a1a",
+            "32d2a69f-5220-4c13-90d2-735afec649b3",
+            "2e143fb3-c13f-4a3a-85d8-da09afd317d5"
+          ],
+          "price_per_hour": 73000,
+          "contact": {
+            "telephone_numbers": ["+420 420 69 69 69"],
+            "emails": ["2026amach@ghb.cz"]
+          },
           "calendar": [
             {
               "day": "Po",
@@ -476,6 +372,13 @@
               "length": "120"
             }
           ],
+          "uuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4"
+        },
+        {
+          "username": "rob",
+          "password": "$argon2id$v=19$m=65536,t=3,p=4$EgXPuF50jBCOyoyEpxyMXg$mqS4bmUjwO85PcLAyVsCKOlyNDJTiqnTVmTP3KYAu04",
+          "title_before": "Ing. et. Ing.",
+          "first_name": "Robert",
           "middle_name": "Ženšen",
           "last_name": "Švýcarský",
           "title_after": "PhD. et PhD. MBA",
@@ -493,26 +396,63 @@
             "bf501095-1013-41c4-b244-6456f44ee022",
             "58cc1277-e6f7-402e-bf44-cc73d6bb80d4"
           ],
-          "price_per_hour": 1200,
+          "price_per_hour": 65,
           "contact": {
             "telephone_numbers": ["+420 222 222 223"],
             "emails": ["realpedofilni.princezna@bobek.cz"]
           },
-          "uuid": "283cb961-2e71-40d0-9b55-7af4120b459c",
-          "username": "pepa",
-          "password": "$argon2id$v=19$m=65536,t=3,p=4$AsvGc15t26rozQoDbdqWvQ$skkyrPIdaHgXCRLrZFp5OdlICwMfjFzAsg36CpAXYkM",
-          "online": false
-        },
-        {
-          "first_name": "Testovací",
-          "last_name": "Subjekt #23",
-          "contact": {
-            "telephone_numbers": ["+420 222 222 223"],
-            "emails": ["kubik@bobek.cz"]
-          },
-          "tags": [],
-          "uuid": "b106e3ac-a647-4030-927c-d210ef2644c8",
-          "bio": ""
+          "calendar": [
+            {
+              "day": "Po",
+              "from": "08:30",
+              "to": "10:30",
+              "break": "20",
+              "length": "120"
+            },
+            {
+              "day": "Út",
+              "from": "13:00",
+              "to": "15:00",
+              "break": "30",
+              "length": "120"
+            },
+            {
+              "day": "St",
+              "from": "11:30",
+              "to": "13:30",
+              "break": "15",
+              "length": "120"
+            },
+            {
+              "day": "Čt",
+              "from": "15:30",
+              "to": "17:30",
+              "break": "25",
+              "length": "120"
+            },
+            {
+              "day": "Pá",
+              "from": "09:00",
+              "to": "11:00",
+              "break": "10",
+              "length": "120"
+            },
+            {
+              "day": "So",
+              "from": "12:30",
+              "to": "14:30",
+              "break": "5",
+              "length": "120"
+            },
+            {
+              "day": "Ne",
+              "from": "16:00",
+              "to": "18:00",
+              "break": "15",
+              "length": "120"
+            }
+          ],
+          "uuid": "397173b1-3703-4ba1-9c08-d0fd639e1b83"
         }
       ]
     },
@@ -521,47 +461,6 @@
       "clusterName": "Tags",
       "clusterDescription": "List of tags",
       "data": [
-        {
-          "uuid": "c54ad02e-8583-4468-a542-be0b0d4596b2",
-          "name": "Literatura"
-        },
-        {
-          "uuid": "e24ec90e-73f9-4bf3-ba47-3257d8c28480",
-          "name": "České dějiny"
-        },
-        {
-          "uuid": "e5299de5-fa6d-49da-be16-e05118e342b0",
-          "name": "Milovník Jana Ámose Komenského"
-        },
-        {
-          "uuid": "dff71f0c-c23f-4ba0-a598-b2d371375b0c",
-          "name": "Mám velký doktorát, co je víc?"
-        },
-        {
-          "uuid": "84d4ff74-b560-4599-97aa-71f119ae408e",
-          "name": "Snad nedopadnu jak Sedlák"
-        },
-        {
-          "uuid": "242eeea7-865d-44ac-b30f-b55bcf6424ca",
-          "name": "Chemické pokusy"
-        },
-        { "uuid": "40cc7e61-c279-47be-b84b-941defc2756e", "name": "Geologie" },
-        {
-          "uuid": "ef8d9371-9a72-4a51-9402-3fd16ced28d9",
-          "name": "Přírodní vědy"
-        },
-        {
-          "uuid": "be8344eb-7bed-4ba0-9045-e100d8699fdb",
-          "name": "Profesionální tvůrce powerpoint prezentací"
-        },
-        {
-          "uuid": "833181f5-b657-4c17-8464-7ad1dd03cf4a",
-          "name": "Můj bílý plášť je velmi atraktivní"
-        },
-        {
-          "uuid": "a16fab57-b079-4079-89dc-7fd16b4ebfc9",
-          "name": "Mám rád vláčky :)"
-        },
         { "uuid": "e8193547-33c5-4060-9293-6717c1be3ce2", "name": "chemie" },
         {
           "uuid": "7eb8c465-45b6-4dc5-b747-263ebcc3561a",
@@ -645,8 +544,16 @@
           "name": "Šla Nanynka do zelí, natrhat si lupení, lupeníčka"
         },
         {
-          "uuid": "cac3a4d1-9213-47b5-92f3-41fb165ae7fa",
-          "name": "Možná vypadám jako někdo reálný, ale to je mýtus"
+          "uuid": "5ec1009a-d44f-44e6-b896-d0b631969a1a",
+          "name": "Jestli se tohle dostane ven"
+        },
+        {
+          "uuid": "32d2a69f-5220-4c13-90d2-735afec649b3",
+          "name": "tak asi budu mít problémek, tak just in case"
+        },
+        {
+          "uuid": "2e143fb3-c13f-4a3a-85d8-da09afd317d5",
+          "name": "vše tady je myšleno z legrace, prostě potřebujem nějaká testovací data"
         }
       ]
     }
