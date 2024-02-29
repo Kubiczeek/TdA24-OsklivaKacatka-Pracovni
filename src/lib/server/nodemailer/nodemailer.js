@@ -121,23 +121,22 @@ export function lectorConfSendClient(
         </td>
         <td style="padding:0.75pt 0.75pt 3.75pt 9.75pt;width:391px;box-sizing:border-box;word-break:break-word;white-space:normal;height:53.875px">
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:14pt;color:rgb(0,0,0)"><b>${name}</b></span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:14pt;color:rgb(0,0,0)"><b>Jakub Jakůbek</b></span>
           </p>
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">${label}</span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">správce systému</span>
           </p>
         </td>
       </tr>
       <tr>
         <td style="padding:0.75pt 0.75pt 3.75pt 9.75pt;width:391px;box-sizing:border-box;word-break:break-word;white-space:normal;height:75.9875px">
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>Tel. č.:</b>&nbsp;${tellNumm}</span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>Tel. č.:</b>&nbsp;735 726 960</span>
           </p>
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>${email}:</b>&nbsp;</span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>jakubakubek@gmail.com:</b>&nbsp;</span>
           </p>
-          <p class="-wm-elementToProof" style="line-height:normal;margin:0cm"><span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)">Cena:
-            </span><span style="font-family:Arial,Helvetica,sans-serif;font-size:16px;color:rgb(116,199,211);background-color:rgb(255,255,255)">${price_per_hour}</span></p>
+        
         </td>
       </tr>
       <tr>
@@ -279,23 +278,22 @@ export function sendConfClient(
         </td>
         <td style="padding:0.75pt 0.75pt 3.75pt 9.75pt;width:391px;box-sizing:border-box;word-break:break-word;white-space:normal;height:53.875px">
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:14pt;color:rgb(0,0,0)"><b>${name}</b></span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:14pt;color:rgb(0,0,0)"><b>Jakub Jakůbek</b></span>
           </p>
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">${label}</span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">správce systému</span>
           </p>
         </td>
       </tr>
       <tr>
         <td style="padding:0.75pt 0.75pt 3.75pt 9.75pt;width:391px;box-sizing:border-box;word-break:break-word;white-space:normal;height:75.9875px">
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>Tel. č.:</b>&nbsp;${tellNumm}</span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>Tel. č.:</b>&nbsp;735 726 960</span>
           </p>
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>${email}:</b>&nbsp;</span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>jakubakubek@gmail.com:</b>&nbsp;</span>
           </p>
-          <p class="-wm-elementToProof" style="line-height:normal;margin:0cm"><span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)">Cena:
-            </span><span style="font-family:Arial,Helvetica,sans-serif;font-size:16px;color:rgb(116,199,211);background-color:rgb(255,255,255)">${price_per_hour}</span></p>
+
         </td>
       </tr>
       <tr>
@@ -463,23 +461,22 @@ export function lectorDeniedSendClient(
         </td>
         <td style="padding:0.75pt 0.75pt 3.75pt 9.75pt;width:391px;box-sizing:border-box;word-break:break-word;white-space:normal;height:53.875px">
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:14pt;color:rgb(0,0,0)"><b>${name}</b></span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:14pt;color:rgb(0,0,0)"><b>Jakub Jakůbek</b></span>
           </p>
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">${label}</span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">správce systému</span>
           </p>
         </td>
       </tr>
       <tr>
         <td style="padding:0.75pt 0.75pt 3.75pt 9.75pt;width:391px;box-sizing:border-box;word-break:break-word;white-space:normal;height:75.9875px">
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>Tel. č.:</b>&nbsp;${tellNumm}</span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>Tel. č.:</b>&nbsp;735 726 960</span>
           </p>
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
-            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>${email}:</b>&nbsp;</span>
+            <span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)"><b>jakubakubek@gmail.com:</b>&nbsp;</span>
           </p>
-          <p class="-wm-elementToProof" style="line-height:normal;margin:0cm"><span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(116,199,211)">Cena:
-            </span><span style="font-family:Arial,Helvetica,sans-serif;font-size:16px;color:rgb(116,199,211);background-color:rgb(255,255,255)">${price_per_hour}</span></p>
+         
         </td>
       </tr>
       <tr>
