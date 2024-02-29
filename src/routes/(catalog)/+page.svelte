@@ -18,7 +18,11 @@
           >
             Seznam lektorů
           </a>
-          <a href="/" class="ff-Lalezar" style="background-color: #74C7D3;">
+          <a
+            href="/app/reservation"
+            class="ff-Lalezar"
+            style="background-color: #74C7D3;"
+          >
             Lektorský portál
           </a>
         </div>
