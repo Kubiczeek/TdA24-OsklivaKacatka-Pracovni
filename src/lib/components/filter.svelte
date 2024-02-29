@@ -1,31 +1,15 @@
 <script>
-  import { page } from "$app/stores";
+  import Tag from "$lib/components/tag.svelte";
   import { onMount } from "svelte";
-  import { replaceState } from "$app/navigation";
-  import { close, cog } from "$lib/assets/images.js";
-  import { fade, scale } from "svelte/transition";
-  import { showModal } from "$lib/stores.js";
-  import Select from "svelte-select";
+  import { page } from "$app/stores";
+  import { pushState } from "$app/navigation";
 
   export let MINIMUM = 0;
-  export let MAXIMUM = 1000;
+  export let MAXIMUM = 4900;
   export let cities;
-  export let complexItems;
+  export let length;
 
-  const query = $page.url.searchParams;
-  /*
-    query.get("color");
-    query.set("color", "blue");
-    console.log($page.url.pathname + $page.url.search);
-  */
-  let minText, maxText, minSlide, maxSlide, place, tags;
-
-  onMount(() => {
-    minText.value = query.get("min") || MINIMUM;
-    maxText.value = query.get("max") || MAXIMUM;
-    minSlide.value = query.get("min") || MINIMUM;
-    maxSlide.value = query.get("max") || MAXIMUM;
-  });
+  let minText, maxText, minSlide, maxSlide, city;
 
   function roundToLower(num, step = 10) {
     return Math.floor(num / step) * step;
@@ -35,277 +19,364 @@
     return Math.ceil(num / step) * step;
   }
 
+  export let tagsArray = [
+    "Matematika",
+    "Dobrovolnictví",
+    "Výtvarná výchova",
+    "Angličtina",
+    "Čeština",
+    "Biologie",
+    "Chemie",
+    "Ekonomie",
+    "Geografie",
+    "Dějepis",
+    "Zeměpis",
+  ];
+
   MINIMUM = roundToLower(MINIMUM, 100);
   MAXIMUM = roundToHigher(MAXIMUM, 100);
 
-  function filterSubmit() {
-    if (minSlide.value != MINIMUM) {
-      query.set("min", minSlide.value);
+  function clearUrlParams() {
+    const query = $page.url.searchParams;
+    minText.value = MINIMUM;
+    maxText.value = MAXIMUM;
+    minSlide.value = MINIMUM;
+    maxSlide.value = MAXIMUM;
+    city.value = "-1";
+    query.delete("limit");
+    query.delete("city");
+    query.delete("tags");
+    pushState(`${$page.url.pathname.toString()}`);
+  }
+
+  function updatePriceLimit() {
+    const query = $page.url.searchParams;
+
+    const text = `${minText.value == MINIMUM ? "-1" : minText.value}--${
+      maxText.value == MAXIMUM ? "-1" : maxText.value
+    }`;
+    if (text !== "-1---1") {
+      query.set("limit", text);
     } else {
-      query.delete("min");
+      query.delete("limit");
     }
-    if (maxSlide.value != MAXIMUM) {
-      query.set("max", maxSlide.value);
+    pushState(`${$page.url.pathname.toString()}?${query.toString()}`);
+  }
+
+  function updateCity() {
+    const query = $page.url.searchParams;
+    if (city.value !== "-1") {
+      query.set("city", city.value);
     } else {
-      query.delete("max");
+      query.delete("city");
     }
-    if (place) {
-      query.set("place", place.value);
+    pushState(`${$page.url.pathname.toString()}?${query.toString()}`);
+  }
+
+  function updateTags(index) {
+    const query = $page.url.searchParams;
+    let tags = query.get("tags")?.split(",") || [];
+    if (tags.includes(index.toString())) {
+      tags = tags.filter((item) => item !== index.toString());
     } else {
-      query.delete("place");
+      tags.push(index);
     }
-    if (tags) {
-      const tempTags = [...tags.map((tag) => tag.value)];
-      query.set("tags", tempTags.join(";!;"));
+    if (tags.length > 0) {
+      query.set("tags", tags.join(","));
     } else {
       query.delete("tags");
     }
-    replaceState($page.url.pathname + $page.url.search);
+    pushState(`${$page.url.pathname.toString()}?${query.toString()}`);
   }
+
+  onMount(() => {
+    let [min, max] = (
+      $page.url.searchParams.get("limit")?.split("--") || [MINIMUM, MAXIMUM]
+    ).map((x) => parseInt(x));
+    if (min === -1) min = MINIMUM;
+    if (max === -1) max = MAXIMUM;
+    minText.value = min || MINIMUM;
+    maxText.value = max || MAXIMUM;
+    minSlide.value = min || MINIMUM;
+    maxSlide.value = max || MAXIMUM;
+    city.value = $page.url.searchParams.get("city") || "-1";
+  });
 </script>
 
-<div class="overlay" transition:fade={{ duration: 250 }} />
-<div class="pos-fixed modal" transition:scale={{ duration: 250, start: 0.5 }}>
-  <div class="head">
-    <span class="color-lightblue fnt-Lalezar">Filtr vyhledávání</span>
-    <button on:click={showModal.hide}>
-      <img src={close} alt="close" />
-    </button>
+<div class="filter">
+  <div class="filter-top">
+    <span>
+      <span class="ff-Lalezar header">Filtry</span>
+      {#if length === 1}
+        <span class="showed">Zobrazeno {length} lektor</span>
+      {:else if length > 1 && length < 5}
+        <span class="showed">Zobrazeno {length} lektoři</span>
+      {:else}
+        <span class="showed">Zobrazeno {length} lektorů</span>
+      {/if}
+    </span>
+    <button class="remove-filter" on:click={() => clearUrlParams()}
+      >Zrušit aktivní filtry</button
+    >
   </div>
-  <div class="specification">
-    <div class="money">
-      <div class="left-text">
-        <span class="fnt-Lalezar color-black">finanční ohodnocení</span>
-        <div class="money-inputs-text">
-          <span>
-            <span class="fnt-OpenSans color-black">minimální cena</span>
-            <input
-              on:change={() => {
-                minSlide.value = minText.value;
-                if (parseInt(minSlide.value) > parseInt(maxSlide.value)) {
-                  maxSlide.value = minSlide.value;
-                  maxText.value = minText.value;
-                }
-              }}
-              bind:this={minText}
-              class="bg-lightblue fnt-OpenSans"
-              style="color: white;"
-              type="text"
-              min={MINIMUM}
-              max={MAXIMUM}
-              value="500"
-            />
-          </span>
-          <span>
-            <span class="fnt-OpenSans color-black">maximální cena</span>
-            <input
-              on:change={() => {
-                maxSlide.value = maxText.value;
-                if (parseInt(maxSlide.value) < parseInt(minSlide.value)) {
-                  minSlide.value = maxSlide.value;
-                  minText.value = maxText.value;
-                }
-              }}
-              bind:this={maxText}
-              class="bg-lightblue fnt-OpenSans"
-              style="color: white;"
-              type="text"
-              value="2200"
-              min={MINIMUM}
-              max={MAXIMUM}
-            />
-          </span>
-        </div>
-      </div>
-      <div class="right-slide">
-        <span class="fnt-Lalezar color-black desktopView"
-          >za hodinu v českých korunách</span
-        >
-        <div class="money-inputs-slide">
+  <div class="filter-bottom">
+    <div class="price">
+      <div class="low-price">
+        <div class="text-input">
+          <span class="ff-Lalezar">Min. cena:</span>
           <input
-            on:input={() => {
-              minText.value = minSlide.value;
+            type="text"
+            on:change={() => {
+              minSlide.value = minText.value;
               if (parseInt(minSlide.value) > parseInt(maxSlide.value)) {
                 maxSlide.value = minSlide.value;
                 maxText.value = minText.value;
               }
+              updatePriceLimit();
             }}
-            type="range"
+            bind:this={minText}
+            value={MINIMUM}
             min={MINIMUM}
             max={MAXIMUM}
-            step="10"
-            value="500"
-            bind:this={minSlide}
           />
+        </div>
+        <input
+          type="range"
+          bind:this={minSlide}
+          on:input={() => {
+            minText.value = minSlide.value;
+            if (parseInt(minSlide.value) > parseInt(maxSlide.value)) {
+              maxSlide.value = minSlide.value;
+              maxText.value = minText.value;
+            }
+          }}
+          on:change={() => updatePriceLimit()}
+          min={MINIMUM}
+          max={MAXIMUM}
+          value={MINIMUM}
+          step="10"
+        />
+      </div>
+      <div class="high-price">
+        <div class="text-input">
+          <span class="ff-Lalezar">Max. cena:</span>
           <input
-            on:input={() => {
-              maxText.value = maxSlide.value;
+            type="text"
+            on:change={() => {
+              maxSlide.value = maxText.value;
               if (parseInt(maxSlide.value) < parseInt(minSlide.value)) {
                 minSlide.value = maxSlide.value;
                 minText.value = maxText.value;
               }
+              updatePriceLimit();
             }}
-            type="range"
+            bind:this={maxText}
             min={MINIMUM}
             max={MAXIMUM}
-            step="10"
-            value="2200"
-            bind:this={maxSlide}
+            value={MAXIMUM}
           />
         </div>
-        <span class="fnt-Lalezar color-black mobileView"
-          >za hodinu v českých korunách</span
-        >
+        <input
+          type="range"
+          bind:this={maxSlide}
+          on:input={() => {
+            maxText.value = maxSlide.value;
+            if (parseInt(maxSlide.value) < parseInt(minSlide.value)) {
+              minSlide.value = maxSlide.value;
+              minText.value = maxText.value;
+            }
+          }}
+          on:change={() => updatePriceLimit()}
+          min={MINIMUM}
+          max={MAXIMUM}
+          value={MAXIMUM}
+          step="10"
+        />
       </div>
     </div>
-    <div class="grid">
-      <div class="place">
-        <span class="fnt-Lalezar color-black">lokalita výuky</span>
-        <Select
-          items={cities}
-          placeholder="Vyberte"
-          showChevron={true}
-          {place}
-          on:change={(e) => (place = e.detail)}
-        />
-      </div>
-      <div class="tags">
-        <span class="fnt-Lalezar color-black">aktivity a dosažené pozice</span>
-        <Select
-          items={complexItems}
-          placeholder="Vyberte"
-          multiple={true}
-          showChevron={true}
-          {tags}
-          on:change={(e) => (tags = e.detail)}
-        />
-      </div>
-      <div class="cog-wheel">
-        <img src={cog} alt="" />
+    <div class="place">
+      <div class="city">
+        <span class="ff-Lalezar">Město:</span>
+        <select
+          name="city"
+          on:change={() => updateCity()}
+          bind:this={city}
+          id=""
+        >
+          <option value="-1" selected>Žádné</option>
+          {#each cities as item, i}
+            <option value={i}>{item}</option>
+          {/each}
+        </select>
       </div>
     </div>
   </div>
-  <button
-    class="bg-lightblue btn-filter fnt-Lalezar"
-    on:click={() => {
-      filterSubmit();
-      showModal.hide();
-    }}>Filtrovat</button
-  >
+
+  <div class="tags">
+    <p class="ff-Lalezar">Dovednosti</p>
+    <div class="tags-container">
+      {#each tagsArray as item, i}
+        <button on:click={() => updateTags(i)} style="padding: 0; margin: 0;">
+          <Tag text={item} index={i} />
+        </button>
+      {/each}
+    </div>
+  </div>
 </div>
 
 <style>
-  button {
-    background-color: transparent;
-    border: none;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  input[type="text"] {
+    max-width: 60px;
+    text-align: center;
+  }
+
+  select {
+    appearance: none;
+    font-family: "Open Sans", sans-serif;
+    border: 2px solid #74c7d3;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 0.25rem 0.667rem;
+    width: max(70%, 200px);
+  }
+
+  select:focus,
+  select:active {
     outline: none;
-    cursor: pointer;
   }
 
-  button > img {
-    max-width: 100%;
+  .ff-Lalezar {
+    font-family: "Lalezar", sans-serif;
   }
 
-  .btn-filter {
-    width: min(100%, 270px);
-    height: 48px;
-    font-size: 1.9rem;
-    border-radius: 14px;
-    color: white;
-    padding-top: 2px;
-    cursor: pointer;
-    margin-top: 1rem;
-    align-self: center;
-  }
-
-  .right-slide,
-  .left-text {
-    height: auto;
+  .filter {
+    border-radius: 7px;
+    padding: 0.667rem 0.667rem;
+    -webkit-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
+    -moz-box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
+    box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.1rem;
   }
 
-  .grid {
-    display: grid;
-    grid-template-areas: "place cog-wheel" "tags cog-wheel";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    column-gap: 1rem;
-    row-gap: 0.5rem;
-    padding-top: 1rem;
+  .filter-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .filter-top > span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .filter-top .header {
+    font-size: 1.667rem;
+  }
+
+  .filter-top .showed {
+    font-size: 1rem;
+    color: #b8b8b8;
+  }
+
+  .filter-top button {
+    color: #b8b8b8;
+    font-size: 1rem;
+    text-decoration: underline;
+  }
+
+  .filter-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .place {
-    grid-area: place;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    align-items: flex-end;
+    width: 45%;
+    gap: 5px;
   }
 
-  .tags {
-    grid-area: tags;
+  .city {
     display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 5px;
+    width: 100%;
   }
 
-  .place > span,
-  .tags > span {
-    font-size: 0.9rem;
-    font-weight: 500;
+  .city > span {
+    font-size: 1.2rem;
   }
 
-  .cog-wheel {
-    grid-area: cog-wheel;
+  .price {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
+    gap: 10px;
+    width: max(45%, 200px);
   }
 
-  .cog-wheel > img {
-    max-width: 100%;
+  .low-price,
+  .high-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
   }
 
-  .money {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr;
-    gap: 0;
-    column-gap: 1rem;
-  }
-
-  .money-inputs-slide {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    height: 100%;
-    gap: 0.5rem;
-  }
-
-  .money-inputs-slide input[type="range"] {
+  input[type="range"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     background: transparent;
     cursor: pointer;
     height: auto;
+    width: 100%;
     padding: 0;
     margin: 0;
   }
 
-  .money-inputs-slide input[type="range"]::-webkit-slider-runnable-track {
-    background-color: rgba(51, 51, 51, 0.1);
+  input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #74c7d3;
+    height: 0.25rem;
+    border-radius: 150px;
+  }
+
+  input[type="range"]::-moz-range-track {
+    background-color: #74c7d3;
     height: 0.4rem;
     border-radius: 150px;
   }
 
-  .money-inputs-slide input[type="range"]::-moz-range-track {
-    background-color: rgba(51, 51, 51, 0.1);
-    height: 0.4rem;
-    border-radius: 150px;
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    border: 3px solid #74c7d3;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-top: -6px;
+    height: 1rem;
+    width: 1rem;
   }
 
-  .money-inputs-slide input[type="range"]::-webkit-slider-thumb {
+  input[type="range"]::-moz-range-thumb {
     -webkit-appearance: none;
     appearance: none;
     -moz-appearance: none;
@@ -317,152 +388,64 @@
     width: 20px;
   }
 
-  .money-inputs-slide input[type="range"]::-moz-range-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    -moz-appearance: none;
-    border: none;
-    border-radius: 50%;
-    background-color: #74c7d3;
-    margin-top: -7px;
-    height: 20px;
-    width: 20px;
-  }
-
-  .money-inputs-text {
-    display: grid;
-    font-size: 0.9rem;
-    font-weight: 500;
-    grid-template-rows: 1fr 1fr;
-    height: 100%;
-    gap: 0.5rem;
-    justify-items: end;
-  }
-
-  .money-inputs-text input[type="text"] {
-    border: none;
-    outline: none;
-    border-radius: 7px;
-    font-weight: 700;
-    width: 4rem;
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .overlay {
-    position: absolute;
-    background-color: rgba(116, 198, 211, 0.2);
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 50;
-  }
-
-  .modal {
-    background-color: white;
-    z-index: 999;
-    border-radius: 14px;
-    width: min(90%, 650px);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 1rem 1.466rem;
+  .text-input {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .head > span {
-    font-size: 2rem;
-    line-height: 1;
-  }
-
-  .head > button {
+    align-items: flex-end;
     align-self: flex-start;
+    padding-left: 3px;
+    gap: 5px;
   }
 
-  .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .text-input span {
+    font-size: 1.2rem;
+    min-width: fit-content;
   }
 
-  .bg-lightblue {
-    background-color: #74c7d3;
-  }
-
-  .color-lightblue {
-    color: rgb(116, 199, 211);
-  }
-
-  .color-black {
-    color: #333333;
-  }
-
-  .pos-fixed {
-    position: fixed;
-  }
-
-  .fnt-Lalezar {
-    font-family: "Lalezar", sans-serif;
-  }
-
-  .fnt-OpenSans {
+  .text-input input {
+    width: min-content;
+    font-size: 1rem;
+    border: 2px solid #74c7d3;
+    border-radius: 4px;
     font-family: "Open Sans", sans-serif;
+    padding: 0.25rem 0.667rem;
   }
 
-  .mobileView {
-    display: none;
+  .tags {
+    margin-top: 1rem;
   }
 
-  @media (max-width: 500px) {
-    .grid {
-      grid-template-areas: "place" "tags";
-      grid-template-columns: 1fr;
-    }
-    .cog-wheel {
-      display: none;
-    }
+  .tags > p {
+    font-size: 1.2rem;
   }
 
-  @media (max-width: 435px) {
-    .money {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: 1rem;
-    }
+  .tags-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
 
-    .money-inputs-text {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-    }
-
-    .money-inputs-slide {
-      gap: 2rem;
-    }
-
-    .right-slide {
-      gap: 1rem;
-    }
-
-    .place > span,
-    .tags > span {
-      font-size: 1rem;
-    }
-
-    .specification {
-      display: flex;
+  @media screen and (max-width: 760px) {
+    .filter-bottom {
       flex-direction: column;
+      gap: 15px;
+    }
+
+    .price {
+      width: 100%;
+    }
+
+    .place {
+      width: 100%;
+    }
+
+    .city {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .filter {
       gap: 1rem;
-    }
-
-    .desktopView {
-      display: none;
-    }
-
-    .mobileView {
-      display: contents;
     }
   }
 </style>

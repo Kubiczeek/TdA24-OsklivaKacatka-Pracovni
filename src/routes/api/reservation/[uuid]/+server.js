@@ -5,8 +5,8 @@ import {
   findTagsName,
   lecturerSchema,
   removeUnusedTags,
+  resSchema,
 } from "$lib/server/db/db.js";
-import sanitizeHtml from "sanitize-html";
 
 /**
  * Retrieves data from a database based on the provided UUID.
@@ -19,15 +19,11 @@ export const GET = async ({ params }) => {
   reinitializeDB();
 
   // Get the cluster named "Lecturers" from the database
-  const cluster = Database.getClusterByName("Lecturers");
+  const cluster = Database.getClusterByName("Reservations");
 
   // Iterate through each object in the cluster data
   for (const obj of cluster.data) {
     const { uuid } = obj;
-
-    obj.tags = obj.tags.map((tag) => {
-      return { name: findTagsName(tag), uuid: tag };
-    });
 
     // Check if the `uuid` of the current object matches the provided UUID
     if (uuid === params.uuid) {
@@ -70,17 +66,6 @@ export const PUT = async ({ params, request }) => {
 
     let copyTags = [];
 
-    if (obj.tags) {
-      // Replace tags with corresponding UUIDs
-      for (const tag of obj.tags) {
-        tag.uuid = findTagsUuid(tag.name);
-      }
-
-      copyTags = obj.tags;
-
-      obj.tags = obj.tags.map((tag) => tag.uuid);
-    }
-
     // If the UUID property is present in the object, rename it to `uuid`
     if (obj.UUID) {
       obj.uuid = obj.UUID;
@@ -91,19 +76,13 @@ export const PUT = async ({ params, request }) => {
     obj.uuid = params.uuid;
 
     // Validate the object against the `lecturerSchema`
-    const { error } = lecturerSchema.validate(obj);
+    const { error } = resSchema.validate(obj);
 
     // Retrieve the cluster named "Lecturers" from the database
-    const cluster = Database.getClusterByName("Lecturers");
+    const cluster = Database.getClusterByName("Reservations");
 
     // Search for the user with the matching UUID in the cluster
     const user = cluster.data.find((item) => item.uuid === params.uuid);
-
-    if (obj.active) {
-      user.active = true;
-    } else {
-      user.active = false;
-    }
 
     // If obj is missing some properties, add the missing properties from the user object
     for (const key in user) {
@@ -112,20 +91,6 @@ export const PUT = async ({ params, request }) => {
       }
     }
 
-    if (copyTags.length === 0) {
-      copyTags = obj.tags.map((tag) => {
-        return { name: findTagsName(tag), uuid: tag };
-      });
-    }
-
-    obj.bio = sanitizeHtml(obj.bio, {
-      allowedTags: ["b", "i", "em", "strong", "a"],
-      allowedAttributes: {
-        a: ["href"],
-      },
-      allowedIframeHostnames: ["www.youtube.com"],
-    });
-
     if (user) {
       // Update the user's data with the new object
       Object.assign(user, obj);
@@ -133,8 +98,6 @@ export const PUT = async ({ params, request }) => {
       // Update the cluster in the database
       Database.updateClusterByName(cluster.clusterName, cluster);
 
-      user.tags = copyTags;
-      removeUnusedTags();
       // Return a 200 response with the updated object
       return new Response(JSON.stringify(user), {
         headers: {
@@ -176,7 +139,7 @@ export const PUT = async ({ params, request }) => {
  */
 export const DELETE = async ({ params }) => {
   reinitializeDB();
-  let cluster = Database.getClusterByName("Lecturers");
+  let cluster = Database.getClusterByName("Reservations");
 
   const userIndex = cluster.data.findIndex((user) => user.uuid === params.uuid);
 
