@@ -99,6 +99,12 @@ export const PUT = async ({ params, request }) => {
     // Search for the user with the matching UUID in the cluster
     const user = cluster.data.find((item) => item.uuid === params.uuid);
 
+    if (obj.active) {
+      user.active = true;
+    } else {
+      user.active = false;
+    }
+
     // If obj is missing some properties, add the missing properties from the user object
     for (const key in user) {
       if (!obj[key]) {

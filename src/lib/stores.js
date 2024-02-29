@@ -43,7 +43,18 @@ function createModalData() {
   };
 }
 
+function createModalData2() {
+  const { subscribe, set, update } = writable({});
+
+  return {
+    subscribe,
+    set: (data) => set(data),
+    update: (data) => update(data),
+  };
+}
+
 export const showModal = createShowModal();
 export const showModalAccept = createShowModalAccept();
 export const showModalDecline = createShowModalDecline();
 export const modalData = createModalData();
+export const modalData2 = createModalData2();

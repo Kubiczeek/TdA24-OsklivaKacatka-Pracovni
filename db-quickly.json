@@ -205,6 +205,51 @@
           "uuid": "1bab0b1a-0c0e-44f1-a7b1-f44db0179118",
           "status": "accepted",
           "place": "Havířov"
+        },
+        {
+          "clientName": "h",
+          "clientSurname": "her",
+          "clientEmail": "jakubakubek@gmail.com",
+          "telNumber": "+420 730 815 832",
+          "clientAge": "99",
+          "theme": "qwefqwef",
+          "date": "2024-03-03",
+          "timeStart": "16:00",
+          "timeEnd": "16:40",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "clientNote": "Nic",
+          "uuid": "5e3c90da-45df-4d58-bca3-eb18062fe723",
+          "status": "verifyingClient"
+        },
+        {
+          "clientName": "h",
+          "clientSurname": "d",
+          "clientEmail": "jakubakubek@gmail.com",
+          "telNumber": "+420 730 815 832",
+          "clientAge": "44",
+          "theme": "ertg",
+          "date": "2024-03-03",
+          "timeStart": "16:00",
+          "timeEnd": "16:40",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "clientNote": "Nic",
+          "uuid": "c417362c-104c-4070-99f1-a12b730432cd",
+          "status": "verifyingClient"
+        },
+        {
+          "clientName": "qwe",
+          "clientSurname": "qwer",
+          "clientEmail": "jakubakubek@gmail.com",
+          "telNumber": "+420 730 815 832",
+          "clientAge": "5",
+          "theme": "gwerweg",
+          "date": "02.03.2024",
+          "timeStart": "12:30",
+          "timeEnd": "14:30",
+          "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
+          "clientNote": "Nic",
+          "uuid": "2f390d73-6447-4ae2-ad80-9a93ad650d66",
+          "status": "verifyingClient"
         }
       ]
     },
@@ -295,7 +340,7 @@
           "online": true
         },
         {
-          "active": true,
+          "active": false,
           "username": "Vladimir",
           "password": "$argon2id$v=19$m=65536,t=3,p=4$ntmrP6CB8Bot8lHPBwP74Q$NpktPTIYk9O/ylaOHCk3niJwLJcFjnX2zvjmhFzsLGs",
           "title_before": "Prof.",
@@ -370,8 +415,8 @@
               "day": "Ne",
               "from": "16:00",
               "to": "18:00",
-              "break": "15",
-              "length": "120"
+              "break": "20",
+              "length": "40"
             }
           ],
           "uuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4"
@@ -463,10 +508,6 @@
       "clusterName": "Tags",
       "clusterDescription": "List of tags",
       "data": [
-        {
-          "uuid": "ef8d9371-9a72-4a51-9402-3fd16ced28d9",
-          "name": "Přírodní vědy"
-        },
         { "uuid": "e8193547-33c5-4060-9293-6717c1be3ce2", "name": "chemie" },
         {
           "uuid": "7eb8c465-45b6-4dc5-b747-263ebcc3561a",
@@ -544,10 +585,6 @@
         {
           "uuid": "58cc1277-e6f7-402e-bf44-cc73d6bb80d4",
           "name": "Šla Nanynka do zelí, natrhat si lupení, lupeníčka"
-        },
-        {
-          "uuid": "e3686468-f44a-4454-855a-0ae990ecbc86",
-          "name": "a16fab57-b079-4079-89dc-7fd16b4ebfc9"
         },
         {
           "uuid": "5ec1009a-d44f-44e6-b896-d0b631969a1a",
