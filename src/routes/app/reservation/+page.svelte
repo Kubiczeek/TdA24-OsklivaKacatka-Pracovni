@@ -1,6 +1,8 @@
 <script>
   import { logo_black, hamburger, cross } from "$lib/assets/images.js";
   import toast, { Toaster } from "svelte-french-toast";
+  import { showModalAccept } from "$lib/stores.js";
+  import ModalConfirm from "$lib/components/modal-confirm.svelte";
   import Reservation from "$lib/components/reservation.svelte";
 
   let open = false;
@@ -11,6 +13,9 @@
 </svelte:head>
 
 <Toaster />
+{#if $showModalAccept}
+  <ModalConfirm />
+{/if}
 <nav>
   <img src={logo_black} alt="" />
   <button on:click={() => (open = true)}>
@@ -33,10 +38,8 @@
         <img src={logo_black} alt="" />
       </a>
       <div class="links">
-        <a class="ff-Lalezar" href="/app/reservation">Rezervace</a>
-        <a class="ff-Lalezar active" href="/app/settings"
-          >Nastavení&nbsp;rezervací</a
-        >
+        <a class="ff-Lalezar active" href="/app/reservation">Rezervace</a>
+        <a class="ff-Lalezar" href="/app/settings">Nastavení&nbsp;rezervací</a>
         <a class="ff-Lalezar" href="/app/info">Osobní&nbsp;informace</a>
       </div>
     </div>
@@ -60,6 +63,10 @@
       </select>
     </div>
     <div class="reservations">
+      <Reservation />
+      <Reservation />
+      <Reservation />
+      <Reservation />
       <Reservation />
       <Reservation />
     </div>

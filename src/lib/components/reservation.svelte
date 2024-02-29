@@ -1,5 +1,6 @@
 <script>
   import { chevron } from "$lib/assets/images.js";
+  import { showModalAccept } from "$lib/stores.js";
 
   let more = false;
 </script>
@@ -16,7 +17,9 @@
       <span>7:30 - 8:30</span>
     </div>
     <p class="sub">
-      Místo: <span class="red-text">Určit místo (klikni)</span>
+      Místo: <button on:click={showModalAccept.show} class="red-text"
+        >Určit místo (klikni)</button
+      >
     </p>
     <p class="sub">Téma: Doučování matematiky</p>
     <p class="sub">Věk: 16</p>
@@ -36,13 +39,21 @@
       </p>
     </div>
     <div class="buttons">
-      <button class="accept">Potvrdit schůzku</button>
+      <button class="accept" on:click={showModalAccept.show}
+        >Potvrdit schůzku</button
+      >
       <button class="cancel">Zrušit schůzku</button>
     </div>
   </div>
 </div>
 
 <style>
+  button {
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
   .ff-Lalezar {
     font-family: "Lalezar", sans-serif;
     font-size: 1.25rem;
@@ -176,6 +187,6 @@
   }
 
   .container.more {
-    max-height: 100%;
+    max-height: 1000px;
   }
 </style>

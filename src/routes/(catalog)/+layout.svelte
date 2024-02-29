@@ -29,7 +29,7 @@
       </button>
       <a href="/">Domů</a>
       <a href="/lecturers">Seznam lektorů</a>
-      <a href="/app/reservation">Lektorský portál</a>
+      <a href="/login">Lektorský portál</a>
       <a href="/about">O nás</a>
       <a href="/contact">Kontakt</a>
     </div>
@@ -43,7 +43,7 @@
       <ul>
         <li>Navigace pro zbloudilé pocestné</li>
         <li><a href="/">Domů</a></li>
-        <li><a href="/">Lektorský portál</a></li>
+        <li><a href="/login">Lektorský portál</a></li>
         <li><a href="/lecturers">Seznam lektorů</a></li>
         <li><a href="/about">O nás</a></li>
         <li><a href="/contact">Kontakt</a></li>

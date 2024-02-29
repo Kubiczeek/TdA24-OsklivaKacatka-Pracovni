@@ -20,6 +20,10 @@ export const handle = async ({ event, resolve }) => {
     if (!event.locals.user) {
       throw redirect(303, "/login");
     }
+  } else if (event.url.pathname.startsWith("/login")) {
+    if (bisc !== undefined && event.locals.user) {
+      throw redirect(303, "/app/reservation");
+    }
   }
 
   const response = await resolve(event); // Stage 2

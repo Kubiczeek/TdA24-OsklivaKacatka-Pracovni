@@ -19,7 +19,7 @@
             Seznam lektorů
           </a>
           <a
-            href="/app/reservation"
+            href="/login"
             class="ff-Lalezar"
             style="background-color: #74C7D3;"
           >
