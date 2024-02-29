@@ -20,6 +20,7 @@
           </a>
           <a
             href="/login"
+            target="_self"
             class="ff-Lalezar"
             style="background-color: #74C7D3;"
           >

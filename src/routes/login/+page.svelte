@@ -11,6 +11,7 @@
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
       },
       body: JSON.stringify({ username, password }),
     });

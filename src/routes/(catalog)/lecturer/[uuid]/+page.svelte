@@ -86,7 +86,13 @@
       </div>
     </div>
   </div>
-  <button class="reserve" on:click={showModal.show}>Rezervovat termín</button>
+  {#if data.active}
+    <button class="reserve" on:click={showModal.show}>Rezervovat termín</button>
+  {:else}
+    <button class="reserve" style="background-color: #FFE8A1" disabled
+      >Nelze rezervovat termín</button
+    >
+  {/if}
 </div>
 
 <style>

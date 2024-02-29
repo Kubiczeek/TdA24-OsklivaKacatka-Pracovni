@@ -295,6 +295,7 @@
           "online": true
         },
         {
+          "active": true,
           "username": "Vladimir",
           "password": "$argon2id$v=19$m=65536,t=3,p=4$ntmrP6CB8Bot8lHPBwP74Q$NpktPTIYk9O/ylaOHCk3niJwLJcFjnX2zvjmhFzsLGs",
           "title_before": "Prof.",

@@ -64,9 +64,10 @@
       <input
         type="checkbox"
         id="allowReservations"
-        checked={data.data.online}
+        checked={data.data.active}
       />
     </div>
+    <button class="export">Export to .ical</button>
     <!-- <div class="sort">
       <label for="select">Seřadit podle:</label>
       <select name="select" id="" class="sort">
@@ -199,6 +200,16 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
+  }
+
+  .export {
+    background-color: #74c7d3;
+    color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    width: fit-content;
   }
 
   @media (max-width: 1000px) {
