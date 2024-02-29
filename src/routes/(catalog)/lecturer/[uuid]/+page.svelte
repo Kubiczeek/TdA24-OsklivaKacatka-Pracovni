@@ -2,7 +2,7 @@
   import { place, phone, money, email } from "$lib/assets/images.js";
   import { showModal } from "$lib/stores.js";
   import { Toaster } from "svelte-french-toast";
-  import Tag from "$lib/components/Tag.svelte";
+  import Tag from "$lib/components/tag.svelte";
   import Modal from "$lib/components/modal.svelte";
 
   export let data;
