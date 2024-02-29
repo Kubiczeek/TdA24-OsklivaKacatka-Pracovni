@@ -8,9 +8,7 @@
 
   export let data;
 
-  console.log(data.reservation);
-
-  const reservation = data.reservation.filter((item) => {
+  const reservation = data.reservation?.filter((item) => {
     return item.lectorUuid == data.data.uuid;
   });
 
