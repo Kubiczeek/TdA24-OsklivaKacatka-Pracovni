@@ -1,8 +1,30 @@
 <script>
-  import { showModalDecline } from "$lib/stores.js";
-  import { onMount } from "svelte";
+  import { showModalDecline, modalData } from "$lib/stores.js";
+  import toast from "svelte-french-toast";
   import { blur } from "svelte/transition";
-  import { goto } from "$app/navigation";
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const data = {
+      place: "Nic",
+      message: "xd",
+      decision: false,
+    };
+    fetch(`/api/reservation/accept/${$modalData.uuid}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      toast.success("Schůzka byla zrušena!", {
+        style: "font-family: 'Open Sans', sans-serif;",
+        position: "bottom-right",
+      });
+      showModalDecline.hide();
+    });
+  }
 </script>
 
 <div class="overlay" transition:blur={{ duration: 300 }}>
@@ -46,10 +68,10 @@
       </p>
     </div>
     <div class="buttons">
-      <button class="submit" type="submit">Zrušit&nbsp;schůzku</button>
-      <button type="button" class="cancel" on:click={showModalDecline.hide}
-        >Ponechat&nbsp;schůzku</button
+      <button class="submit" type="submit" on:click={handleSubmit}
+        >Zrušit&nbsp;schůzku</button
       >
+      <button type="button" class="cancel">Ponechat&nbsp;schůzku</button>
     </div>
   </form>
 </div>

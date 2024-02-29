@@ -1,10 +1,35 @@
 <script>
   import { showModalAccept, modalData } from "$lib/stores.js";
   import { blur } from "svelte/transition";
+  import toast from "svelte-french-toast";
+  let place, message;
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const data = {
+      place: place.value,
+      message: message.value,
+      decision: true,
+    };
+    fetch(`/api/reservation/accept/${$modalData.uuid}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      toast.success("Místo přidáno a schůzka úspěšně potvrzena", {
+        style: "font-family: 'Open Sans', sans-serif;",
+        position: "bottom-right",
+      });
+      showModalAccept.hide();
+    });
+  }
 </script>
 
 <div class="overlay" transition:blur={{ duration: 300 }}>
-  <form class="modal">
+  <form class="modal" method="post" action="/api/reservation/accept/">
     <p class="ff-Lalezar">Potvrzení schůzky</p>
     <div class="time-date">
       <span>{$modalData.date}</span>
@@ -48,6 +73,7 @@
       <input
         type="text"
         name="place"
+        bind:this={place}
         placeholder="Doplňte místo konání..."
         id=""
       />
@@ -55,12 +81,13 @@
     <div class="special">
       <span>Zpráva:</span><input
         type="text"
+        bind:this={message}
         placeholder="Vaše zpráva..."
-        name="clientNote"
+        name="message"
       />
     </div>
     <div class="buttons">
-      <button class="submit" type="submit"
+      <button class="submit" type="submit" on:click={handleSubmit}
         >Přidat&nbsp;místo a potvrdit&nbsp;schůzku</button
       >
       <button type="button" class="cancel" on:click={showModalAccept.hide}

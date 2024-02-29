@@ -18,7 +18,11 @@
     return dateA - dateB;
   });
 
-  const reservation = sortedReservations?.filter((item) => {
+  const removeDenied = sortedReservations?.filter((item) => {
+    return item.status != "denied";
+  });
+
+  const reservation = removeDenied?.filter((item) => {
     return item.lectorUuid == data.data.uuid;
   });
 

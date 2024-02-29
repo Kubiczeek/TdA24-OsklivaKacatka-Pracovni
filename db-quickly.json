@@ -82,7 +82,8 @@
           "clientAge": "17",
           "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
           "uuid": "324480e1-a0d5-4852-864e-58d38a752a5a",
-          "status": "verifyingClient"
+          "status": "accepted",
+          "place": "we"
         },
         {
           "timeStart": "10:10",
@@ -249,7 +250,8 @@
           "lectorUuid": "7e596def-e4c1-4beb-83cc-3bec8008e7c4",
           "clientNote": "Nic",
           "uuid": "2f390d73-6447-4ae2-ad80-9a93ad650d66",
-          "status": "verifyingClient"
+          "status": "denied",
+          "place": "cuki"
         }
       ]
     },
