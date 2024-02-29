@@ -1,8 +1,13 @@
 <script>
-  let more = true;
+  import { chevron } from "$lib/assets/images.js";
+
+  let more = false;
 </script>
 
 <div class="container" class:more>
+  <button class="showMore" class:more on:click={() => (more = !more)}
+    ><img class="chevron" src={chevron} alt="" /></button
+  >
   <div class="always">
     <p class="ff-Lalezar">Adam Mikulič</p>
     <div class="time-date">
@@ -43,6 +48,25 @@
     font-size: 1.25rem;
   }
 
+  .showMore {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    transition: transform 0.3s;
+  }
+
+  .showMore.more {
+    transform: rotate(180deg);
+  }
+
+  .chevron {
+    width: 1.3rem;
+  }
+
   .red-text {
     color: #ff4040;
   }
@@ -61,10 +85,6 @@
     box-shadow: 0px 2px 15px 0px rgba(51, 51, 51, 0.06);
     border-radius: 8px;
     transition: all 0.3s;
-  }
-
-  .container:hover {
-    max-height: 550px;
   }
 
   .always {
@@ -153,5 +173,9 @@
   .cancel {
     background-color: #e46464;
     color: white;
+  }
+
+  .container.more {
+    max-height: 100%;
   }
 </style>
