@@ -5,6 +5,7 @@ import {
   findTagsName,
   lecturerSchema,
 } from "$lib/server/db/db.js";
+import { hashPassword } from "$lib/server/hash/hash.js";
 import { v4 as uuidv4 } from "uuid";
 import sanitizeHtml from "sanitize-html";
 
@@ -67,6 +68,7 @@ export const POST = async ({ request }) => {
       tag.uuid = findTagsUuid(tag.name);
     }
 
+    obj.password = await hashPassword(obj.password);
     // Retrieve the "Lecturers" cluster from the database
     let saved = Database.getClusterByName("Lecturers");
 

@@ -30,6 +30,9 @@ export function lectorConfSendClient(
       margin-top: 0;
       margin-bottom: 0
     }
+    body {
+      background-color: white;
+  }
   </style>
   <table style="margin-right:auto;margin-left:auto;box-sizing:border-box;border-collapse:collapse;border-spacing:0px">
     <tbody>
@@ -76,7 +79,7 @@ export function lectorConfSendClient(
             <span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><br>
             </span>
           </p>
-          <p class="-wm-elementToProof" style="text-align:center;margin:0cm 0cm 8pt"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><img style="max-width:1995px;margin-top:0px;margin-bottom:0px" id="-wm-image_1" data-szn-src="cid:0c286131-2a87-4420-8c2c-483c473d14d3"  data-szn-src="cid:62a52746-0f4e-461f-9aad-1db8287de3a7" src="https://media.discordapp.net/attachments/1165409843285340163/1212518760242479135/1.jpg?ex=65f22117&is=65dfac17&hm=5cc7cd9a27ab98110d8447fed2261bcc958141ece510744d8200dceaf5624ec5&=&format=webp"></span></p>
+          <p class="-wm-elementToProof" style="text-align:center;margin:0cm 0cm 8pt"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><img style="max-width:1995px;margin-top:0px;margin-bottom:0px" id="-wm-image_1" data-szn-src="cid:0c286131-2a87-4420-8c2c-483c473d14d3"  data-szn-src="cid:62a52746-0f4e-461f-9aad-1db8287de3a7" src="https://raw.githubusercontent.com/AM1k21/RL-Ch-Co/main/images/1.png"></span></p>
           <p class="-wm-elementToProof" style="margin:0cm 0cm 8pt;font-family:'Times New Roman',serif;font-size:12pt">
             <span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><br>
             </span>
@@ -101,7 +104,7 @@ export function lectorConfSendClient(
     <span style="font-size:9pt;color:rgb(116,199,211);line-height:107%"><br>
     </span>
   </div>
-  <div class="-wm-elementToProof" style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1.33333px;color:rgb(0,0,0);line-height:107%"><img id="-wm-image_2" width="666" height="72" src="https://media.discordapp.net/attachments/1165409843285340163/1212518759449886750/2.jpg?ex=65f22117&is=65dfac17&hm=1b12eaee69a131fe98286872f05974fd001f951c2dda55db171b363446677e4d&=&format=webp&width=1200&height=130"></span></div>
+  <div class="-wm-elementToProof" style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1.33333px;color:rgb(0,0,0);line-height:107%"><img id="-wm-image_2" width="666" height="72" src="https://raw.githubusercontent.com/AM1k21/RL-Ch-Co/main/images/2.png"></span></div>
   <div class="-wm-elementToProof" style="text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
     <span style="font-size:9pt;color:rgb(116,199,211);line-height:107%"><br>
     </span>
@@ -117,7 +120,7 @@ export function lectorConfSendClient(
     <tbody>
       <tr>
         <td rowspan="3" style="padding:0.75pt 9.75pt 0.75pt 0.75pt;vertical-align:top;width:151px;height:181px;box-sizing:border-box;word-break:break-word;white-space:normal">
-          <p class="-wm-elementToProof" style="line-height:normal;margin:0cm"><span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(36,36,36)"><img id="-wm-image_0" width="137" height="91" style="width:137px;height:91px;margin-top:0px;margin-bottom:0px" data-szn-src="cid:430ae533-ba75-4bda-921c-a50b9ce37e99" src="https://media.discordapp.net/attachments/1165409843285340163/1212518759944945694/3.jpg?ex=65f22117&is=65dfac17&hm=a26de17155ef5b423b82fa860d803a4ee99bb79b903f0f6cdd4cef25e6701d10&=&format=webp"></span></p>
+          <p class="-wm-elementToProof" style="line-height:normal;margin:0cm"><span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(36,36,36)"><img id="-wm-image_0" width="137" height="91" style="width:137px;height:91px;margin-top:0px;margin-bottom:0px" data-szn-src="cid:430ae533-ba75-4bda-921c-a50b9ce37e99" src="https://raw.githubusercontent.com/AM1k21/RL-Ch-Co/main/images/3.png"></span></p>
         </td>
         <td style="padding:0.75pt 0.75pt 3.75pt 9.75pt;width:391px;box-sizing:border-box;word-break:break-word;white-space:normal;height:53.875px">
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
@@ -187,6 +190,9 @@ export function sendConfClient(
       margin-top: 0;
       margin-bottom: 0
     }
+    body {
+      background-color: white;
+  }
   </style>
   <table style="margin-right:auto;margin-left:auto;box-sizing:border-box;border-collapse:collapse;border-spacing:0px">
     <tbody>
@@ -233,7 +239,7 @@ export function sendConfClient(
             <span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><br>
             </span>
           </p>
-          <p class="-wm-elementToProof" style="text-align:center;margin:0cm 0cm 8pt"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><img style="max-width:1995px;margin-top:0px;margin-bottom:0px" id="-wm-image_1" data-szn-src="cid:0c286131-2a87-4420-8c2c-483c473d14d3"  data-szn-src="cid:62a52746-0f4e-461f-9aad-1db8287de3a7" src="https://media.discordapp.net/attachments/1165409843285340163/1212518760242479135/1.jpg?ex=65f22117&is=65dfac17&hm=5cc7cd9a27ab98110d8447fed2261bcc958141ece510744d8200dceaf5624ec5&=&format=webp"></span></p>
+          <p class="-wm-elementToProof" style="text-align:center;margin:0cm 0cm 8pt"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><img style="max-width:1995px;margin-top:0px;margin-bottom:0px" id="-wm-image_1" data-szn-src="cid:0c286131-2a87-4420-8c2c-483c473d14d3"  data-szn-src="cid:62a52746-0f4e-461f-9aad-1db8287de3a7" src="https://raw.githubusercontent.com/AM1k21/RL-Ch-Co/main/images/1.png"></span></p>
           <p class="-wm-elementToProof" style="margin:0cm 0cm 8pt;font-family:'Times New Roman',serif;font-size:12pt">
             <span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><br>
             </span>
@@ -258,7 +264,7 @@ export function sendConfClient(
     <span style="font-size:9pt;color:rgb(116,199,211);line-height:107%"><br>
     </span>
   </div>
-  <div class="-wm-elementToProof" style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1.33333px;color:rgb(0,0,0);line-height:107%"><img id="-wm-image_2" width="666" height="72" src="https://media.discordapp.net/attachments/1165409843285340163/1212518759449886750/2.jpg?ex=65f22117&is=65dfac17&hm=1b12eaee69a131fe98286872f05974fd001f951c2dda55db171b363446677e4d&=&format=webp&width=1200&height=130"></span></div>
+  <div class="-wm-elementToProof" style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1.33333px;color:rgb(0,0,0);line-height:107%"><img id="-wm-image_2" width="666" height="72" src="https://raw.githubusercontent.com/AM1k21/RL-Ch-Co/main/images/2.png"></span></div>
   <div class="-wm-elementToProof" style="text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
     <span style="font-size:9pt;color:rgb(116,199,211);line-height:107%"><br>
     </span>
@@ -370,6 +376,9 @@ export function lectorDeniedSendClient(
       margin-top: 0;
       margin-bottom: 0
     }
+    body {
+      background-color: white;
+  }
   </style>
   <table style="margin-right:auto;margin-left:auto;box-sizing:border-box;border-collapse:collapse;border-spacing:0px">
     <tbody>
@@ -416,7 +425,7 @@ export function lectorDeniedSendClient(
             <span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><br>
             </span>
           </p>
-          <p class="-wm-elementToProof" style="text-align:center;margin:0cm 0cm 8pt"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><img style="max-width:1995px;margin-top:0px;margin-bottom:0px" id="-wm-image_1" data-szn-src="cid:0c286131-2a87-4420-8c2c-483c473d14d3"  data-szn-src="cid:62a52746-0f4e-461f-9aad-1db8287de3a7" src="https://media.discordapp.net/attachments/1165409843285340163/1212518760242479135/1.jpg?ex=65f22117&is=65dfac17&hm=5cc7cd9a27ab98110d8447fed2261bcc958141ece510744d8200dceaf5624ec5&=&format=webp"></span></p>
+          <p class="-wm-elementToProof" style="text-align:center;margin:0cm 0cm 8pt"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><img style="max-width:1995px;margin-top:0px;margin-bottom:0px" id="-wm-image_1" data-szn-src="cid:0c286131-2a87-4420-8c2c-483c473d14d3"  data-szn-src="cid:62a52746-0f4e-461f-9aad-1db8287de3a7" src="https://raw.githubusercontent.com/AM1k21/RL-Ch-Co/main/images/3.png"></span></p>
           <p class="-wm-elementToProof" style="margin:0cm 0cm 8pt;font-family:'Times New Roman',serif;font-size:12pt">
             <span style="font-family:Arial,Helvetica,sans-serif;font-size:1pt;color:rgb(0,0,0);line-height:107%"><br>
             </span>
@@ -441,7 +450,7 @@ export function lectorDeniedSendClient(
     <span style="font-size:9pt;color:rgb(116,199,211);line-height:107%"><br>
     </span>
   </div>
-  <div class="-wm-elementToProof" style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1.33333px;color:rgb(0,0,0);line-height:107%"><img id="-wm-image_2" width="666" height="72" src="https://media.discordapp.net/attachments/1165409843285340163/1212518759449886750/2.jpg?ex=65f22117&is=65dfac17&hm=1b12eaee69a131fe98286872f05974fd001f951c2dda55db171b363446677e4d&=&format=webp&width=1200&height=130"></span></div>
+  <div class="-wm-elementToProof" style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif;font-size:1.33333px;color:rgb(0,0,0);line-height:107%"><img id="-wm-image_2" width="666" height="72" src="https://raw.githubusercontent.com/AM1k21/RL-Ch-Co/main/images/2.png"></span></div>
   <div class="-wm-elementToProof" style="text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,0,0)">
     <span style="font-size:9pt;color:rgb(116,199,211);line-height:107%"><br>
     </span>
@@ -457,7 +466,7 @@ export function lectorDeniedSendClient(
     <tbody>
       <tr>
         <td rowspan="3" style="padding:0.75pt 9.75pt 0.75pt 0.75pt;vertical-align:top;width:151px;height:181px;box-sizing:border-box;word-break:break-word;white-space:normal">
-          <p class="-wm-elementToProof" style="line-height:normal;margin:0cm"><span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(36,36,36)"><img id="-wm-image_0" width="137" height="91" style="width:137px;height:91px;margin-top:0px;margin-bottom:0px" data-szn-src="cid:430ae533-ba75-4bda-921c-a50b9ce37e99" src="https://media.discordapp.net/attachments/1165409843285340163/1212518759944945694/3.jpg?ex=65f22117&is=65dfac17&hm=a26de17155ef5b423b82fa860d803a4ee99bb79b903f0f6cdd4cef25e6701d10&=&format=webp"></span></p>
+          <p class="-wm-elementToProof" style="line-height:normal;margin:0cm"><span style="font-family:Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(36,36,36)"><img id="-wm-image_0" width="137" height="91" style="width:137px;height:91px;margin-top:0px;margin-bottom:0px" data-szn-src="cid:430ae533-ba75-4bda-921c-a50b9ce37e99" src="https://raw.githubusercontent.com/AM1k21/RL-Ch-Co/main/images/3.png"></span></p>
         </td>
         <td style="padding:0.75pt 0.75pt 3.75pt 9.75pt;width:391px;box-sizing:border-box;word-break:break-word;white-space:normal;height:53.875px">
           <p class="-wm-elementToProof" style="line-height:normal;margin:0cm;font-family:Calibri,sans-serif">
