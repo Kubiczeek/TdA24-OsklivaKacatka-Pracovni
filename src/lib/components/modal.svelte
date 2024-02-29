@@ -1,21 +1,18 @@
 <script>
   import { showModal } from "$lib/stores.js";
   import { onMount } from "svelte";
-  import toast from "svelte-french-toast";
   import { blur } from "svelte/transition";
+  import { goto } from "$app/navigation";
   let selected = -1;
   let date = "";
   let timeStart = "";
   let timeEnd = "";
   let lectorUuid = "";
-  let timeBlocks = [];
-
-  export let data;
 
   function handleButtonClick(i, timeRange) {
     selected = i;
     // Assuming the button text is in the format 'HH:MM - HH:MM'
-    [timeStart, timeEnd] = timeRange.t.split(" - ");
+    [timeStart, timeEnd] = timeRange.split(" - ");
   }
   // This function will be called whenever the date input changes
   function validateDate(event) {
@@ -26,87 +23,6 @@
       alert("Please select a date in the future.");
       date = "";
     }
-    const dayNum = selectedDate.getDay();
-    const dayName = ["Ne", "Po", "Út", "St", "Čt", "Pá", "So"];
-    const day = dayName[dayNum];
-    let fromTime = "";
-    let toTime = "";
-    let breakTime = 0;
-    let lengthTime = 0;
-    for (const dayObject of data.data.calendar) {
-      if (day == dayObject.day) {
-        fromTime = dayObject.from;
-        toTime = dayObject.to;
-        breakTime = dayObject.break;
-        lengthTime = dayObject.length;
-      }
-    }
-    timeBlocks = getTimeBlocks(fromTime, toTime, lengthTime, breakTime);
-    timeBlocks = timeBlocks.map((block) => block.join(" - "));
-  }
-  // Function to calculate the difference in minutes between two times
-  function getMinFromTime(tA, tB) {
-    const minA = parseInt(tA.split(":")[0]) * 60 + parseInt(tA.split(":")[1]);
-    const minB = parseInt(tB.split(":")[0]) * 60 + parseInt(tB.split(":")[1]);
-
-    // Calculate the time difference
-    let diff = minA - minB;
-
-    // Adjust for the next day if necessary
-    if (diff > 0) {
-      return 1440 - minA + minB;
-    }
-
-    // Return the absolute time difference
-    return Math.abs(diff);
-  }
-
-  // Function to convert minutes to a formatted time string
-  function getTimeFromMin(min) {
-    // Check if the hours exceed 23
-    if ((min - (min % 60)) / 60 > 23) {
-      return (
-        ((min - (min % 60)) / 60 - 24).toString() +
-        ":" +
-        (min % 60).toString().padStart(2, "0")
-      );
-    }
-
-    // Return the formatted time string
-    return (
-      ((min - (min % 60)) / 60).toString() +
-      ":" +
-      (min % 60).toString().padStart(2, "0")
-    );
-  }
-
-  // Function to calculate time blocks based on input parameters
-  function getTimeBlocks(X, Y, A, B) {
-    // Calculate the total time in minutes
-    let time = getMinFromTime(X, Y);
-
-    // Initialize an array to store time blocks
-    let timeBlocks = [];
-
-    // Calculate the starting time in minutes
-    let start = parseInt(X.split(":")[0]) * 60 + parseInt(X.split(":")[1]);
-
-    // Loop to generate time blocks
-    for (let i = 0; time >= A; i++) {
-      // Create a block array to store start and end times
-      let block = [];
-      block[0] = getTimeFromMin(start + A * i + B * i);
-      block[1] = getTimeFromMin(start + A * (i + 1) + B * i);
-
-      // Update remaining time
-      time = time - A - B;
-
-      // Add the block to the array
-      timeBlocks.push(block);
-    }
-
-    // Return the array of time blocks
-    return timeBlocks;
   }
 
   // This function will be called when the component is initialized
@@ -120,23 +36,18 @@
     const form = event.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
-    data.date = data.date.split("-").reverse().join(".");
-    const response = await fetch("/api/reservation", {
+    const response = await fetch("/", {
+      //TODO: FIX THIS
       method: "POST",
       headers: {
-        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
     if (response.ok) {
-      showModal.hide();
-      toast.success("Poptávka byla úspěšně odeslána! Zkontrolujte email.", {
-        style: "font-family: 'Open Sans', sans-serif;",
-        position: "bottom-right",
-      });
+      goto("/");
     } else {
-      showModal.hide();
+      goto("/error");
     }
   }
 
@@ -182,7 +93,7 @@
         required
         type="tel"
         placeholder="+420 123 456 789"
-        name="telNumber"
+        name="phone"
       />
     </div>
     <div>
@@ -213,14 +124,14 @@
       />
     </div>
     <div class="times">
-      {#each timeBlocks as t, i}
+      {#each Array(5) as _, i}
         <button
           type="button"
           class="time"
           class:selected={i === selected}
-          on:click={() => handleButtonClick(i, { t })}
+          on:click={() => handleButtonClick(i, "7:00 - 7:20")}
         >
-          {t}
+          7:00 - 7:20
         </button>
       {/each}
     </div>
@@ -244,7 +155,6 @@
     />
     <div class="special">
       <span>Poznámka:</span><input
-        required
         type="text"
         placeholder="Vaše zpráva..."
         name="clientNote"

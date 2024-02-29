@@ -5,63 +5,14 @@
   import ModalConfirm from "$lib/components/modal-confirm.svelte";
   import ModalDecline from "$lib/components/modal-decline.svelte";
   import Reservation from "$lib/components/reservation.svelte";
-  import { onMount } from "svelte";
 
   export let data;
 
-  let check;
-
-  const sortedReservations = data.reservation?.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-
-    return dateA - dateB;
-  });
-
-  const removeDenied = sortedReservations?.filter((item) => {
-    return item.status != "denied";
-  });
-
-  const reservation = removeDenied?.filter((item) => {
+  const reservation = data.reservation?.filter((item) => {
     return item.lectorUuid == data.data.uuid;
   });
 
-  function saveActive() {
-    const d = { active: check.checked };
-    fetch(`/api/lecturers/${data.data.uuid}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
-      },
-      body: JSON.stringify(d),
-    })
-      .then((res) => {
-        if (res.ok) {
-          toast.success("Příjmání nových rezervací bylo změněno", {
-            style: "font-family: 'Open Sans', sans-serif;",
-            position: "bottom-right",
-          });
-        } else {
-          toast.error("Něco se pokazilo", {
-            style: "font-family: 'Open Sans', sans-serif;",
-            position: "bottom-right",
-          });
-        }
-      })
-      .catch((err) => {
-        toast.error("Něco se pokazilo", {
-          style: "font-family: 'Open Sans', sans-serif;",
-          position: "bottom-right",
-        });
-      });
-  }
-
   let open = false;
-
-  onMount(() => {
-    check.checked = data.data.active;
-  });
 </script>
 
 <svelte:head>
@@ -108,18 +59,15 @@
   </div>
   <div class="content">
     <h1 class="ff-Lalezar">Naplánované schůzky</h1>
-    <div class="inline">
-      <div class="allow-reservations">
-        <label for="allowReservations">Aktivní systém rezervací:</label>
-        <input
-          type="checkbox"
-          id="allowReservations"
-          on:change={saveActive}
-          bind:this={check}
-        />
-      </div>
-      <button class="export">Export to .ical</button>
+    <div class="allow-reservations">
+      <label for="allowReservations">Aktivní systém rezervací:</label>
+      <input
+        type="checkbox"
+        id="allowReservations"
+        checked={data.data.active}
+      />
     </div>
+    <button class="export">Export to .ical</button>
     <!-- <div class="sort">
       <label for="select">Seřadit podle:</label>
       <select name="select" id="" class="sort">
@@ -262,12 +210,6 @@
     font-size: 0.85rem;
     padding: 0.5rem 1rem;
     width: fit-content;
-  }
-
-  .inline {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
   }
 
   @media (max-width: 1000px) {

@@ -1,13 +1,10 @@
 <script>
   import { place, phone, money, email } from "$lib/assets/images.js";
   import { showModal } from "$lib/stores.js";
-  import { Toaster } from "svelte-french-toast";
-  import Tag from "$lib/components/tag.svelte";
+  import Tag from "$lib/components/Tag.svelte";
   import Modal from "$lib/components/modal.svelte";
 
   export let data;
-
-  let reservation = data.reservation;
 
   function handleError() {
     picture_url =
@@ -16,9 +13,8 @@
 </script>
 
 {#if $showModal}
-  <Modal {data} {reservation} />
+  <Modal />
 {/if}
-<Toaster />
 <div class="wrapper">
   <p class="page-nav">
     <a href="/">Hlavní stránka</a> &gt; <a href="/lecturers">Seznam lektorů</a> &gt;
@@ -29,7 +25,7 @@
       <div class="user-img">
         <!-- svelte-ignore a11y-img-redundant-alt -->
         <img
-          src={data.data.picture_url ||
+          src={data.picture_url ||
             "https://i.ibb.co/cvPZj86/depositphotos-247872612-stock-illustration-no-image-available-icon-vector.png"}
           on:error={handleError}
           alt="Profile picture or placeholder should be here, weird they are not displayed right? Maybe some ghosts are spooking around here 👻👻👻🫣🫣"
@@ -37,29 +33,29 @@
       </div>
       <div class="info">
         <p class="ff-Lalezar name">
-          {data.data.title_before || ""}
-          {data.data.first_name}
-          {data.data.middle_name || ""}
-          {data.data.last_name}
-          {data.data.title_after || ""}
+          {data.title_before || ""}
+          {data.first_name}
+          {data.middle_name || ""}
+          {data.last_name}
+          {data.title_after || ""}
         </p>
         <p class="claim">
-          {data.data.claim || ""}
+          {data.claim || ""}
         </p>
         <div class="place-money">
           <div class="place">
             <img src={place} alt="" />
-            <span>{data.data.location || "Dohodou"}</span>
+            <span>{data.location || "Dohodou"}</span>
           </div>
           <div class="money">
             <img src={money} alt="" />
-            <span>{data.data.price_per_hour || "Dohodou"}</span>
+            <span>{data.price_per_hour || "Dohodou"}</span>
             <span class="small-text">kč/h</span>
           </div>
         </div>
         <div class="phone">
           <img src={phone} alt="" />
-          {#each data.data.contact.telephone_numbers as phone_number}
+          {#each data.contact.telephone_numbers as phone_number}
             <span
               ><span class="small-text">{phone_number.split(" ")[0]}</span>
               <span>{phone_number.split(" ").slice(1).join(" ")}</span></span
@@ -69,7 +65,7 @@
         <div class="email">
           <div class="email-img"><img src={email} alt="" /></div>
           <div class="email-list">
-            {#each data.data.contact.emails as email}
+            {#each data.contact.emails as email}
               <a href={`mailto:${email}`} class="email-address">{email}</a>
             {/each}
           </div>
@@ -80,17 +76,17 @@
       <div class="bio-container">
         <p class="ff-Lalezar header small-text">Autobiografie</p>
         <p class="bio">
-          {@html data.data.bio || "Tato osoba zatím nemá vyplněnou biografii."}
+          {@html data.bio || "Tato osoba zatím nemá vyplněnou biografii."}
         </p>
       </div>
       <div class="tags">
-        {#each data.data.tags as tag}
+        {#each data.tags as tag}
           <Tag text={tag.name} click={false} />
         {/each}
       </div>
     </div>
   </div>
-  {#if data.data.active}
+  {#if data.active}
     <button class="reserve" on:click={showModal.show}>Rezervovat termín</button>
   {:else}
     <button class="reserve" style="background-color: #FFE8A1" disabled

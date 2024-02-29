@@ -23,6 +23,7 @@ export const POST = async ({ params, request }) => {
   console.log(obj.decision);
   if (obj.decision === true) {
     let cluster = Database.getClusterByName("Reservations");
+
     user = cluster.data.find((item) => item.uuid === params.uuid);
     user.place = obj.place;
     user.status = "accepted";

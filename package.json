@@ -17,8 +17,12 @@
   },
   "type": "module",
   "dependencies": {
+    "@touch4it/ical-timezones": "^1.9.0",
     "argon2": "^0.40.1",
     "db-quickly-js": "^1.0.0",
+    "ical": "^0.8.0",
+    "ical-generator": "^6.0.1",
+    "ical.js": "^1.5.0",
     "joi": "^17.11.0",
     "nodemailer": "^6.9.11",
     "sanitize-html": "^2.11.0",

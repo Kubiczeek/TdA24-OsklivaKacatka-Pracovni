@@ -58,7 +58,7 @@
       <button
         class="cancel"
         on:click={() => {
-          showModalDecline.show();
+          showModalDecline.show;
           modalData.set(info);
         }}>Zrušit schůzku</button
       >
