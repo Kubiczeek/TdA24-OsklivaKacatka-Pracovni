@@ -233,9 +233,9 @@
             "f1ac8f9d-1124-40cc-b1e0-9d48462ec18f",
             "b804a9e9-11eb-444b-8760-f82e4c7e0dc8",
             "de3c8168-0fae-470e-9926-5b8e98382442",
-            "282268fb-572e-47cb-be4c-ef2fe34f0b86"
+            "71a4c224-952c-4bef-a834-e1f00a1f561c"
           ],
-          "price_per_hour": 915,
+          "price_per_hour": "915",
           "contact": {
             "telephone_numbers": ["+420 600 121 212"],
             "emails": ["kajo@ja.ta", "znam@jdemse.ozrat"]
@@ -291,7 +291,8 @@
               "length": "120"
             }
           ],
-          "uuid": "625d7e49-a9ef-4808-8048-11a673f4772b"
+          "uuid": "625d7e49-a9ef-4808-8048-11a673f4772b",
+          "online": true
         },
         {
           "username": "Vladimir",
@@ -462,45 +463,8 @@
       "clusterDescription": "List of tags",
       "data": [
         {
-          "uuid": "c54ad02e-8583-4468-a542-be0b0d4596b2",
-          "name": "Literatura"
-        },
-        {
-          "uuid": "e24ec90e-73f9-4bf3-ba47-3257d8c28480",
-          "name": "České dějiny"
-        },
-        {
-          "uuid": "e5299de5-fa6d-49da-be16-e05118e342b0",
-          "name": "Milovník Jana Ámose Komenského"
-        },
-        {
-          "uuid": "dff71f0c-c23f-4ba0-a598-b2d371375b0c",
-          "name": "Mám velký doktorát, co je víc?"
-        },
-        {
-          "uuid": "84d4ff74-b560-4599-97aa-71f119ae408e",
-          "name": "Snad nedopadnu jak Sedlák"
-        },
-        {
-          "uuid": "242eeea7-865d-44ac-b30f-b55bcf6424ca",
-          "name": "Chemické pokusy"
-        },
-        { "uuid": "40cc7e61-c279-47be-b84b-941defc2756e", "name": "Geologie" },
-        {
           "uuid": "ef8d9371-9a72-4a51-9402-3fd16ced28d9",
           "name": "Přírodní vědy"
-        },
-        {
-          "uuid": "be8344eb-7bed-4ba0-9045-e100d8699fdb",
-          "name": "Profesionální tvůrce powerpoint prezentací"
-        },
-        {
-          "uuid": "833181f5-b657-4c17-8464-7ad1dd03cf4a",
-          "name": "Můj bílý plášť je velmi atraktivní"
-        },
-        {
-          "uuid": "a16fab57-b079-4079-89dc-7fd16b4ebfc9",
-          "name": "Mám rád vláčky :)"
         },
         { "uuid": "e8193547-33c5-4060-9293-6717c1be3ce2", "name": "chemie" },
         {
@@ -551,10 +515,6 @@
           "uuid": "de3c8168-0fae-470e-9926-5b8e98382442",
           "name": "Hobbylka a snažilka"
         },
-        {
-          "uuid": "282268fb-572e-47cb-be4c-ef2fe34f0b86",
-          "name": "Stejně to dělám jenom pro peníze"
-        },
         { "uuid": "e481766a-0548-432c-b726-0d3e884b1365", "name": "Ležení" },
         {
           "uuid": "305cc1fc-9344-412b-ba27-d7abf2411581",
@@ -585,37 +545,8 @@
           "name": "Šla Nanynka do zelí, natrhat si lupení, lupeníčka"
         },
         {
-          "uuid": "cac3a4d1-9213-47b5-92f3-41fb165ae7fa",
-          "name": "Možná vypadám jako někdo reálný, ale to je mýtus"
-        },
-        { "uuid": "a3f6fde0-81b4-4ea0-9fa3-07f7f49f7c5c" },
-        {
-          "uuid": "2648df99-3b92-49b3-b9b0-eae78e56ac89",
-          "name": "242eeea7-865d-44ac-b30f-b55bcf6424ca"
-        },
-        {
-          "uuid": "9905a474-33dc-4587-96ad-27b687cab28c",
-          "name": "40cc7e61-c279-47be-b84b-941defc2756e"
-        },
-        {
-          "uuid": "eec22c42-6dae-4259-bbc1-61f262abd487",
-          "name": "ef8d9371-9a72-4a51-9402-3fd16ced28d9"
-        },
-        {
-          "uuid": "218514c4-7617-4a09-9f63-dadf70816f70",
-          "name": "be8344eb-7bed-4ba0-9045-e100d8699fdb"
-        },
-        {
-          "uuid": "d3274fcf-9dce-4119-a251-5981555d3243",
-          "name": "833181f5-b657-4c17-8464-7ad1dd03cf4a"
-        },
-        {
           "uuid": "e3686468-f44a-4454-855a-0ae990ecbc86",
           "name": "a16fab57-b079-4079-89dc-7fd16b4ebfc9"
-        },
-        {
-          "uuid": "e7724fe6-ba10-4bcd-bf17-2ba7a5fadd63",
-          "name": "cac3a4d1-9213-47b5-92f3-41fb165ae7fa"
         },
         {
           "uuid": "5ec1009a-d44f-44e6-b896-d0b631969a1a",
@@ -628,7 +559,8 @@
         {
           "uuid": "2e143fb3-c13f-4a3a-85d8-da09afd317d5",
           "name": "vše tady je myšleno z legrace, prostě potřebujem nějaká testovací data"
-        }
+        },
+        { "uuid": "71a4c224-952c-4bef-a834-e1f00a1f561c", "name": "Mashinky" }
       ]
     }
   ]

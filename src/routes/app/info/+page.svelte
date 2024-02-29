@@ -1,11 +1,79 @@
 <script>
   import { logo_black, hamburger, cross } from "$lib/assets/images.js";
+  import { onMount } from "svelte";
   import toast, { Toaster } from "svelte-french-toast";
+
+  export let data;
 
   let open = false;
   let nTels = 1;
   let nEmails = 1;
-  let nTags = [];
+
+  let firstName,
+    middleName,
+    lastName,
+    preTitle,
+    postTitle,
+    claim,
+    city,
+    online,
+    price,
+    bio;
+  let tags = [];
+  let tels = [];
+  let emails = [];
+
+  onMount(() => {
+    firstName.value = data.first_name;
+    middleName.value = data.middle_name;
+    lastName.value = data.last_name;
+    preTitle.value = data.title_before;
+    postTitle.value = data.title_after;
+    claim.value = data.claim;
+    city.value = data.location;
+    online.checked = data.online;
+    price.value = data.price_per_hour;
+    bio.value = data.bio;
+    tags = data.tags;
+    tels = data.contact.telephone_numbers;
+    emails = data.contact.emails;
+  });
+
+  function saveChanges() {
+    const newData = {
+      first_name: firstName.value,
+      middle_name: middleName.value,
+      last_name: lastName.value,
+      title_before: preTitle.value,
+      title_after: postTitle.value,
+      claim: claim.value,
+      location: city.value,
+      online: online.checked,
+      price_per_hour: price.value,
+      bio: bio.value,
+      tags: tags.map((tag) => {
+        return { name: tag.name };
+      }),
+      contact: {
+        telephone_numbers: tels,
+        emails: emails,
+      },
+    };
+
+    fetch(`/api/lecturers/${data.uuid}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
+      },
+      body: JSON.stringify(newData),
+    }).then((res) => {
+      toast.success("Změny byly úspěšně uloženy!", {
+        style: "font-family: 'Open Sans', sans-serif;",
+        position: "bottom-right",
+      });
+    });
+  }
 </script>
 
 <svelte:head>
@@ -51,33 +119,61 @@
         <p class="input-name">
           Křestní jméno&ThinSpace;<span class="required">*</span>
         </p>
-        <input required type="text" class="text" placeholder="Josef" />
+        <input
+          bind:this={firstName}
+          required
+          type="text"
+          class="text"
+          placeholder="Josef"
+        />
       </div>
       <div class="div-input">
         <p class="input-name">Druhé jméno</p>
-        <input type="text" class="text" placeholder="Adam" />
+        <input
+          bind:this={middleName}
+          type="text"
+          class="text"
+          placeholder="Adam"
+        />
       </div>
       <div class="div-input">
         <p class="input-name">
           Příjmení&ThinSpace;<span class="required">*</span>
         </p>
-        <input required type="text" class="text" placeholder="Novák" />
+        <input
+          bind:this={lastName}
+          required
+          type="text"
+          class="text"
+          placeholder="Novák"
+        />
       </div>
     </div>
     <div class="name">
       <div class="div-input">
         <p class="input-name">Titul před jménem</p>
-        <input type="text" class="text" placeholder="Mgr, et Mgr." />
+        <input
+          bind:this={preTitle}
+          type="text"
+          class="text"
+          placeholder="Mgr, et Mgr."
+        />
       </div>
       <div class="div-input">
         <p class="input-name">Titul za jménem</p>
-        <input type="text" class="text" placeholder="WcDr." />
+        <input
+          bind:this={postTitle}
+          type="text"
+          class="text"
+          placeholder="WcDr."
+        />
       </div>
     </div>
     <div class="name">
       <div class="div-input">
         <p class="input-name">Claim</p>
         <input
+          bind:this={claim}
           type="text"
           class="text"
           placeholder="Do houskových knedlíků se nedávají housky!"
@@ -87,11 +183,11 @@
     <div class="name">
       <div class="div-input">
         <p class="input-name">Město</p>
-        <input type="text" class="text" placeholder="Praha" />
+        <input bind:this={city} type="text" class="text" placeholder="Praha" />
       </div>
       <div class="div-input checkbox">
         <p class="input-name">Vyučuji&NonBreakingSpace;online?</p>
-        <input type="checkbox" />
+        <input bind:this={online} type="checkbox" />
       </div>
     </div>
     <div class="name">
@@ -99,12 +195,13 @@
         <p class="input-name">
           Telefonní čísla&ThinSpace;<span class="required">*</span>
         </p>
-        {#each Array(nTels) as _, i}
+        {#each tels as t, i}
           <input
             required
             type="tel"
             class="text"
             placeholder="+420 123 456 789"
+            value={t}
             on:focusout={(e) => {
               if (i === nTels - 1 && i != 0 && e.target.value == "") nTels--;
             }}
@@ -118,12 +215,12 @@
         <p class="input-name">
           Emailové adresy&ThinSpace;<span class="required">*</span>
         </p>
-        {#each Array(nEmails) as _, i}
-          <!-- content here -->
+        {#each emails as e, i}
           <input
             required
             type="email"
             class="text"
+            value={e}
             on:focusout={(e) => {
               if (i === nEmails - 1 && i != 0 && e.target.value == "")
                 nEmails--;
@@ -141,13 +238,14 @@
         <p class="input-name">
           Cena&ThickSpace;<span class="small-text">(kč/h)</span>
         </p>
-        <input type="number" class="text" placeholder="250" />
+        <input bind:this={price} type="number" class="text" placeholder="250" />
       </div>
     </div>
     <div class="name">
       <div class="div-input">
         <p class="input-name">Autobiografie</p>
         <input
+          bind:this={bio}
           type="text"
           class="text-area"
           placeholder="Baví mě organizovat věci. Ať už to bylo vyvíjení mobilních aplikací ve Futured, pořádání konferencí, spolupráce na soutěžích Prezentiáda, pIšQworky, <b>Tour de App</b> a Středoškolák roku, nebo třeba dobrovolnictví, vždycky jsem skončila u projektového managementu, rozvíjení soft-skills a vzdělávání. U studentských..."
@@ -162,14 +260,14 @@
           class="add-tag"
           on:focusout={(e) => {
             if (e.target.value != "") {
-              nTags = [...nTags, e.target.value];
+              tags = [...tags, { name: e.target.value }];
               e.target.value = "";
             }
           }}
           on:keydown={(e) => {
             if (e.key === "Enter") {
               if (e.target.value != "") {
-                nTags = [...nTags, e.target.value];
+                tags = [...tags, { name: e.target.value }];
                 e.target.value = "";
               }
             }
@@ -177,27 +275,19 @@
           placeholder="Napište název dovednosti pro přidání..."
         />
         <div class="tags">
-          {#each nTags as s, i}
+          {#each tags as s, i}
             <button
               on:click={() => {
-                nTags = nTags.filter((_, j) => j != i);
+                tags = tags.filter((_, j) => j != i);
               }}
               class="tag"
-              ><span class="small-text">x</span>&ThickSpace;{s} {i}</button
+              ><span class="small-text">x</span>&ThickSpace;{s.name}</button
             >
           {/each}
         </div>
       </div>
     </div>
-    <button
-      class="saveChanges"
-      on:click={() => {
-        toast.success("Změny byly úspěšně uloženy!", {
-          style: "font-family: 'Open Sans', sans-serif;",
-          position: "bottom-right",
-        });
-      }}>Uložit změny</button
-    >
+    <button class="saveChanges" on:click={saveChanges}>Uložit změny</button>
   </div>
 </div>
 
