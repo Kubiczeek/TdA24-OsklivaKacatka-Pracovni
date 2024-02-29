@@ -114,14 +114,6 @@
     gap: 15px;
   }
 
-  .name div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-  }
-
   input {
     border: 1px solid #b8b8b8;
     border-radius: 7px;
@@ -131,30 +123,9 @@
     width: 100%;
   }
 
-  input[type="date"] {
-    width: auto;
-  }
-
   a,
   span {
     font-weight: 600;
-  }
-
-  .modal > .times {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .time {
-    background-color: #74c7d3;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    padding: 5px 10px;
-    color: white;
-    border: none;
-    font-weight: 600;
-    transition: background-color 0.2s;
   }
 
   .modal > .special {
@@ -216,10 +187,6 @@
     font-size: 1rem;
     color: #b8b8b8;
     padding: 0.5rem;
-  }
-
-  .time.selected {
-    background-color: #00384d;
   }
 
   .bold-text {
