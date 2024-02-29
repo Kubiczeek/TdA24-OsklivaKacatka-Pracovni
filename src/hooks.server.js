@@ -18,7 +18,7 @@ export const handle = async ({ event, resolve }) => {
   const url = new URL(event.request.url);
   console.log("ewre in");
   if (url.pathname.startsWith("/api")) {
-    const auth = event.request.headers.get("Authorization");
+    const auth = "TdA:d8Ef6!dGG_pv";
 
     if (auth !== `Basic ${btoa(ADMIN_LOGIN)}`) {
       return new Response("Not authorized", {
