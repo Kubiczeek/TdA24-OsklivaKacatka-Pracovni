@@ -13,10 +13,10 @@
   function change(day) {
     for (const dayObject of data.calendar) {
       if (dayObject.day == day) {
-        from.value = dayObject.from;
-        to.value = dayObject.to;
-        breakTime.value = dayObject.break;
-        length.value = dayObject.length;
+        from.value = dayObject.from || "00:00";
+        to.value = dayObject.to || "00:00";
+        breakTime.value = dayObject.break || "0";
+        length.value = dayObject.length || "1";
         teaching = dayObject.teaching || false;
       }
     }
