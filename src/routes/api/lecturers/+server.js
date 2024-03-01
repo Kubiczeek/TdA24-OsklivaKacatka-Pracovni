@@ -67,6 +67,57 @@ export const POST = async ({ request }) => {
     for (const tag of obj.tags) {
       tag.uuid = findTagsUuid(tag.name);
     }
+    obj.calendar = [
+      {
+        day: "Po",
+        from: "00:00",
+        to: "00:00",
+        break: "0",
+        length: "0",
+      },
+      {
+        day: "Út",
+        from: "00:00",
+        to: "00:00",
+        break: "0",
+        length: "0",
+      },
+      {
+        day: "St",
+        from: "00:00",
+        to: "00:00",
+        break: "0",
+        length: "0",
+      },
+      {
+        day: "Čt",
+        from: "00:00",
+        to: "00:00",
+        break: "0",
+        length: "1",
+      },
+      {
+        day: "Pá",
+        from: "00:00",
+        to: "00:00",
+        break: "0",
+        length: "1",
+      },
+      {
+        day: "So",
+        from: "00:00",
+        to: "00:00",
+        break: "0",
+        length: "1",
+      },
+      {
+        day: "Ne",
+        from: "00:00",
+        to: "00:00",
+        break: "0",
+        length: "0",
+      },
+    ];
 
     obj.password = await hashPassword(obj.password);
     // Retrieve the "Lecturers" cluster from the database

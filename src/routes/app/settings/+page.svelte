@@ -8,7 +8,7 @@
   let open = false;
   let selectedDay = "Po";
 
-  let from, to, breakTime, length;
+  let from, to, breakTime, length, teaching;
 
   function change(day) {
     for (const dayObject of data.calendar) {
@@ -17,6 +17,7 @@
         to.value = dayObject.to;
         breakTime.value = dayObject.break;
         length.value = dayObject.length;
+        teaching = dayObject.teaching || false;
       }
     }
   }
@@ -28,6 +29,7 @@
         dayObject.to = to.value;
         dayObject.break = breakTime.value;
         dayObject.length = length.value;
+        dayObject.teaching = teaching;
       }
       return dayObject;
     });
@@ -205,6 +207,10 @@
           }
         }}
       />
+    </div>
+    <div class="input-area">
+      <label for="break">Učím tento den?</label>
+      <input type="checkbox" bind:checked={teaching} />
     </div>
     <button class="saveChanges" on:click={saveChanges}>Uložit změny</button>
   </div>
