@@ -69,7 +69,7 @@
 </script>
 
 <svelte:head>
-  <title>TdA - Lektorský Portál - Info</title>
+  <title>TdA - Lektorský Portál - Nastavení</title>
 </svelte:head>
 
 <Toaster />

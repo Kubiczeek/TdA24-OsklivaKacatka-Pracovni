@@ -110,7 +110,7 @@
 </script>
 
 <svelte:head>
-  <title>TdA - Lektorský Portál - Info</title>
+  <title>TdA - Lektorský Portál - Rezervace</title>
 </svelte:head>
 
 <Toaster />
