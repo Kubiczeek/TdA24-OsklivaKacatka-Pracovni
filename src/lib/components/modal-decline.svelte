@@ -2,6 +2,7 @@
   import { showModalDecline, modalData } from "$lib/stores.js";
   import toast from "svelte-french-toast";
   import { blur } from "svelte/transition";
+  import { goto } from "$app/navigation";
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -23,6 +24,9 @@
         position: "bottom-right",
       });
       showModalDecline.hide();
+      goto("/").then(() => {
+        goto("/app/reservation");
+      });
     });
   }
 </script>
@@ -71,7 +75,11 @@
       <button class="submit" type="submit" on:click={handleSubmit}
         >Zrušit&nbsp;schůzku</button
       >
-      <button type="button" class="cancel">Ponechat&nbsp;schůzku</button>
+      <button
+        type="button"
+        class="cancel"
+        on:click={() => showModalDecline.hide()}>Ponechat&nbsp;schůzku</button
+      >
     </div>
   </form>
 </div>

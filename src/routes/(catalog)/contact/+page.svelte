@@ -2,7 +2,7 @@
   <p class="page-nav"><a href="/">Hlavní stránka</a> > Kontakt</p>
   <div class="container">
     <p class="static-text">
-      Chtěli byste nám něco vzkázat, pochválit či něco zkritizovat? Vyberte
+      Chtěli byste nám něco vzkázat, pochválit či něco zkritizovat? <br /> Vyberte
       podle kategorie správný email/telefon a dejte nám vědět!
     </p>
     <div class="contact">

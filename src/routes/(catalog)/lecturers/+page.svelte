@@ -11,6 +11,7 @@
   const tags = data.tags.map((tag) => tag.name);
   const fujCities = [...new Set(data.data.map((item) => item.location))];
   const uniqueCities = [
+    "Online",
     ...new Set(
       [...fujCities].filter((item) => item !== null && item !== undefined)
     ),
@@ -57,13 +58,20 @@
     if (min === -1) min = minimum;
     if (max === -1) max = maximum;
     const city = uniqueCities[$page.url.searchParams.get("city")] || null;
+    console.log(city);
     const tagIndex = $page.url.searchParams.get("tags")?.split(",") || [];
     const pageNum = $page.url.searchParams.get("page") || 1;
     const tagsFiltered = tagIndex.map((index) => tags[index]);
     const search = $page.url.searchParams.get("search") || null;
     showedFilters = showedFilters.filter((item) => {
       if (min > item.price_per_hour || max < item.price_per_hour) return false;
-      if (city && city !== item.location) return false;
+      if (city && city !== item.location) {
+        if (city === "Online" && !item.online) {
+          return false;
+        } else if (city !== "Online") {
+          return false;
+        }
+      }
       if (tagsFiltered.length > 0) {
         const newTags = item.tags.map((tag) => tag.name);
         const allTagsExist = tagsFiltered.every((tag) => newTags.includes(tag));
@@ -99,6 +107,7 @@
     if (pageNum >= Math.ceil(showedFilters.length / 5)) return;
     $page.url.searchParams.set("page", parseInt(pageNum) + 1);
     pushState($page.url);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function decreasePage() {
@@ -106,12 +115,14 @@
     if (pageNum <= 1) return;
     $page.url.searchParams.set("page", parseInt(pageNum) - 1);
     pushState($page.url);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function setPage(pageNum) {
     if (pageNum >= 1 && pageNum <= Math.ceil(showedFilters.length / 5)) {
       $page.url.searchParams.set("page", pageNum);
       pushState($page.url);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 

@@ -33,6 +33,17 @@ function createShowModalDecline() {
   };
 }
 
+function createShowModalMessage() {
+  const { subscribe, set, update } = writable(false);
+
+  return {
+    subscribe,
+    show: () => set(true),
+    hide: () => set(false),
+    toggle: () => update((value) => !value),
+  };
+}
+
 function createModalData() {
   const { subscribe, set, update } = writable({});
 
@@ -56,5 +67,6 @@ function createModalData2() {
 export const showModal = createShowModal();
 export const showModalAccept = createShowModalAccept();
 export const showModalDecline = createShowModalDecline();
+export const showModalMessage = createShowModalMessage();
 export const modalData = createModalData();
 export const modalData2 = createModalData2();

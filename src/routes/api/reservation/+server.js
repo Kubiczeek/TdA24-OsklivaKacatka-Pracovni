@@ -7,7 +7,6 @@ import {
   resSchema,
 } from "$lib/server/db/db.js";
 import { v4 as uuidv4 } from "uuid";
-import sanitizeHtml from "sanitize-html";
 
 export const GET = async () => {
   try {

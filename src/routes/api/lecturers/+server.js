@@ -68,9 +68,50 @@ export const POST = async ({ request }) => {
       tag.uuid = findTagsUuid(tag.name);
     }
 
+    obj.calendar = [
+      {
+        day: "Po",
+      },
+      {
+        day: "Út",
+      },
+      {
+        day: "St",
+      },
+      {
+        day: "Čt",
+      },
+      {
+        day: "Pá",
+      },
+      {
+        day: "So",
+      },
+      {
+        day: "Ne",
+      },
+    ];
+
     obj.password = await hashPassword(obj.password);
     // Retrieve the "Lecturers" cluster from the database
     let saved = Database.getClusterByName("Lecturers");
+
+    for (const lecturer of saved.data) {
+      if (lecturer.username === obj.username) {
+        return new Response(
+          JSON.stringify({
+            code: 400,
+            message: "Username already exists",
+          }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            status: 400,
+          }
+        );
+      }
+    }
 
     // Generate a UUID for the object
     obj.uuid = uuidv4();
@@ -92,6 +133,8 @@ export const POST = async ({ request }) => {
     if (
       !obj.first_name ||
       !obj.last_name ||
+      !obj.username ||
+      !obj.password ||
       !obj.contact ||
       !obj.contact.telephone_numbers ||
       !obj.contact.emails ||

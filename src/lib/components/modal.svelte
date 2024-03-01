@@ -8,6 +8,7 @@
   let timeStart = "";
   let timeEnd = "";
   let lectorUuid = "";
+  let teaching = false;
   let timeBlocks = [];
 
   export let data;
@@ -39,6 +40,7 @@
         toTime = dayObject.to;
         breakTime = dayObject.break;
         lengthTime = dayObject.length;
+        teaching = dayObject.teaching || false;
       }
     }
     timeBlocks = getTimeBlocks(fromTime, toTime, lengthTime, breakTime);
@@ -82,6 +84,9 @@
 
   // Function to calculate time blocks based on input parameters
   function getTimeBlocks(X, Y, A, B) {
+    if (X === "" || Y === "" || A === "" || B === "") return [];
+    if (X === Y) return [];
+
     // Calculate the total time in minutes
     let time = getMinFromTime(X, Y);
 
@@ -190,6 +195,7 @@
         required
         type="number"
         placeholder="14"
+        min="1"
         name="clientAge"
       />
     </div>
@@ -213,16 +219,22 @@
       />
     </div>
     <div class="times">
-      {#each timeBlocks as t, i}
-        <button
-          type="button"
-          class="time"
-          class:selected={i === selected}
-          on:click={() => handleButtonClick(i, { t })}
-        >
-          {t}
-        </button>
-      {/each}
+      {#if teaching}
+        {#each timeBlocks as t, i}
+          <button
+            type="button"
+            class="time"
+            class:selected={i === selected}
+            on:click={() => handleButtonClick(i, { t })}
+          >
+            {t}
+          </button>
+        {/each}
+      {:else}
+        <span style="font-weight: 400; font-size: 0.9rem">
+          V tento den lektor neučí. Zvolte jiné datum.
+        </span>
+      {/if}
     </div>
     <input
       type="text"
@@ -247,6 +259,7 @@
         required
         type="text"
         placeholder="Vaše zpráva..."
+        maxlength="200"
         name="clientNote"
       />
     </div>

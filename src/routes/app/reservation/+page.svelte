@@ -1,28 +1,38 @@
 <script>
   import { logo_black, hamburger, cross } from "$lib/assets/images.js";
   import toast, { Toaster } from "svelte-french-toast";
-  import { showModalAccept, showModalDecline } from "$lib/stores.js";
+  import {
+    showModalAccept,
+    showModalDecline,
+    showModalMessage,
+  } from "$lib/stores.js";
   import ModalConfirm from "$lib/components/modal-confirm.svelte";
   import ModalDecline from "$lib/components/modal-decline.svelte";
+  import ModalMessage from "$lib/components/modal-message.svelte";
   import Reservation from "$lib/components/reservation.svelte";
   import { onMount } from "svelte";
+  import { createEvent, createEvents } from "ics";
 
   export let data;
 
   let check;
 
-  const sortedReservations = data.reservation?.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
+  const removeDenied = data.reservation?.filter((item) => {
+    return item.status != "denied";
+  });
+
+  const removeExpired = removeDenied?.filter((item) => {
+    return new Date(item.date.split(".").reverse().join("-")) > new Date();
+  });
+
+  const sortedReservations = removeExpired?.sort((a, b) => {
+    const dateA = new Date(a.date.split(".").reverse().join("-"));
+    const dateB = new Date(b.date.split(".").reverse().join("-"));
 
     return dateA - dateB;
   });
 
-  const removeDenied = sortedReservations?.filter((item) => {
-    return item.status != "denied";
-  });
-
-  const reservation = removeDenied?.filter((item) => {
+  const reservation = sortedReservations?.filter((item) => {
     return item.lectorUuid == data.data.uuid;
   });
 
@@ -59,13 +69,48 @@
 
   let open = false;
 
+  async function handleDownload() {
+    let event = await fetch(`/api/reservation/ical/${data.data.uuid}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
+      },
+    });
+
+    event = await event.json();
+
+    console.log(event);
+
+    const filename = "reservations.ics";
+    const file = await new Promise((resolve, reject) => {
+      createEvents(event, (error, value) => {
+        if (error) {
+          reject(error);
+        }
+
+        resolve(new File([value], filename, { type: "text/calendar" }));
+      });
+    });
+    const url = URL.createObjectURL(file);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+  }
+
   onMount(() => {
     check.checked = data.data.active;
   });
 </script>
 
 <svelte:head>
-  <title>TdA - Lektorský Portál - Info</title>
+  <title>TdA - Lektorský Portál - Rezervace</title>
 </svelte:head>
 
 <Toaster />
@@ -74,6 +119,9 @@
 {/if}
 {#if $showModalDecline}
   <ModalDecline />
+{/if}
+{#if $showModalMessage}
+  <ModalMessage />
 {/if}
 <nav>
   <img src={logo_black} alt="" />
@@ -118,7 +166,7 @@
           bind:this={check}
         />
       </div>
-      <button class="export">Export to .ical</button>
+      <button class="export" on:click={handleDownload}>Export to .ical</button>
     </div>
     <!-- <div class="sort">
       <label for="select">Seřadit podle:</label>
@@ -238,6 +286,7 @@
   .allow-reservations {
     display: flex;
     gap: 1rem;
+    line-height: 30px;
   }
 
   .sort select,

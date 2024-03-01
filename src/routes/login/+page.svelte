@@ -1,10 +1,12 @@
 <script>
   import "sanitize.css";
-  import { logo_black } from "$lib/assets/images.js";
+  import { logo_black, it } from "$lib/assets/images.js";
   import { goto } from "$app/navigation";
 
   let username = "";
   let password = "";
+
+  let isResponseOk = true;
 
   async function submitForm() {
     const response = await fetch("/api/login", {
@@ -15,16 +17,19 @@
       },
       body: JSON.stringify({ username, password }),
     });
-
-    const result = await response.json();
+    console.log(response);
     if (response.ok) {
+      const result = await response.json();
       username = "";
       password = "";
       document.cookie = `auth=${result.password}; Secure; HttpsOnly; SameSite=Strict`;
       document.cookie = `uuid=${result.uuid};`;
       goto("/app/reservation");
     } else {
-      console.error("Login failed", result.error);
+      isResponseOk = false;
+      setTimeout(() => {
+        isResponseOk = true;
+      }, 1500);
     }
   }
 </script>
@@ -44,29 +49,53 @@
         <div>
           <input
             bind:value={username}
+            class:error={!isResponseOk}
             required
             type="text"
             name="username"
-            id=""
+            on:keydown={(event) => {
+              if (event.key === "Enter") {
+                submitForm(event);
+              }
+            }}
           />
-          <label for="username" class="blue">username</label>
+          <label class:error2={!isResponseOk} for="username" class="blue"
+            >username</label
+          >
         </div>
         <div>
           <input
             bind:value={password}
+            class:error={!isResponseOk}
             required
             type="password"
             name="username"
-            id=""
+            on:keydown={(event) => {
+              if (event.key === "Enter") {
+                submitForm(event);
+              }
+            }}
           />
-          <label for="username" class="blue">password</label>
+          <label class:error2={!isResponseOk} for="username" class="blue"
+            >password</label
+          >
         </div>
       </div>
       <div class="footer">
         <button on:click={submitForm}>Přihlásit se</button>
         <p>
-          Zapomněli jste heslo? Klikněte <span class="blue">zde</span> pro řešení
+          Zapomněli jste heslo? <a
+            class="blue"
+            href={it}
+            download="IT_SUPPORT.png"
+            style="text-decoration: underline;">Smolík,</a
+          > my to resetovat nebudem.
         </p>
+        <a
+          href="/"
+          style="width:fit-content; align-self: center; text-decoration: underline"
+          >Návrat do hlavního menu</a
+        >
       </div>
     </div>
   </div>
@@ -172,6 +201,51 @@
   .ff-Lalezar {
     font-family: "Lalezar", sans-serif;
     font-size: 2.5rem;
+  }
+
+  .error {
+    border-bottom: 1px solid #e46464;
+    animation: shake 0.5s;
+  }
+
+  .error2 {
+    color: #e46464;
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translate(1px, 1px) rotate(0deg);
+    }
+    10% {
+      transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+      transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+      transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+      transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+      transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    60% {
+      transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+      transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+      transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+      transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+      transform: translate(1px, -2px) rotate(-1deg);
+    }
   }
 
   @media screen and (max-width: 500px) {

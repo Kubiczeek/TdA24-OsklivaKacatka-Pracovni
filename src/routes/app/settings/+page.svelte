@@ -5,50 +5,63 @@
 
   export let data;
 
-  console.log(data);
-
   let open = false;
   let selectedDay = "Po";
 
-  let from, to, breakTime, length;
+  let from, to, breakTime, length, teaching;
 
   function change(day) {
     for (const dayObject of data.calendar) {
       if (dayObject.day == day) {
-        from.value = dayObject.from;
-        to.value = dayObject.to;
-        breakTime.value = dayObject.break;
-        length.value = dayObject.length;
+        from.value = dayObject.from || "00:00";
+        to.value = dayObject.to || "00:00";
+        breakTime.value = dayObject.break || "0";
+        length.value = dayObject.length || "1";
+        teaching = dayObject.teaching || false;
       }
     }
   }
 
   function saveChanges() {
-    console.log(data.calendar);
     const modifiedCalendar = data.calendar.map((dayObject) => {
       if (dayObject.day === selectedDay) {
         dayObject.from = from.value;
         dayObject.to = to.value;
         dayObject.break = breakTime.value;
         dayObject.length = length.value;
+        dayObject.teaching = teaching;
       }
       return dayObject;
     });
     data.calendar = modifiedCalendar;
-    console.log(data.calendar);
-    console.log(data.calendar);
     fetch(`/api/lecturers/${data.uuid}`, {
       method: "PUT",
       headers: {
+        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     }).then((res) => {
-      console.log(res);
-      toast("Změny byly úspěšně uloženy!", {
-        style: "font-family: 'Open Sans', sans-serif;",
-        position: "bottom-right",
-      });
+      if (res.ok) {
+        const day = [
+          "Pondělí",
+          "Úterý",
+          "Středa",
+          "Čtvrtek",
+          "Pátek",
+          "Sobota",
+          "Neděle",
+        ][["Po", "Út", "St", "Čt", "Pá", "So", "Ne"].indexOf(selectedDay)];
+        toast.success(`Změny pro "${day}" byly úspěšně uloženy!`, {
+          style: "font-family: 'Open Sans', sans-serif;",
+          position: "bottom-right",
+        });
+      } else {
+        toast.error("Něco se pokazilo, zkuste to prosím znovu.", {
+          style: "font-family: 'Open Sans', sans-serif;",
+          position: "bottom-right",
+        });
+      }
     });
   }
 
@@ -58,7 +71,7 @@
 </script>
 
 <svelte:head>
-  <title>TdA - Lektorský Portál - Info</title>
+  <title>TdA - Lektorský Portál - Nastavení</title>
 </svelte:head>
 
 <Toaster />
@@ -194,6 +207,10 @@
           }
         }}
       />
+    </div>
+    <div class="input-area">
+      <label for="break">Učím tento den?</label>
+      <input type="checkbox" bind:checked={teaching} />
     </div>
     <button class="saveChanges" on:click={saveChanges}>Uložit změny</button>
   </div>

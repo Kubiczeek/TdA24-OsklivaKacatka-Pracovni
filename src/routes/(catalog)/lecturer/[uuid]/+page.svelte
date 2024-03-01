@@ -49,7 +49,11 @@
         <div class="place-money">
           <div class="place">
             <img src={place} alt="" />
-            <span>{data.data.location || "Dohodou"}</span>
+            <span
+              >{data.data.location || "Dohodou"}{data.data.online
+                ? ", Online"
+                : ""}</span
+            >
           </div>
           <div class="money">
             <img src={money} alt="" />

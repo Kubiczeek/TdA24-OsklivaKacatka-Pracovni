@@ -24,19 +24,19 @@
   let emails = [];
 
   onMount(() => {
-    firstName.value = data.first_name;
-    middleName.value = data.middle_name;
-    lastName.value = data.last_name;
-    preTitle.value = data.title_before;
-    postTitle.value = data.title_after;
-    claim.value = data.claim;
-    city.value = data.location;
-    online.checked = data.online;
-    price.value = data.price_per_hour;
-    bio.value = data.bio;
-    tags = data.tags;
-    tels = data.contact.telephone_numbers;
-    emails = data.contact.emails;
+    firstName.value = data.first_name || "";
+    middleName.value = data.middle_name || "";
+    lastName.value = data.last_name || "";
+    preTitle.value = data.title_before || "";
+    postTitle.value = data.title_after || "";
+    claim.value = data.claim || "";
+    city.value = data.location || "";
+    online.checked = data.online || false;
+    price.value = data.price_per_hour || "";
+    bio.value = data.bio || "";
+    tags = data.tags || [];
+    tels = data.contact.telephone_numbers || [];
+    emails = data.contact.emails || [];
   });
 
   function saveChanges() {
