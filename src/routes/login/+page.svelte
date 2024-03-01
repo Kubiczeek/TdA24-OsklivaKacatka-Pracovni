@@ -53,6 +53,11 @@
             required
             type="text"
             name="username"
+            on:keydown={(event) => {
+              if (event.key === "Enter") {
+                submitForm(event);
+              }
+            }}
           />
           <label class:error2={!isResponseOk} for="username" class="blue"
             >username</label
@@ -65,6 +70,11 @@
             required
             type="password"
             name="username"
+            on:keydown={(event) => {
+              if (event.key === "Enter") {
+                submitForm(event);
+              }
+            }}
           />
           <label class:error2={!isResponseOk} for="username" class="blue"
             >password</label
