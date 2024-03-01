@@ -96,23 +96,6 @@ export const POST = async ({ request }) => {
     // Retrieve the "Lecturers" cluster from the database
     let saved = Database.getClusterByName("Lecturers");
 
-    for (const lecturer of saved.data) {
-      if (lecturer.username === obj.username) {
-        return new Response(
-          JSON.stringify({
-            code: 400,
-            message: "Username already exists",
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            status: 400,
-          }
-        );
-      }
-    }
-
     // Generate a UUID for the object
     obj.uuid = uuidv4();
     const tagsCopy = obj.tags;
