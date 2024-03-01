@@ -14,6 +14,9 @@ dependencies:
   joi:
     specifier: ^17.11.0
     version: 17.11.0
+  nodemailer:
+    specifier: ^6.9.11
+    version: 6.9.11
   sanitize-html:
     specifier: ^2.11.0
     version: 2.11.0
@@ -945,6 +948,11 @@ packages:
   /node-gyp-build@4.8.0:
     resolution: {integrity: sha512-u6fs2AEUljNho3EYTJNBfImO5QTo/J/1Etd+NVdCj7qWKUSN/bSLkZwhDv7I+w/MSC6qJ4cknepkAYykDdK8og==}
     hasBin: true
+    dev: false
+
+  /nodemailer@6.9.11:
+    resolution: {integrity: sha512-UiAkgiERuG94kl/3bKfE8o10epvDnl0vokNEtZDPTq9BWzIl6EFT9336SbIT4oaTBD8NmmUTLsQyXHV82eXSWg==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /once@1.4.0:

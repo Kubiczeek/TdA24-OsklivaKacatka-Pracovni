@@ -11,6 +11,7 @@
   import ModalMessage from "$lib/components/modal-message.svelte";
   import Reservation from "$lib/components/reservation.svelte";
   import { onMount } from "svelte";
+  import { createEvent, createEvents } from "ics";
 
   export let data;
 
@@ -67,6 +68,41 @@
   }
 
   let open = false;
+
+  async function handleDownload() {
+    let event = await fetch(`/api/reservation/ical/${data.data.uuid}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
+      },
+    });
+
+    event = await event.json();
+
+    console.log(event);
+
+    const filename = "reservations.ics";
+    const file = await new Promise((resolve, reject) => {
+      createEvents(event, (error, value) => {
+        if (error) {
+          reject(error);
+        }
+
+        resolve(new File([value], filename, { type: "text/calendar" }));
+      });
+    });
+    const url = URL.createObjectURL(file);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+  }
 
   onMount(() => {
     check.checked = data.data.active;
@@ -130,7 +166,7 @@
           bind:this={check}
         />
       </div>
-      <button class="export">Export to .ical</button>
+      <button class="export" on:click={handleDownload}>Export to .ical</button>
     </div>
     <!-- <div class="sort">
       <label for="select">Seřadit podle:</label>
