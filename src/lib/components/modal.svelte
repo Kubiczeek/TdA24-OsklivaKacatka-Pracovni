@@ -259,6 +259,7 @@
         required
         type="text"
         placeholder="Vaše zpráva..."
+        maxlength="200"
         name="clientNote"
       />
     </div>
