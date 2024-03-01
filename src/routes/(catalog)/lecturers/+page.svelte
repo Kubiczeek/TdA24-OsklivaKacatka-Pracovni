@@ -99,6 +99,7 @@
     if (pageNum >= Math.ceil(showedFilters.length / 5)) return;
     $page.url.searchParams.set("page", parseInt(pageNum) + 1);
     pushState($page.url);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function decreasePage() {
@@ -106,12 +107,14 @@
     if (pageNum <= 1) return;
     $page.url.searchParams.set("page", parseInt(pageNum) - 1);
     pushState($page.url);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function setPage(pageNum) {
     if (pageNum >= 1 && pageNum <= Math.ceil(showedFilters.length / 5)) {
       $page.url.searchParams.set("page", pageNum);
       pushState($page.url);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
