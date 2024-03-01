@@ -1,6 +1,7 @@
 <script>
   import { showModalMessage, modalData } from "$lib/stores.js";
   import { blur } from "svelte/transition";
+  import { goto } from "$app/navigation";
   import toast from "svelte-french-toast";
   let message;
 
