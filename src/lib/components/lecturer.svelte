@@ -45,7 +45,7 @@
       <p class="name ff-Lalezar">
         {title_before}
         {first_name}
-        {middle_name}
+        {middle_name || ""}
         {last_name}
         {title_after}
       </p>
