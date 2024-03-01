@@ -50,14 +50,13 @@
       </ul>
       <ul>
         <li>Soukromí</li>
-        <li><a href="/">GDPR</a></li>
-        <li><a href="/">Ochrana osobních údajů</a></li>
-        <li><a href="/">Licenční podmínky</a></li>
+        <li><a href="/gdpr">GDPR</a></li>
+        <li><a href="/licence">Licenční podmínky</a></li>
       </ul>
       <ul>
         <li>Ostatní</li>
-        <li><a href="/">Autoři</a></li>
-        <li><a href="/">Technologie</a></li>
+        <li><a href="/authors">Autoři</a></li>
+        <li><a href="/technologies">Technologie</a></li>
       </ul>
     </div>
   </div>
