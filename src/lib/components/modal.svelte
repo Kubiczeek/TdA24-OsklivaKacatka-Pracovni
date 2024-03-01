@@ -195,6 +195,7 @@
         required
         type="number"
         placeholder="14"
+        min="1"
         name="clientAge"
       />
     </div>
