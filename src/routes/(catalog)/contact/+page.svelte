@@ -2,8 +2,8 @@
   <p class="page-nav"><a href="/">Hlavní stránka</a> > Kontakt</p>
   <div class="container">
     <p class="static-text">
-      Chtěli byste nám něco vzkázat, pochválit či něco zkritizovat? Vyberte
-      podle kategorie správný email/telefon a dejte nám vědět!
+      Chtěli byste nám něco vzkázat, pochválit či něco zkritizovat? 
+      Vyberte podle kategorie správný email/telefon a dejte nám vědět!
     </p>
     <div class="contact">
       <p class="header ff-Lalezar">Dotazy</p>
