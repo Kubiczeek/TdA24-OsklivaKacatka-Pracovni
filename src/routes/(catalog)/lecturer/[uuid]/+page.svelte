@@ -21,8 +21,10 @@
 <Toaster />
 <div class="wrapper">
   <p class="page-nav">
-    <a href="/">Hlavní stránka</a> &gt; <a href="/lecturers">Seznam lektorů</a> &gt;
-    Jakub
+    <a href="/">Hlavní stránka</a> &gt; <a href="/lecturers">Seznam lektorů</a>
+    &gt;&MediumSpace;{data.data.title_before || ""}&MediumSpace;{data.data
+      .first_name}&MediumSpace;{data.data.middle_name || ""}&MediumSpace;{data
+      .data.last_name}&MediumSpace;{data.data.title_after || ""}
   </p>
   <div class="container">
     <div class="top-info">
@@ -148,7 +150,6 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-between;
     gap: 20px;
   }
 
