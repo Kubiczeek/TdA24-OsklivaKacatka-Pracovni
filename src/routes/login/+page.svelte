@@ -1,6 +1,6 @@
 <script>
   import "sanitize.css";
-  import { logo_black } from "$lib/assets/images.js";
+  import { logo_black, it } from "$lib/assets/images.js";
   import { goto } from "$app/navigation";
 
   let username = "";
@@ -84,8 +84,12 @@
       <div class="footer">
         <button on:click={submitForm}>Přihlásit se</button>
         <p>
-          Zapomněli jste heslo? <span class="blue">Smolík,</span> my to resetovat
-          nebudem.
+          Zapomněli jste heslo? <a
+            class="blue"
+            href={it}
+            download="IT_SUPPORT.png"
+            style="text-decoration: underline;">Smolík,</a
+          > my to resetovat nebudem.
         </p>
         <a
           href="/"
