@@ -286,6 +286,7 @@
   .allow-reservations {
     display: flex;
     gap: 1rem;
+    line-height: 30px;
   }
 
   .sort select,

@@ -11,6 +11,10 @@ export const GET = async ({ params }) => {
   filteredEvents.forEach((event) => {
     const date = event.date.split(".").reverse();
     const time = event.timeStart.split(":");
+    const timeEnd = event.timeEnd.split(":");
+    const timeDiff =
+      (parseInt(timeEnd[0]) - parseInt(time[0])) * 60 +
+      (parseInt(timeEnd[1]) - parseInt(time[1]));
     const status = ["TENTATIVE", "CANCELLED", "CONFIRMED"][
       ["denied", "accepted", "verifyingClient"].indexOf(event.status)
     ];
@@ -23,9 +27,7 @@ export const GET = async ({ params }) => {
         parseInt(time[1]),
       ],
       duration: {
-        //TODO: fix duration
-        hours: parseInt(time[0]),
-        minutes: parseInt(time[1]),
+        minutes: timeDiff,
       },
       title: event.clientName + " " + event.clientSurname + " - " + event.theme,
       description: event.clientNote,
