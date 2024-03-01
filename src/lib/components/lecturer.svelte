@@ -25,8 +25,8 @@
     : "https://i.ibb.co/cvPZj86/depositphotos-247872612-stock-illustration-no-image-available-icon-vector.png";
   title_before = title_before ? title_before : "";
   title_after = title_after ? title_after : "";
-  price_per_hour = price_per_hour ? price_per_hour : "Neurčeno";
-  location = location ? location : "Neurčeno";
+  price_per_hour = price_per_hour ? price_per_hour : "Dohodou";
+  location = location ? location : "Dohodou";
   bio = bio ? bio : "U lektora není uveden žádný popis.";
 </script>
 
@@ -55,7 +55,9 @@
     </div>
     <div class="changeable">
       <p class="place-text">
-        Lokalita: <span class="place">{location}</span>
+        Lokalita: <span class="place"
+          >{location}{data.online ? ", Online" : ""}</span
+        >
       </p>
       <p class="price-text">
         Cena: <span class="price">{price_per_hour}</span>
