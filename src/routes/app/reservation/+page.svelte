@@ -1,7 +1,7 @@
 <script>
   import { logo_black, hamburger, cross } from "$lib/assets/images.js";
   import toast, { Toaster } from "svelte-french-toast";
-  import { showModalAccept, showModalDecline } from "$lib/stores.js";
+  import { showModalAccept, showModalDecline, modalData } from "$lib/stores.js";
   import ModalConfirm from "$lib/components/modal-confirm.svelte";
   import ModalDecline from "$lib/components/modal-decline.svelte";
   import Reservation from "$lib/components/reservation.svelte";
@@ -11,18 +11,22 @@
 
   let check;
 
-  const sortedReservations = data.reservation?.sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
+  const removeDenied = data.reservation?.filter((item) => {
+    return item.status != "denied";
+  });
+
+  const removeExpired = removeDenied?.filter((item) => {
+    return new Date(item.date.split(".").reverse().join("-")) > new Date();
+  });
+
+  const sortedReservations = removeExpired?.sort((a, b) => {
+    const dateA = new Date(a.date.split(".").reverse().join("-"));
+    const dateB = new Date(b.date.split(".").reverse().join("-"));
 
     return dateA - dateB;
   });
 
-  const removeDenied = sortedReservations?.filter((item) => {
-    return item.status != "denied";
-  });
-
-  const reservation = removeDenied?.filter((item) => {
+  const reservation = sortedReservations?.filter((item) => {
     return item.lectorUuid == data.data.uuid;
   });
 
