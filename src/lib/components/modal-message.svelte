@@ -1,32 +1,38 @@
 <script>
-  import { showModalAccept, modalData } from "$lib/stores.js";
+  import { showModalMessage, modalData } from "$lib/stores.js";
   import { blur } from "svelte/transition";
   import toast from "svelte-french-toast";
-  let place, message;
+  let message;
 
   function handleSubmit(event) {
     event.preventDefault();
     const data = {
-      place: place.value,
       message: message.value,
       decision: true,
     };
     fetch(`/api/reservation/accept/${$modalData.uuid}`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
       },
       body: JSON.stringify(data),
     }).then((res) => {
-      toast.success("Místo přidáno a schůzka úspěšně potvrzena", {
-        style: "font-family: 'Open Sans', sans-serif;",
-        position: "bottom-right",
-      });
-      goto("/").then(() => {
-        goto("/app/reservation");
-      });
-      showModalAccept.hide();
+      if (res.ok) {
+        toast.success("Místo přidáno a schůzka úspěšně potvrzena", {
+          style: "font-family: 'Open Sans', sans-serif;",
+          position: "bottom-right",
+        });
+        showModalMessage.hide();
+        goto("/").then(() => {
+          goto("/app/reservation");
+        });
+      } else {
+        toast.error("Něco se pokazilo", {
+          style: "font-family: 'Open Sans', sans-serif;",
+          position: "bottom-right",
+        });
+      }
     });
   }
 </script>
@@ -72,14 +78,9 @@
       </p>
     </div>
     <div class="name">
-      <p class="bold-text">Místo:</p>
-      <input
-        type="text"
-        name="place"
-        bind:this={place}
-        placeholder="Doplňte místo konání..."
-        id=""
-      />
+      <p class="text">
+        Místo: <span class="value">{$modalData.place}</span>
+      </p>
     </div>
     <div class="special">
       <span>Zpráva:</span><input
@@ -91,9 +92,9 @@
     </div>
     <div class="buttons">
       <button class="submit" type="submit" on:click={handleSubmit}
-        >Přidat&nbsp;místo a potvrdit&nbsp;schůzku</button
+        >Odelsat&nbsp;zprávu</button
       >
-      <button type="button" class="cancel" on:click={showModalAccept.hide}
+      <button type="button" class="cancel" on:click={showModalMessage.hide}
         >Zrušit</button
       >
     </div>

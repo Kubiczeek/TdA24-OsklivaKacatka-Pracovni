@@ -1,6 +1,11 @@
 <script>
   import { chevron } from "$lib/assets/images.js";
-  import { showModalAccept, showModalDecline, modalData } from "$lib/stores.js";
+  import {
+    showModalAccept,
+    showModalDecline,
+    showModalMessage,
+    modalData,
+  } from "$lib/stores.js";
 
   export let info;
 
@@ -48,13 +53,23 @@
       </p>
     </div>
     <div class="buttons">
-      <button
-        class="accept"
-        on:click={() => {
-          showModalAccept.show();
-          modalData.set(info);
-        }}>Potvrdit schůzku</button
-      >
+      {#if info.status == "accepted"}
+        <button
+          class="accept"
+          on:click={() => {
+            showModalMessage.show();
+            modalData.set(info);
+          }}>Poslat zprávu</button
+        >
+      {:else}
+        <button
+          class="accept"
+          on:click={() => {
+            showModalAccept.show();
+            modalData.set(info);
+          }}>Potvrdit schůzku</button
+        >
+      {/if}
       <button
         class="cancel"
         on:click={() => {

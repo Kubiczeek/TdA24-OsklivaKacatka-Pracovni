@@ -1,9 +1,14 @@
 <script>
   import { logo_black, hamburger, cross } from "$lib/assets/images.js";
   import toast, { Toaster } from "svelte-french-toast";
-  import { showModalAccept, showModalDecline, modalData } from "$lib/stores.js";
+  import {
+    showModalAccept,
+    showModalDecline,
+    showModalMessage,
+  } from "$lib/stores.js";
   import ModalConfirm from "$lib/components/modal-confirm.svelte";
   import ModalDecline from "$lib/components/modal-decline.svelte";
+  import ModalMessage from "$lib/components/modal-message.svelte";
   import Reservation from "$lib/components/reservation.svelte";
   import { onMount } from "svelte";
 
@@ -78,6 +83,9 @@
 {/if}
 {#if $showModalDecline}
   <ModalDecline />
+{/if}
+{#if $showModalMessage}
+  <ModalMessage />
 {/if}
 <nav>
   <img src={logo_black} alt="" />

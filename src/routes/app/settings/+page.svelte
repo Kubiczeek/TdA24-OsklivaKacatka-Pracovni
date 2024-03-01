@@ -5,8 +5,6 @@
 
   export let data;
 
-  console.log(data);
-
   let open = false;
   let selectedDay = "Po";
 
@@ -24,7 +22,6 @@
   }
 
   function saveChanges() {
-    console.log(data.calendar);
     const modifiedCalendar = data.calendar.map((dayObject) => {
       if (dayObject.day === selectedDay) {
         dayObject.from = from.value;
@@ -35,20 +32,34 @@
       return dayObject;
     });
     data.calendar = modifiedCalendar;
-    console.log(data.calendar);
-    console.log(data.calendar);
     fetch(`/api/lecturers/${data.uuid}`, {
       method: "PUT",
       headers: {
+        Authorization: `Basic ${btoa("TdA:d8Ef6!dGG_pv")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     }).then((res) => {
-      console.log(res);
-      toast("Změny byly úspěšně uloženy!", {
-        style: "font-family: 'Open Sans', sans-serif;",
-        position: "bottom-right",
-      });
+      if (res.ok) {
+        const day = [
+          "Pondělí",
+          "Úterý",
+          "Středa",
+          "Čtvrtek",
+          "Pátek",
+          "Sobota",
+          "Neděle",
+        ][["Po", "Út", "St", "Čt", "Pá", "So", "Ne"].indexOf(selectedDay)];
+        toast.success(`Změny pro "${day}" byly úspěšně uloženy!`, {
+          style: "font-family: 'Open Sans', sans-serif;",
+          position: "bottom-right",
+        });
+      } else {
+        toast.error("Něco se pokazilo, zkuste to prosím znovu.", {
+          style: "font-family: 'Open Sans', sans-serif;",
+          position: "bottom-right",
+        });
+      }
     });
   }
 

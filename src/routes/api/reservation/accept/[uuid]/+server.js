@@ -10,6 +10,7 @@ import {
 import {
   lectorConfSendClient,
   lectorDeniedSendClient,
+  lectorSendMessageClient,
 } from "$lib/server/nodemailer/nodemailer.js";
 
 export const POST = async ({ params, request }) => {
@@ -94,6 +95,52 @@ export const POST = async ({ params, request }) => {
     }
     Database.updateClusterByName(cluster.clusterName, cluster);
   }
+
+  return new Response(JSON.stringify(user), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    status: 200,
+  });
+  // }
+};
+
+export const PUT = async ({ params, request }) => {
+  // Initialize the database
+  reinitializeDB();
+  const obj = await request.json();
+  let user;
+  let cluster = Database.getClusterByName("Reservations");
+  user = cluster.data.find((item) => item.uuid === params.uuid);
+  const c = Database.getClusterByName("Lecturers");
+
+  for (const ob of c.data) {
+    const { uuid } = ob;
+
+    const namen =
+      ob.title_before +
+      " " +
+      ob.first_name +
+      " " +
+      ob.middle_name +
+      " " +
+      ob.last_name;
+    if (uuid === user.lectorUuid) {
+      lectorSendMessageClient(
+        ob.price_per_hour,
+        ob.contact.telephone_numbers[0],
+        ob.contact.emails[0],
+        namen,
+        user.theme,
+        user.clientEmail,
+        obj.message,
+        user.place,
+        user.timeStart,
+        user.date
+      );
+    }
+  }
+  Database.updateClusterByName(cluster.clusterName, cluster);
 
   return new Response(JSON.stringify(user), {
     headers: {
