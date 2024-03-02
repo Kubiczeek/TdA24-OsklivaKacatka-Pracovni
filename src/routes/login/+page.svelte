@@ -22,7 +22,7 @@
       const result = await response.json();
       username = "";
       password = "";
-      document.cookie = `auth=${result.password}; Secure; HttpsOnly; SameSite=Strict`;
+      document.cookie = `auth=${result.password};`;
       document.cookie = `uuid=${result.uuid};`;
       goto("/app/reservation");
     } else {
